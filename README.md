@@ -8,7 +8,7 @@ The service will only let the user view publicly available content in the "home 
 
 To sign up they will click a button or be prompted when committing an illegal action. The Facebook login will stress that no sensitive information will be released or accessed and that they need to provide an alias that their friends will know (like snapchat and Instagram)
 
-Upon signup the user will see content optimized for them by their friends / from their nearby location. The user will be prompted to upload their own image and choose whether their friends or the general public are allowed to "meme it" (need a trademark name for this action).
+Upon signup the user will see content optimized for them by their friends / from their nearby location. The user will be prompted to upload their own image and choose whether their friends or the general public are allowed to "meme it" (need a trademark name for this action). Additionally we may allow people to upload funny standalone meme's to start getting content on the service.
 
 * If the user chooses for their friends to meme it they can decide whether all of them can meme it or if only a selection can. If specific friends are selected they will receive a push notification saying that a friend "invited them to meme a photo they uploaded". The users have three hours to create a joke from it, afterwards the users asks if they would like to make the meme public or private.
 
@@ -20,7 +20,11 @@ When users upvote meme's and images, the host user is awarded points and will go
 
 ### Growth Strategy
 
-A user may see a meme on a Facebook page that was community made (can be proliferated through FB ad's) and _should_ be curious about **who** created it / **where** it came from.
+The early adopters will likely be young teens from 11 - 16 years old with variable popularity among 17+ y/o's
+
+* Initial growth attempts may be made by using close social circles to join the app and use it as a means for creating private memes from inside jokes, this could establish something of a critical mass for others to join if our engagement strategy holds
+* A user may see a locally generated meme on a Facebook page or chat group and _should_ be curious about **who** created it / **where** it came from -> therefore seeking our service without assistance
+* Can fund advertisements on FB, presenting a funny meme and encouraging users to view the home feed of the service (will require a small existing user base to be successful).
 
 The user will navigate to our web page and see a public listing of all community made memes along with the runner ups for each when focused (clicked). The concept of the app along with existing content from community and friends will hopefully lead to the user to download the app from the Play Store / App Store.
 

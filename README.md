@@ -11,3 +11,5 @@ Install these packages
 Install the ionic devapp for testing https://ionicframework.com/docs/appflow/devapp
 
 Do not install AppFlow thingy
+
+Backend repo: https://github.com/ghostcoder217/meme-app-server

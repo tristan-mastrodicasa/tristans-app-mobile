@@ -8,8 +8,20 @@ Install these packages
 
 	$ npm install -g ionic cordova jsdoc
 
-Install the ionic devapp for testing https://ionicframework.com/docs/appflow/devapp
+Clone the repo (or pull)
 
-Do not install AppFlow thingy
+Navigate to the repo folder and run
+
+	$ npm install
+
+Then within the repo folder run
+
+	$ ionic serve
+
+You should now see the app open in a browser and you can begin hacking away at it
+
+Install the ionic devapp for testing https://ionicframework.com/docs/appflow/devapp (Optional)
+
+## Misc
 
 Backend repo: https://github.com/ghostcoder217/meme-app-server

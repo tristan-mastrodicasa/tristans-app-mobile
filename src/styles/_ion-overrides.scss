@@ -1,0 +1,19 @@
+/**
+ * File for overriding ionic default styles
+ * Created by Tristan Mastrodicasa
+ */
+
+/* Variable Imports */
+
+$background-color: var(--html-background-color);
+
+/* Definitions */
+
+ion-content {
+  /* Set the background of the entire app */
+  --ion-background-color: $background-color;
+}
+
+ion-tab-bar {
+  height: 50px;
+}

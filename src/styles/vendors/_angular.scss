@@ -1,0 +1,13 @@
+/**
+ * Angular Styles
+ */
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+
+textarea.ng-invalid,
+input.ng-invalid[type='text'],
+input.ng-invalid[type='password'] {
+    border-color: #FF0000;
+}

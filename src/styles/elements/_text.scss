@@ -1,0 +1,15 @@
+/**
+ * File contains text specific styles
+ * Created by Tristan Mastrodicasa
+ */
+
+ /* Variables */
+
+$standard-font: Arial, Helvetica, sans-serif;
+
+/* Native Tag Styles */
+h1, h2, h3, h4, p, span, div, button, input {
+    font-family: $standard-font;
+    margin: 0;
+    padding: 0;
+}

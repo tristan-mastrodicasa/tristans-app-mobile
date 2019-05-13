@@ -1,0 +1,30 @@
+/**
+ * Root file of all SCSS to be imported to project
+ * Created by Tristan Mastrodicasa
+ */
+
+/* Vendors */
+
+@import 'vendors/angular';
+@import 'vendors/normalize';
+
+/* Helpers */
+
+@import 'helpers/variables.global';
+@import 'helpers/functions';
+@import 'helpers/mixins';
+
+/* Elements */
+
+@import 'elements/text';
+@import 'elements/input';
+
+/* Layouts */
+
+@import 'layouts/layout.global';
+
+@import 'layouts/responsive';
+
+/* Ionic Overrides */
+
+@import 'ion-overrides';

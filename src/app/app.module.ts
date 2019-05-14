@@ -11,10 +11,12 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { SidemenuComponent } from 'src/app/components/interface/sidemenu/sidemenu.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent, SidemenuComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,

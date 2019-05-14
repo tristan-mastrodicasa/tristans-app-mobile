@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -10,7 +10,11 @@ export class HomePage {
 
   postData: any;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+
+    // Test Http Get //
     this.http.get('https://app.roberthompson.co.uk/meme-app/example.json').subscribe((response) => {
       console.log(response[0].memeID);
       this.postData = response;
@@ -24,5 +28,7 @@ export class HomePage {
     })
     //console.log(this.postData);
     */
+
   }
+
 }

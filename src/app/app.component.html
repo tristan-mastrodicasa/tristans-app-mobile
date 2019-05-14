@@ -1,55 +1,7 @@
 <ion-app>
 
   <ion-menu>
-
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-      <ion-list lines="none">
-
-        <ion-menu-toggle auto-hide="false">
-          <ion-item [routerDirection]="'root'" [routerLink]="['/find-users']">
-            <ion-icon name="person-add" slot="start" size="medium"></ion-icon>
-            <ion-text>
-              <h4>Find Users</h4>
-            </ion-text>
-          </ion-item>
-        </ion-menu-toggle>
-
-        <ion-menu-toggle auto-hide="false">
-          <ion-item [routerDirection]="'root'" [routerLink]="['/followers']">
-            <ion-icon name="globe" slot="start" size="medium"></ion-icon>
-            <ion-text>
-              <h4>Network</h4>
-            </ion-text>
-          </ion-item>
-        </ion-menu-toggle>
-
-        <ion-menu-toggle auto-hide="false">
-          <ion-item [routerDirection]="'root'" [routerLink]="['/edit/profile']">
-            <ion-icon name="create" slot="start" size="medium"></ion-icon>
-            <ion-text>
-              <h4>Edit Profile</h4>
-            </ion-text>
-          </ion-item>
-        </ion-menu-toggle>
-
-        <ion-menu-toggle auto-hide="false">
-          <ion-item [routerDirection]="'root'" [routerLink]="['/edit/account']">
-            <ion-icon name="settings" slot="start" size="medium"></ion-icon>
-            <ion-text>
-              <h4>Settings</h4>
-            </ion-text>
-          </ion-item>
-        </ion-menu-toggle>
-
-      </ion-list>
-    </ion-content>
-
+    <app-sidemenu class="ion-page menu-content"></app-sidemenu>
   </ion-menu>
 
   <ion-router-outlet main></ion-router-outlet>

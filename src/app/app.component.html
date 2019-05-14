@@ -9,15 +9,44 @@
     </ion-header>
 
     <ion-content>
-      <ion-list>
-        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-          <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-            <ion-icon slot="start" [name]="p.icon"></ion-icon>
-            <ion-label>
-              {{p.title}}
-            </ion-label>
+      <ion-list lines="none">
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item [routerDirection]="'root'" [routerLink]="['/find-users']">
+            <ion-icon name="person-add" slot="start" size="medium"></ion-icon>
+            <ion-text>
+              <h4>Find Users</h4>
+            </ion-text>
           </ion-item>
         </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item [routerDirection]="'root'" [routerLink]="['/followers']">
+            <ion-icon name="globe" slot="start" size="medium"></ion-icon>
+            <ion-text>
+              <h4>Network</h4>
+            </ion-text>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item [routerDirection]="'root'" [routerLink]="['/edit/profile']">
+            <ion-icon name="create" slot="start" size="medium"></ion-icon>
+            <ion-text>
+              <h4>Edit Profile</h4>
+            </ion-text>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item [routerDirection]="'root'" [routerLink]="['/edit/account']">
+            <ion-icon name="settings" slot="start" size="medium"></ion-icon>
+            <ion-text>
+              <h4>Settings</h4>
+            </ion-text>
+          </ion-item>
+        </ion-menu-toggle>
+
       </ion-list>
     </ion-content>
 

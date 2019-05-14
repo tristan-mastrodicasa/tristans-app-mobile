@@ -13,8 +13,8 @@ const routes: Routes = [
   //{ path: 'notifications', loadChildren: './notifications/notifications.module#NotificationsPageModule' },
   { path: 'media-upload', loadChildren: './media-upload/media-upload.module#MediaUploadPageModule' },
   { path: 'meme-focus', loadChildren: './meme-focus/meme-focus.module#MemeFocusPageModule' },
-  { path: 'profile', loadChildren: './edit/profile/profile.module#ProfilePageModule' },
-  { path: 'account', loadChildren: './edit/account/account.module#AccountPageModule' },
+  { path: 'edit/profile', loadChildren: './edit/profile/profile.module#ProfilePageModule' },
+  { path: 'edit/account', loadChildren: './edit/account/account.module#AccountPageModule' },
   //{ path: 'meme-canvas-index', loadChildren: './meme-canvas-index/meme-canvas-index.module#MemeCanvasIndexPageModule' },
   { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
 ];

@@ -21,38 +21,41 @@
 </ion-header>
 
 <ion-content>
+	<ion-list>
+	  <ion-item *ngFor="let post of postData">
+		  <ion-card>
+			  <ion-card-header color="primary">
+			    <ion-card-subtitle>Memed By:
+			    	<ion-chip>
+					  <ion-avatar>
+					    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+					  </ion-avatar>
+					  <ion-label class="username">Chip Avatar</ion-label>
+					</ion-chip>
+			    </ion-card-subtitle>
+			    <ion-card-title>Posted By:
+			    	<ion-chip>
+					  <ion-avatar>
+					    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+					  </ion-avatar>
+					  <ion-label class="username">Chip Avatar</ion-label>
+					</ion-chip>
+			    </ion-card-title>
+			  </ion-card-header>
 
-	  <ion-card>
-		  <ion-card-header color="primary">
-		    <ion-card-subtitle>Memed By:
-		    	<ion-chip>
-				  <ion-avatar>
-				    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-				  </ion-avatar>
-				  <ion-label class="username">Chip Avatar</ion-label>
-				</ion-chip>
-		    </ion-card-subtitle>
-		    <ion-card-title>Posted By:
-		    	<ion-chip>
-				  <ion-avatar>
-				    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-				  </ion-avatar>
-				  <ion-label class="username">Chip Avatar</ion-label>
-				</ion-chip>
-		    </ion-card-title>
-		  </ion-card-header>
+			  <ion-card-content>
+			  	<img src="https://www.roberthompson.co.uk/meme-app/meme.jpg">
+			  </ion-card-content>
 
-		  <ion-card-content>
-		  	<img src="https://www.roberthompson.co.uk/meme-app/meme.jpg">
-		  </ion-card-content>
-
-		  <ion-row class="cardfooter">
-		      <ion-col class="colLeft">
-		            <p><ion-icon name="star"></ion-icon> 123</p>
-		      </ion-col>
-		      <ion-col class="colRight">
-		            <p><ion-icon name="time"></ion-icon> 3 Mins Ago</p>
-		      </ion-col>
-	      </ion-row>
-	</ion-card>
+			  <ion-row class="cardfooter">
+			      <ion-col class="colLeft">
+			            <p><ion-icon name="star"></ion-icon> 123</p>
+			      </ion-col>
+			      <ion-col class="colRight">
+			            <p><ion-icon name="time"></ion-icon> {{post.postingTimestamp}}</p>
+			      </ion-col>
+		      </ion-row>
+		  </ion-card>
+		</ion-item>
+	</ion-list>
 </ion-content>

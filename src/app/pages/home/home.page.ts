@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,28 +8,26 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  postData: any;
+  postData=[];
 
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-
+  ngOnInit(infiniteScroll?) {
     // Test Http Get //
     this.http.get('https://app.roberthompson.co.uk/meme-app/example.json').subscribe((response) => {
-      console.log(response[0].memeID);
-      this.postData = response;
+      this.postData = this.postData.concat(response);
       console.log(this.postData);
+      if(infiniteScroll)
+      {
+        infiniteScroll.target.complete();
+      }
     });
+  }
 
-    /*
-    this.postData = this.http.get('https://app.roberthompson.co.uk/meme-app/example.json');
-    this.postData.subscribe(data => {
-      console.log(data);
-    })
-    //console.log(this.postData);
-    */
-
+  loadPosts(infiniteScroll){
+    this.ngOnInit(infiniteScroll);
   }
 
 }

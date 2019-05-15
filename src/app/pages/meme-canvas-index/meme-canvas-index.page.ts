@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-meme-canvas-index',
@@ -6,10 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./meme-canvas-index.page.scss'],
 })
 export class MemeCanvasIndexPage implements OnInit {
+	@ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  constructor() { }
+	  postData=[];
 
-  ngOnInit() {
-  }
+	  constructor(private http: HttpClient) { }
+
+	  ngOnInit(infiniteScroll?) {
+	    // Test Http Get // get request can later be changed to get relevent data from the server, eg for this it would need to get globaly rising memes
+	    this.http.get('https://app.roberthompson.co.uk/meme-app/example.json').subscribe((response) => {
+	      this.postData = this.postData.concat(response);
+	      if(infiniteScroll)
+	      {
+	        infiniteScroll.target.complete();
+	      }
+	    });
+	  }
+
+	  loadPosts(infiniteScroll){
+	    this.ngOnInit(infiniteScroll);
+	  }
 
 }

@@ -15,10 +15,9 @@ export class HomePage implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(infiniteScroll?) {
-    // Test Http Get //
+    // Test Http Get // get reqest can later be changed to get relevent data from server, eg in this case it would need to get memes from the user's network
     this.http.get('https://app.roberthompson.co.uk/meme-app/example.json').subscribe((response) => {
       this.postData = this.postData.concat(response);
-      console.log(this.postData);
       if(infiniteScroll)
       {
         infiniteScroll.target.complete();

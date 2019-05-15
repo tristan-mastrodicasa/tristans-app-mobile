@@ -9,10 +9,10 @@ $background-color: var(--html-background-color);
 
 /* Definitions */
 
-ion-content {
-  /* Set the background of the entire app */
+/* Set the background of the entire app */
+/*ion-content {
   --ion-background-color: $background-color;
-}
+}*/
 
 ion-tab-bar {
   height: 50px;

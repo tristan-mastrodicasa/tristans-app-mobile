@@ -2,21 +2,17 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: 'home', pathMatch: 'full' },
-  //{ path: 'home', loadChildren: './home/home.module#HomePageModule' },
-  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
-  { path: 'followers', loadChildren: './network/followers/followers.module#FollowersPageModule' },
-  { path: 'following', loadChildren: './network/following/following.module#FollowingPageModule' },
-  { path: 'find-users', loadChildren: './network/find-users/find-users.module#FindUsersPageModule' },
-  { path: 'sign-up', loadChildren: './sign-up/sign-up.module#SignUpPageModule' },
-  { path: 'log-in', loadChildren: './log-in/log-in.module#LogInPageModule' },
-  //{ path: 'notifications', loadChildren: './notifications/notifications.module#NotificationsPageModule' },
-  { path: 'media-upload', loadChildren: './media-upload/media-upload.module#MediaUploadPageModule' },
-  { path: 'meme-focus', loadChildren: './meme-focus/meme-focus.module#MemeFocusPageModule' },
-  { path: 'edit/profile', loadChildren: './edit/profile/profile.module#ProfilePageModule' },
-  { path: 'edit/account', loadChildren: './edit/account/account.module#AccountPageModule' },
-  //{ path: 'meme-canvas-index', loadChildren: './meme-canvas-index/meme-canvas-index.module#MemeCanvasIndexPageModule' },
   { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  { path: 'log-in', loadChildren: './pages/log-in/log-in.module#LogInPageModule' },
+  { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
+  { path: 'sign-up', loadChildren: './pages/sign-up/sign-up.module#SignUpPageModule' },
+  { path: 'network/find-users', loadChildren: './pages/network/find-users/find-users.module#FindUsersPageModule' },
+  { path: 'network/followers', loadChildren: './pages/network/followers/followers.module#FollowersPageModule' },
+  { path: 'network/following', loadChildren: './pages/network/following/following.module#FollowingPageModule' },
+  { path: 'meme-focus', loadChildren: './pages/meme-focus/meme-focus.module#MemeFocusPageModule' },
+  { path: 'edit/profile', loadChildren: './pages/edit/profile/profile.module#ProfilePageModule' },
+  { path: 'edit/account', loadChildren: './pages/edit/account/account.module#AccountPageModule' },
+  { path: 'media-upload', loadChildren: './pages/media-upload/media-upload.module#MediaUploadPageModule' },
 ];
 
 @NgModule({

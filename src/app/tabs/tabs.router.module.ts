@@ -12,7 +12,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../home/home.module#HomePageModule'
+            loadChildren: '../pages/home/home.module#HomePageModule'
           }
         ]
       },
@@ -21,7 +21,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../meme-canvas-index/meme-canvas-index.module#MemeCanvasIndexPageModule'
+            loadChildren: '../pages/meme-canvas-index/meme-canvas-index.module#MemeCanvasIndexPageModule'
           }
         ]
       },
@@ -30,7 +30,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../notifications/notifications.module#NotificationsPageModule'
+            loadChildren: '../pages/notifications/notifications.module#NotificationsPageModule'
           }
         ]
       },

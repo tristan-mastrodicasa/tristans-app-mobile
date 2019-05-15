@@ -25,7 +25,4 @@ export class AppComponent {
     });
   }
 
-  bruh() {
-    console.log("Here");
-  }
 }

@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { FollowersPage } from './followers.page';
 
+import { ComponentsModule } from '../../../components/components.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -19,7 +21,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ComponentsModule
   ],
   declarations: [FollowersPage]
 })

@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpPage implements OnInit {
 
+  signUpData = {};
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  SignUpForm()
+  {
+
   }
 
 }

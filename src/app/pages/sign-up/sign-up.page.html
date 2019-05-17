@@ -1,5 +1,11 @@
 <app-back-button pageTitle="Sign Up"></app-back-button>
 
 <ion-content>
-
+	<form (ngSubmit)="SignUpForm()">
+		<ion-item>
+			<ion-label>Username</ion-label>
+			<ion-input type="text" [(ngModel)]="singUpData.username" name="username"></ion-input>
+		</ion-item>
+		<button ion-button type="submit" block>Sign Up!</button>
+	</form>
 </ion-content>

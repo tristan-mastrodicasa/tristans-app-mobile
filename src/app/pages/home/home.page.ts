@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { IonInfiniteScroll, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +12,7 @@ export class HomePage implements OnInit {
 
   postData=[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private nav: NavController) { }
 
   ngOnInit(infiniteScroll?) {
     // Test Http Get // get reqest can later be changed to get relevent data from server, eg in this case it would need to get memes from the user's network
@@ -27,6 +27,11 @@ export class HomePage implements OnInit {
 
   loadPosts(infiniteScroll){
     this.ngOnInit(infiniteScroll);
+  }
+
+  openMeme()
+  {
+    this.nav.navigateRoot('/meme-focus');
   }
 
 }

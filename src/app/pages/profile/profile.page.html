@@ -3,7 +3,7 @@
 <ion-content>
 	<ion-row>
 	  <ion-col text-center>
-        	<img src="/assets/svg-img/default-profile-picture.svg" width="100px" height="100px">	
+        	<img class="avatar" src="/assets/svg-img/default-profile-picture.svg" width="100px" height="100px">	
 	  </ion-col>
 	</ion-row>
 
@@ -48,7 +48,7 @@
 	  </ion-card-header>
 
 	  <ion-card-content>
-	  	<img src="https://www.roberthompson.co.uk/meme-app/meme.jpg">
+	  	<img tappable (click)="openMeme()" src="https://www.roberthompson.co.uk/meme-app/meme.jpg">
 	  </ion-card-content>
 
 	  <ion-row class="cardfooter">

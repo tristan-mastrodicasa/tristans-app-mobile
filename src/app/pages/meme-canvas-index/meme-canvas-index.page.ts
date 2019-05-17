@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { IonInfiniteScroll, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-meme-canvas-index',
@@ -12,7 +12,7 @@ export class MemeCanvasIndexPage implements OnInit {
 
 	  postData=[];
 
-	  constructor(private http: HttpClient) { }
+	  constructor(private http: HttpClient, private nav: NavController) { }
 
 	  ngOnInit(infiniteScroll?) {
 	    // Test Http Get // get request can later be changed to get relevent data from the server, eg for this it would need to get globaly rising memes
@@ -28,5 +28,10 @@ export class MemeCanvasIndexPage implements OnInit {
 	  loadPosts(infiniteScroll){
 	    this.ngOnInit(infiniteScroll);
 	  }
+
+  openMeme()
+  {
+    this.nav.navigateRoot('/meme-focus');
+  }
 
 }

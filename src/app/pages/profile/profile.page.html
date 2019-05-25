@@ -1,9 +1,9 @@
 <app-back-button pageTitle="Profile Name"></app-back-button>
 
 <ion-content>
-	<ion-row>
+	<ion-row class="ion-margin-top">
 	  <ion-col text-center>
-        	<img class="avatar" src="/assets/svg-img/default-profile-picture.svg" width="100px" height="100px">	
+        	<img class="avatar" src="/assets/svg-img/default-profile-picture.svg" width="100px" height="100px">
 	  </ion-col>
 	</ion-row>
 
@@ -16,16 +16,36 @@
 	</ion-row>
 
 	<ion-row>
-	  <ion-col text-center>
-		    <ion-label>
-	    		<ion-icon name="star"></ion-icon> xxx
-	    		| <ion-icon name="brush"></ion-icon> xxx
-	    		| <ion-icon name="person"></ion-icon> xxx
-	    	</ion-label>
+	  <ion-col>
+
+      <ion-grid text-center>
+
+        <ion-col>
+  		    <ion-label>
+  	    		<ion-icon name="star"></ion-icon> 342
+  	    	</ion-label>
+        </ion-col>
+
+        <ion-col >
+  		    <ion-label>
+  	    		 <ion-icon name="brush"></ion-icon> 41
+  	    	</ion-label>
+        </ion-col>
+
+        <ion-col >
+  		    <ion-label>
+  	    		 <ion-icon name="person"></ion-icon> 56
+  	    	</ion-label>
+        </ion-col>
+      </ion-grid>
+
 	  </ion-col>
 	</ion-row>
 
-    <ion-button class="centerButton" expand="block" color="primary"><ion-icon slot="start" name="person-add"></ion-icon>Follow</ion-button>
+    <ion-button class="centerButton" expand="block" color="primary">
+      <ion-icon slot="start" name="person-add"></ion-icon>
+      Follow
+    </ion-button>
 
     <ion-card *ngFor="let post of postData">
 	  <ion-card-header color="primary">

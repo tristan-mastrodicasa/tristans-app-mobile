@@ -2,7 +2,7 @@
 
 ### What is this meme app
 
-An app where you make memes with friends or a group of contacts. When you make funny jokes or upload good images you are awarded with "influence points", giving your profile clout (similar to the reddit karma system). Influence points increases your rankings in several search and indexing features. A leaderboard system should drastically increase addiction and engagement.
+The idea is to provide a utility for consumers to create meme's out of each other and a networking service for consumers to create memes out of people from their extended social circles and local community. The application will feature a "points" system that rewards the best meme creators and will serve to frame the application as a "social media game". Influence points increases your rankings in several search and indexing features. A leaderboard system should drastically increase addiction and engagement.
 
 The meme app will have a global index which will show memes from posters who have marked their posts as "Public". The global index will try its best to show the most relevant content (based on location, following, most popular etc).
 

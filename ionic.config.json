@@ -1,5 +1,7 @@
 {
   "name": "meme-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

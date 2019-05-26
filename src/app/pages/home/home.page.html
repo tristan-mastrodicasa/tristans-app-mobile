@@ -1,6 +1,11 @@
 <app-primary-header pageTitle="Home"></app-primary-header>
 
 <ion-content>
+
+  <ion-button (click)="changeState()">
+    Yo
+  </ion-button>
+
   <ion-card *ngFor="let post of postData">
 	  <ion-card-header color="primary">
 	    <ion-card-subtitle>Memed By:
@@ -30,7 +35,7 @@
 	            <p><ion-icon name="star"></ion-icon> 123</p>
 	      </ion-col>
 	      <ion-col class="colRight">
-	            <p><ion-icon name="time"></ion-icon> {{post.postingTimestamp}}</p>
+	            <p><ion-icon name="time"></ion-icon> {{ post.name }}</p>
 	      </ion-col>
       </ion-row>
   </ion-card>

@@ -55,6 +55,7 @@ Users will see an ad from Facebook, SEO and/or an influencer and will download t
 * The growth strategy and engagement strategy needs to have stats collected
   * Collect data on most interesting push notification
   * Collect data on where most traffic comes from (SEO, FB, Influencer endorsements, Various Social Media Pages)
+    * Should be easy with the browser application being separate
 
 ### Key points to nail
 

@@ -3,5 +3,5 @@ export interface Response {
     exists: boolean,
     errorInfo?: any
   };
-  content?: object;
+  content?: any;
 }

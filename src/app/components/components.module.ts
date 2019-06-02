@@ -5,18 +5,21 @@ import { RouterModule } from '@angular/router';
 import { PrimaryHeaderComponent } from './interface/primary-header/primary-header.component';
 import { SidemenuComponent } from './interface/sidemenu/sidemenu.component';
 import { BackButtonComponent } from './interface/back-button/back-button.component';
+import { TransparentHeaderComponent } from './interface/transparent-header/transparent-header.component';
 
 @NgModule({
   imports: [IonicModule, RouterModule],
   declarations: [
     PrimaryHeaderComponent,
     SidemenuComponent,
-    BackButtonComponent
+    BackButtonComponent,
+    TransparentHeaderComponent
   ],
   exports: [
     PrimaryHeaderComponent,
     SidemenuComponent,
-    BackButtonComponent
+    BackButtonComponent,
+    TransparentHeaderComponent
   ]
 })
 export class ComponentsModule { }

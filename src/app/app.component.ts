@@ -20,7 +20,11 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  initializeApp() {
+  /**
+   * Complete normal initilization
+   * Check if the user is logged in, complete work with the JWT
+   */
+  public initializeApp() {
 
     // Initialze App //
     this.platform.ready().then(() => {
@@ -31,9 +35,9 @@ export class AppComponent {
     // Load Profile //
     // Subscribe to the state //
     this.globalStore.state$.subscribe(state => {
-      if(state.initialized) {
+      if (state.initialized) {
 
-        if(!state.userInitialized) {
+        if (!state.userInitialized) {
           // Verify JWT works (if any) //
           // If no JWT -> check if logged into fb //
           this.globalStore.userInitialized();

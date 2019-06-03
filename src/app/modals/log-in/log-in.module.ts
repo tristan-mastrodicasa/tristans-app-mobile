@@ -3,14 +3,13 @@ import { IonicModule } from '@ionic/angular';
 
 import { LogInPage } from './log-in.page';
 
-import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
-import { FacebookLoginProvider } from "angularx-social-login";
+import { FacebookLoginProvider, SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 
 
 let config = new AuthServiceConfig([
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("323465568348747")
+    provider: new FacebookLoginProvider('323465568348747')
   }
 ]);
 

@@ -5,7 +5,10 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 @Injectable()
 export class ImposterServerService implements InMemoryDbService {
 
-  createDb() {
+  /**
+   * Create the database for the imposter server
+   */
+  public createDb() {
     let heroes = [
       { id: 1, name: 'Windstorm' },
       { id: 2, name: 'Bombasto' },

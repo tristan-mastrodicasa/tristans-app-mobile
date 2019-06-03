@@ -24,7 +24,7 @@ Install the ionic devapp for testing https://ionicframework.com/docs/appflow/dev
 
 ## Before Pushing
 
-1. Ensure proper JSDoc for custom methods, services etc
+1. Update all relevant documentation in /docs
 2. run `npm run lint` to check if code is clean
 
 ## Notes on Environment Changes

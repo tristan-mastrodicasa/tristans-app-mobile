@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class BackButtonComponent {
 
-  @Input() pageTitle: string = '';
+  @Input() public pageTitle = '';
 
   constructor() { }
 

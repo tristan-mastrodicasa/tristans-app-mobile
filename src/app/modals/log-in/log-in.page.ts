@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { LoadingController } from '@ionic/angular';
-import { AlertController } from '@ionic/angular';
+import { ModalController, LoadingController, AlertController } from '@ionic/angular';
 import { first } from 'rxjs/operators';
 
-import { AuthService } from "angularx-social-login";
-import { FacebookLoginProvider} from "angularx-social-login";
+import { AuthService, FacebookLoginProvider } from 'angularx-social-login';
 
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
 import { GlobalStore } from '../../services/state/global.store';
@@ -17,7 +14,7 @@ import { GlobalStore } from '../../services/state/global.store';
 })
 export class LogInPage {
 
-  private loading: boolean = false;
+  private loading = false;
 
   constructor(
     private modalController: ModalController,
@@ -28,59 +25,84 @@ export class LogInPage {
     private globalStore: GlobalStore
   ) { }
 
-  closeModal() {
+  /**
+   * Close the login options modal
+   */
+  private closeModal() {
     this.modalController.dismiss();
   }
 
-  async presentError(message) {
+  /**
+   * Present the error message should something go wrong with the login process
+   * @param message Message to display
+   */
+  private async presentError(message: string) {
     const alert = await this.alertController.create({
       header: 'Error',
-      message: message,
+      message,
       buttons: ['Dismiss']
     });
 
     await alert.present();
   }
 
-  async presentLoading() {
+  /**
+   * Present the loading screen
+   */
+  private async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Loading'
     });
     await loading.present();
   }
 
-  signInWithFB() {
+  /**
+   * Function initiates the FB login sequence and subsequently updates the login state of the
+   * application (client side). Currently the angularx-social-login module is used as a placeholder
+   * until we are able to implement the native cordova plugin when we test compiled native apps
+   */
+  private signInWithFB() {
 
+    // Here we use the placeholder login module to start the process //
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((user) => {
+
+      // Present the loading dialog //
       this.presentLoading();
 
-      this.http.logIn(user.authToken).pipe(first()).subscribe((res) => {
+      // When the user logs into facebok try logging in with their auth token //
+      this.http.logIn(user.authToken).pipe(first()).subscribe((res1) => {
 
-        if(res.error.exists) {
+        // If an error with the res1 auth token exists, try creating a profile with it //
+        if (res1.error.exists) {
 
-            this.http.signUp(user.authToken).pipe(first()).subscribe((res) => {
+            this.http.signUp(user.authToken).pipe(first()).subscribe((res2) => {
 
-              this.loadingController.dismiss();
-              if(res.error.exists) this.presentError('There was an issue with your access token');
+              if (res2.error.exists) this.presentError('There was an issue with your access token');
               else {
 
-                this.http.logIn(user.authToken).pipe(first()).subscribe((res) => {
-                  this.globalStore.logIn(res.content.jwt_token);
+                // If the signup was successful try logging in again //
+                this.http.logIn(user.authToken).pipe(first()).subscribe((res3) => {
+                  this.globalStore.logIn(res3.content.jwt_token);
                 });
 
               }
+
+              this.loadingController.dismiss();
 
             });
 
         } else {
 
-          this.globalStore.logIn(res.content.jwt_token);
+          // If the res1 auth token logs the user in update the state //
+          this.globalStore.logIn(res1.content.jwt_token);
           this.loadingController.dismiss();
 
         }
 
       });
+
     });
+
   }
 
 }

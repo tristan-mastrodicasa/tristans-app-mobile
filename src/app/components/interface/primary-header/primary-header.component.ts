@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class PrimaryHeaderComponent {
 
-  @Input() pageTitle: string;
+  @Input() public pageTitle: string;
 
   constructor() { }
 

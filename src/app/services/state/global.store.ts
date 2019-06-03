@@ -12,7 +12,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
  * Local storage manages persistent client state, observables manage session state
  */
 @Injectable()
-export class GlobalStore extends Store<GlobalState>{
+export class GlobalStore extends Store<GlobalState> {
 
   private jwt: JwtHelperService;
 
@@ -22,11 +22,15 @@ export class GlobalStore extends Store<GlobalState>{
     this.jwt = new JwtHelperService(); // Sorry it had to come to this mom
   }
 
-  getStateFromStorage() {
+  /**
+   * Collect the stored state object from the local storage of the client. Update
+   * the initialized flag to 'true'
+   */
+  private getStateFromStorage() {
 
     this.storage.get('state').then((val) => {
 
-      if(val != null) {
+      if (val != null) {
 
         this.setState({
           ...val,
@@ -50,18 +54,23 @@ export class GlobalStore extends Store<GlobalState>{
    * Checks if the user is logged in, based on local storage, primarily used for the route guards
    * @return Promise<boolean>
    */
-  get loggedIn(): Promise<boolean> {
+  public get loggedIn(): Promise<boolean> {
 
     return this.storage.get('state').then((state) => {
 
-      if(state.jwt_token == null) return false;
+      if (state == null || state.jwt_token == null) return false;
       else return true;
 
     });
 
   }
 
-  logIn(jwt) {
+  /**
+   * Update the state to reflect a logged in user, store the JWT and
+   * the data encoded within it
+   * @param  jwt The JWT token retrieved from the server
+   */
+  public logIn(jwt: string) {
     this.setState({
       ...this.state,
       jwt_token: jwt,
@@ -71,7 +80,10 @@ export class GlobalStore extends Store<GlobalState>{
     this.storage.set('state', this.state);
   }
 
-  logOut() {
+  /**
+   * Update the state to reflect a user who is not logged in
+   */
+  public logOut() {
     this.setState({
       ...this.state,
       jwt_token: null,
@@ -81,7 +93,10 @@ export class GlobalStore extends Store<GlobalState>{
     this.storage.set('state', this.state);
   }
 
-  userInitialized() {
+  /**
+   * Update the state to show that the user has been initialized
+   */
+  public userInitialized() {
     this.setState({
       ...this.state,
       userInitialized: true,

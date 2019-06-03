@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { Observable, of } from 'rxjs';
 
 import { GlobalStore } from '../state/global.store';
 
@@ -16,17 +15,23 @@ export class AuthService implements CanActivate {
     private modalController: ModalController
   ) { }
 
-  canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
+  /**
+   * This function is an authorisation guard, it handles the access for all routes based
+   * on the current state of the client
+   * @param  route Data regarding the route trying to be accessed
+   * @return Promise<boolean>
+   */
+  public canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
 
     return this.globalStore.loggedIn.then((loggedIn: boolean) => {
 
-      if (route.data.type == 'user-experience') {
+      if (route.data.type === 'user-experience') {
 
-        if(!loggedIn) {
+        if (!loggedIn) {
 
           // If not logged in go to page and record the illegal action (if any) that lead to it //
           // When finished logging in go to original page //
-          //this.router.navigate(['log-in']); // Do shit to log in
+          // this.router.navigate(['log-in']); // Do shit to log in
           this.presentModal();
           return false;
 
@@ -38,7 +43,11 @@ export class AuthService implements CanActivate {
 
   }
 
-  async presentModal() {
+  /**
+   * Shows the login modal, this is where the user can access the logged in state of
+   * the client for the native app
+   */
+  private async presentModal() {
     const modal = await this.modalController.create({
       component: LogInPage,
       showBackdrop: true,

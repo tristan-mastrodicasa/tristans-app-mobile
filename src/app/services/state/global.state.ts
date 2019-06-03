@@ -1,7 +1,7 @@
 export class GlobalState {
-  initialized: boolean = false;
-  userInitialized: boolean = false;
+  public initialized = false;
+  public userInitialized = false;
 
-  jwt_token: string;
-  user_data: any;
+  public jwt_token: string;
+  public user_data: any;
 }

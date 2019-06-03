@@ -21,7 +21,7 @@
       true,
       "check-space"
     ],
-    "curly": true,
+    "curly": false,
     "eofline": false,
     "forin": true,
     "import-spacing": true,
@@ -33,7 +33,7 @@
     "interface-over-type-literal": true,
     "label-position": true,
     "max-line-length": [
-      true,
+      false,
       140
     ],
     "member-ordering": [
@@ -46,6 +46,14 @@
           "static-method",
           "instance-method"
         ]
+      }
+    ],
+    "member-access": true,
+    "completed-docs": [
+      true,
+      {
+        "enums": true,
+        "methods": true
       }
     ],
   	"only-arrow-functions": [
@@ -83,6 +91,7 @@
     "no-trailing-whitespace": true,
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
+    "typedef": [true, "parameter"],
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
   	"max-classes-per-file": [

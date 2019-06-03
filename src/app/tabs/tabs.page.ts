@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -6,14 +6,14 @@ import { MenuController } from '@ionic/angular';
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
 })
-export class TabsPage implements OnInit {
+export class TabsPage {
 
   constructor(public menuCtrl: MenuController) { }
 
-  ngOnInit() {
-  }
-
-  toggleMenu() {
+  /**
+   * Toggle the side menu
+   */
+  private toggleMenu() {
     this.menuCtrl.toggle();
   }
 

@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-followers',
   templateUrl: './followers.page.html',
   styleUrls: ['./followers.page.scss'],
 })
-export class FollowersPage implements OnInit {
+export class FollowersPage {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

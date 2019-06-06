@@ -22,9 +22,12 @@ You should now see the app open in a browser and you can begin hacking away at i
 
 Install the ionic devapp for testing https://ionicframework.com/docs/appflow/devapp (Optional)
 
+Read everything in /docs
+
 ## Before Pushing
 
-1. Update all relevant documentation in /docs
+1. Update all relevant documentation in the JSDoc strings
+2. Make sure it works and builds without failing lol
 2. run `npm run lint` to check if code is clean
 
 ## Notes on Environment Changes

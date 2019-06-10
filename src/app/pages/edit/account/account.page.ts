@@ -22,4 +22,5 @@ export class AccountPage {
     this.globalStore.logOut();
     this.router.navigate(['app/home']);
   }
+
 }

@@ -1,90 +1,108 @@
-<app-back-button pageTitle="Profile Name"></app-back-button>
+<app-back-button pageTitle="Profile"></app-back-button>
 
-<ion-content>
-	<ion-row class="ion-margin-top">
-	  <ion-col text-center>
-        	<img class="avatar" src="/assets/svg-img/default-profile-picture.svg" width="100px" height="100px">
-	  </ion-col>
-	</ion-row>
+<ion-content text-center>
 
-	<ion-row>
-	  <ion-col text-center>
-		    <ion-label>
-	        	<h2>Tristan @ghoststeam217</h2>
-	      	</ion-label>
-	  </ion-col>
-	</ion-row>
+  <div class="card-container">
 
-	<ion-row>
-	  <ion-col>
+    <div class="white-card ion-padding-vertical">
 
-      <ion-grid text-center>
+    	<ion-row>
+    	  <ion-col text-center>
+            	<img class="avatar" src="/assets/svg-img/default-profile-picture.svg" width="100px" height="100px">
+    	  </ion-col>
+    	</ion-row>
 
-        <ion-col>
-  		    <ion-label>
-  	    		<ion-icon name="star"></ion-icon> 342
-  	    	</ion-label>
-        </ion-col>
+    	<ion-row>
+    	  <ion-col text-center>
+    		    <ion-label>
+    	        	<h2>Tristan @ghoststeam217</h2>
+    	      	</ion-label>
+    	  </ion-col>
+    	</ion-row>
 
-        <ion-col >
-  		    <ion-label>
-  	    		 <ion-icon name="brush"></ion-icon> 41
-  	    	</ion-label>
-        </ion-col>
+    	<ion-row>
+    	  <ion-col>
 
-        <ion-col >
-  		    <ion-label>
-  	    		 <ion-icon name="person"></ion-icon> 56
-  	    	</ion-label>
-        </ion-col>
-      </ion-grid>
+          <ion-grid text-center>
 
-	  </ion-col>
-	</ion-row>
+            <ion-col>
+      		    <ion-label>
+      	    		<ion-icon name="star"></ion-icon> 342
+      	    	</ion-label>
+            </ion-col>
 
-    <ion-button class="centerButton" expand="block" color="primary">
-      <ion-icon slot="start" name="person-add"></ion-icon>
-      Follow
-    </ion-button>
+            <ion-col >
+      		    <ion-label>
+      	    		 <ion-icon name="brush"></ion-icon> 41
+      	    	</ion-label>
+            </ion-col>
 
-    <ion-card *ngFor="let post of postData">
-	  <ion-card-header color="primary">
-	    <ion-card-subtitle>Memed By:
-	    	<ion-chip>
-			  <ion-avatar>
-			    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-			  </ion-avatar>
-			  <ion-label class="username">Chip Avatar</ion-label>
-			</ion-chip>
-	    </ion-card-subtitle>
-	    <ion-card-title>Posted By:
-	    	<ion-chip>
-			  <ion-avatar>
-			    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-			  </ion-avatar>
-			  <ion-label class="username">Chip Avatar</ion-label>
-			</ion-chip>
-	    </ion-card-title>
-	  </ion-card-header>
+            <ion-col >
+      		    <ion-label>
+      	    		 <ion-icon name="person"></ion-icon> 56
+      	    	</ion-label>
+            </ion-col>
+          </ion-grid>
 
-	  <ion-card-content>
-	  	<img tappable (click)="openMeme()" src="https://www.roberthompson.co.uk/meme-app/meme.jpg">
-	  </ion-card-content>
+    	  </ion-col>
+    	</ion-row>
 
-	  <ion-row class="cardfooter">
-	      <ion-col class="colLeft">
-	            <p><ion-icon name="star"></ion-icon> 123</p>
-	      </ion-col>
-	      <ion-col class="colRight">
-	            <p><ion-icon name="time"></ion-icon> {{post.postingTimestamp}}</p>
-	      </ion-col>
+      <ion-row style="justify-content: center">
+        <ion-button color="primary" class="follow">
+          <ion-icon slot="start" name="person-add"></ion-icon>
+          Follow
+        </ion-button>
       </ion-row>
-  </ion-card>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadPosts($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more memes!">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    </div>
+
+    <div class="ion-padding-vertical">
+
+      <app-content-card></app-content-card>
+
+      <!--<ion-card *ngFor="let post of postData">
+    	  <ion-card-header color="primary">
+    	    <ion-card-subtitle>Memed By:
+    	    	<ion-chip>
+    			  <ion-avatar>
+    			    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    			  </ion-avatar>
+    			  <ion-label class="username">Chip Avatar</ion-label>
+    			</ion-chip>
+    	    </ion-card-subtitle>
+    	    <ion-card-title>Posted By:
+    	    	<ion-chip>
+    			  <ion-avatar>
+    			    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    			  </ion-avatar>
+    			  <ion-label class="username">Chip Avatar</ion-label>
+    			</ion-chip>
+    	    </ion-card-title>
+    	  </ion-card-header>
+
+    	  <ion-card-content>
+    	  	<img tappable (click)="openMeme()" src="https://www.roberthompson.co.uk/meme-app/meme.jpg">
+    	  </ion-card-content>
+
+    	  <ion-row class="cardfooter">
+    	      <ion-col class="colLeft">
+    	            <p><ion-icon name="star"></ion-icon> 123</p>
+    	      </ion-col>
+    	      <ion-col class="colRight">
+    	            <p><ion-icon name="time"></ion-icon> {{post.postingTimestamp}}</p>
+    	      </ion-col>
+          </ion-row>
+      </ion-card>-->
+
+    </div>
+
+    <!--<ion-infinite-scroll threshold="100px" (ionInfinite)="loadPosts($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more memes!">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>-->
+
+    </div>
+
 </ion-content>

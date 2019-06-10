@@ -82,7 +82,7 @@ export class LogInPage {
 
                 // If the signup was successful try logging in again //
                 this.http.logIn(user.authToken).pipe(first()).subscribe((res3) => {
-                  this.globalStore.logIn(res3.content.jwt_token);
+                  this.globalStore.logIn(res3.content.jwtToken);
                 });
 
               }
@@ -94,7 +94,7 @@ export class LogInPage {
         } else {
 
           // If the res1 auth token logs the user in update the state //
-          this.globalStore.logIn(res1.content.jwt_token);
+          this.globalStore.logIn(res1.content.jwtToken);
           this.loadingController.dismiss();
 
         }

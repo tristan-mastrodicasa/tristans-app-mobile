@@ -22,6 +22,7 @@ Users will see a meme in a group and will be interested about who made it (**Ass
 #### Case 4
 Users will see an ad from Facebook, SEO and/or an influencer and will download the app (**Assumption 4.1**)
   * Presenting a funny meme and encouraging users to view the home feed of the service (will require a small existing user base to be successful)
+  * Present all the developers + friends as cartooned characters in a [movie poster theme](https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/af/63/c5/af63c5ee-0b8a-15f5-c53c-a81a1e96f2d0/source/1200x1200bb.jpg) ad, market the app like it was a movie involving wiz kid students
 
 ### Engagement Strategy
 

@@ -1,9 +1,29 @@
+
+$background-color: var(--html-background-color);
+
 .centerButton{
-	//height: 100%;
   	display: block;
-  	vertical-align: middle;
 }
 
 .avatar {
   border-radius: 50%;
+}
+
+.card-container {
+  background-color: $background-color;
+  max-width: 500px;
+  margin: 0 auto;
+  padding-top: 12px;
+}
+
+.white-card {
+  background-color: #FFFFFF;
+}
+
+.follow-buttons {
+  padding-top: 0;
+}
+
+.follow {
+  min-width: 150px;
 }

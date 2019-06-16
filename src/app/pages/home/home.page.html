@@ -1,46 +1,65 @@
-<app-primary-header pageTitle="Home"></app-primary-header>
+<div class="white-card">
+
+  <ion-segment mode="ios" color="primary">
+    <ion-segment-button mode="md" value="network" checked>
+      <ion-label>Network</ion-label>
+    </ion-segment-button>
+    <ion-segment-button mode="md" value="public">
+      <ion-label>Public</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+</div>
 
 <ion-content>
 
-  <ion-button (click)="yo()">Yo</ion-button>
-  <ion-card *ngFor="let post of postData">
-	  <ion-card-header color="primary">
-	    <ion-card-subtitle>Memed By:
-	    	<ion-chip>
-			  <ion-avatar>
-			    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-			  </ion-avatar>
-			  <ion-label class="username">Chip Avatar</ion-label>
-			</ion-chip>
-	    </ion-card-subtitle>
-	    <ion-card-title>Posted By:
-	    	<ion-chip>
-			  <ion-avatar>
-			    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-			  </ion-avatar>
-			  <ion-label class="username">Chip Avatar</ion-label>
-			</ion-chip>
-	    </ion-card-title>
-	  </ion-card-header>
+  <div class="card-container">
 
-	  <ion-card-content>
-	  	<img tappable (click)="openMeme()" src="https://www.roberthompson.co.uk/meme-app/meme.jpg">
-	  </ion-card-content>
+    <app-content-card></app-content-card>
 
-	  <ion-row class="cardfooter">
-	      <ion-col class="colLeft">
-	            <p><ion-icon name="star"></ion-icon> 123</p>
-	      </ion-col>
-	      <ion-col class="colRight">
-	            <p><ion-icon name="time"></ion-icon> {{ post.name }}</p>
-	      </ion-col>
-      </ion-row>
-  </ion-card>
+    <app-content-card></app-content-card>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadPosts($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more memes!">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    <ion-button (click)="yo()">Yo</ion-button>
+    <ion-card *ngFor="let post of postData">
+  	  <ion-card-header color="primary">
+  	    <ion-card-subtitle>Memed By:
+  	    	<ion-chip>
+  			  <ion-avatar>
+  			    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+  			  </ion-avatar>
+  			  <ion-label class="username">Chip Avatar</ion-label>
+  			</ion-chip>
+  	    </ion-card-subtitle>
+  	    <ion-card-title>Posted By:
+  	    	<ion-chip>
+  			  <ion-avatar>
+  			    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+  			  </ion-avatar>
+  			  <ion-label class="username">Chip Avatar</ion-label>
+  			</ion-chip>
+  	    </ion-card-title>
+  	  </ion-card-header>
+
+  	  <ion-card-content>
+  	  	<img tappable (click)="openMeme()" src="https://www.roberthompson.co.uk/meme-app/meme.jpg">
+  	  </ion-card-content>
+
+  	  <ion-row class="cardfooter">
+  	      <ion-col class="colLeft">
+  	            <p><ion-icon name="star"></ion-icon> 123</p>
+  	      </ion-col>
+  	      <ion-col class="colRight">
+  	            <p><ion-icon name="time"></ion-icon> {{ post.name }}</p>
+  	      </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadPosts($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more memes!">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </div>
 </ion-content>

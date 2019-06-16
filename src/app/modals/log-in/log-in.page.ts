@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { AuthService, FacebookLoginProvider } from 'angularx-social-login';
 
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
-import { GlobalStore } from '../../services/state/global.store';
+import { GlobalStore } from '../../state/global.store';
 
 @Component({
   selector: 'app-log-in',

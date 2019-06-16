@@ -1,0 +1,17 @@
+<ion-item lines="none" class="ion-no-padding" [routerLink]="['/profile', id]" mode="md" detail="false">
+
+  <ion-avatar slot="start">
+    <img src="{{ photo }}">
+  </ion-avatar>
+
+  <ion-label>
+    <h3>{{ firstName }}</h3>
+    <p><span class="light">@{{ username }}</span></p>
+  </ion-label>
+
+  <ion-note slot="end" class="user-item-score">
+    {{ influence }} <ion-icon name="star" class="score-star"></ion-icon>
+  </ion-note>
+
+
+</ion-item>

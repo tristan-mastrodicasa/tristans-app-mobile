@@ -7,9 +7,19 @@
 
 $standard-font: Arial, Helvetica, sans-serif;
 
-/* Native Tag Styles */
-h1, h2, h3, h4, p, span, div, button, input {
-    font-family: $standard-font;
-    margin: 0;
-    padding: 0;
+/* Extendable Layout Styles */
+
+.standard-text {
+  font-family: $standard-font;
+  margin: 0;
+  padding: 0;
 }
+
+.standard-list-title {
+  font-family: $standard-font;
+  font-size: 14px;
+  font-weight: bold;
+  color: #777777;
+}
+
+/* Native Tag Styles */

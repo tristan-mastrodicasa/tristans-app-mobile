@@ -18,7 +18,7 @@ export class MemeCanvasIndexPage implements OnInit {
    * Handles the inifinite scroll functionality
    * @param  infiniteScroll ROBERT WHAT IS THIS!?!?
    */
-  public ngOnInit(infiniteScroll?) {
+  public ngOnInit(infiniteScroll?: any) {
 
     // Test Http Get // get reqest can later be changed to get relevent data from server, eg in this case it would need to get memes from the user's network
     this.http2.get('api/heroes').subscribe((response) => {
@@ -33,7 +33,7 @@ export class MemeCanvasIndexPage implements OnInit {
    * Handles the inifinite scroll functionality
    * @param  infiniteScroll ROBERT WHAT IS THIS!?!?
    */
-  private loadPosts(infiniteScroll) {
+  private loadPosts(infiniteScroll: any) {
     this.ngOnInit(infiniteScroll);
   }
 

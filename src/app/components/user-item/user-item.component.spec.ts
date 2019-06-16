@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TransparentHeaderComponent } from './transparent-header.component';
+import { UserItemComponent } from './user-item.component';
 
-describe('TransparentHeaderComponent', () => {
-  let component: TransparentHeaderComponent;
-  let fixture: ComponentFixture<TransparentHeaderComponent>;
+describe('UserItemComponent', () => {
+  let component: UserItemComponent;
+  let fixture: ComponentFixture<UserItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransparentHeaderComponent ],
+      declarations: [ UserItemComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TransparentHeaderComponent);
+    fixture = TestBed.createComponent(UserItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

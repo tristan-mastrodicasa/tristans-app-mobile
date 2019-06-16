@@ -3,7 +3,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { GlobalStore } from './services/state/global.store';
+import { GlobalStore } from './state/global.store';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +34,7 @@ export class AppComponent {
 
     // Load Profile //
     // Subscribe to the state //
+    // Might remove this later, Talk to Tristan //
     this.globalStore.state$.subscribe(state => {
       if (state.initialized) {
 

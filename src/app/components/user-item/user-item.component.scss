@@ -1,0 +1,20 @@
+/* Variables */
+
+$light-color: var(--light-text);
+
+span.light {
+  color: $light-color;
+}
+
+.user-item-score {
+  margin-left: 0;
+  margin-right: -5px;
+  color: #000;
+  font-size: 15px;
+}
+
+.score-star {
+  color: #DAA520;
+  font-size: 21px;
+  margin-bottom: -4px;
+}

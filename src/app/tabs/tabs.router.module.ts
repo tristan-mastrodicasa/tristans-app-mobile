@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 
+import { AuthService } from '../services/auth/auth.service';
+
 const routes: Routes = [
   {
     path: 'app',
@@ -17,22 +19,26 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'meme-canvas-index',
+        path: 'media-upload',
         children: [
           {
             path: '',
-            loadChildren: '../pages/meme-canvas-index/meme-canvas-index.module#MemeCanvasIndexPageModule'
+            loadChildren: '../pages/media-upload/media-upload.module#MediaUploadPageModule',
           }
-        ]
+        ],
+        canActivate: [AuthService],
+        data: { type: 'user-experience' }
       },
       {
-        path: 'notifications',
+        path: 'network',
         children: [
           {
             path: '',
-            loadChildren: '../pages/notifications/notifications.module#NotificationsPageModule'
+            loadChildren: '../pages/network/users/users.module#UsersPageModule',
           }
-        ]
+        ],
+        canActivate: [AuthService],
+        data: { type: 'user-experience' }
       },
       {
         path: '',

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 
-import { GlobalStore } from '../state/global.store';
+import { GlobalStore } from '../../state/global.store';
 
 import { LogInPage } from '../../modals/log-in/log-in.page';
 

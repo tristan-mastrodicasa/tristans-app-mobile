@@ -15,6 +15,7 @@ Initial growth attempts may be made by using close social circles to join the ap
 
 #### Case 2
 A user will see a link in a group chat (**Assumption 2.1**) asking users to meme an image from that group (hopefully the image involves known friends). The link will redirect the user to a page which display the original image with the meme's of other users. The user will see the content and want in on the action (**Assumption 2.2**), the user will be notified that to get in on the action they need to create an account (can be made a popup to speed up sign up). When the user signs up they are able to make their meme. The user will create the meme and be interested if their meme wins, therefore wanting to be notified (**Assumption 2.3**). The user will be prompted upon meme submission to install app, and when notified via email about the results closing will be encouraged to install app, at this point the user will install the app (**Assumption 2.4**)
+  * To help make assumption 2.1 happen we can encourage users to share links with "referral points" -> when a user signs up they get points
 
 #### Case 3
 Users will see a meme in a group and will be interested about who made it (**Assumption 3.1**), the users will tell them about the app or the user will see the potential watermark. The user will navigate to the website or app and love it, will install the app (**Assumption 3.2**)

@@ -8,6 +8,13 @@
 @import 'vendors/angular';
 @import 'vendors/normalize';
 
+/* ------------------------------ */
+
+/**
+ * If components / pages want to use these globals styles they need to extend them
+ * so that devs know what is being used when the components are moved
+ */
+
 /* Helpers */
 
 @import 'helpers/variables.global';
@@ -19,12 +26,18 @@
 @import 'elements/text';
 @import 'elements/input';
 
-/* Layouts */
+/* ------------------------------ */
 
-@import 'layouts/layout.global';
+/**
+* Global Styles for the pages
+*/
 
-@import 'layouts/responsive';
+@import 'pages/layout.global';
+@import 'pages/responsive';
 
-/* Ionic Overrides */
+/* ------------------------------ */
+
+/* Override styles; these affect the whole app including components */
 
 @import 'ion-overrides';
+@import 'app-global';

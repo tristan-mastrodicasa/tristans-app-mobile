@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { GlobalStore } from '../../../services/state/global.store';
+import { GlobalStore } from '../../../state/global.store';
 
 @Component({
   selector: 'app-account',

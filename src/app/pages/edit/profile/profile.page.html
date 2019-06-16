@@ -1,5 +1,41 @@
-<app-back-button pageTitle="Edit Profile"></app-back-button>
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="app/home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="primary">
+      <ion-button>Save</ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      Edit Profile
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
+
+  <div class="card-container">
+
+    <div class="white-card ion-padding">
+
+      <!-- https://www.djamware.com/post/5c9361e080aca754f7a9d1ef/ionic-4-angular-7-and-cordova-crop-and-upload-image -->
+
+      <ion-item class="white" lines="full">
+        <ion-label position="stacked">First Name</ion-label>
+        <ion-input type="text" value="Tristan"></ion-input>
+      </ion-item>
+
+      <ion-item class="white" lines="full">
+        <ion-label position="stacked">Username</ion-label>
+        <ion-input type="text" value="ghoststeam217"></ion-input>
+      </ion-item>
+
+    </div>
+
+  </div>
 
 </ion-content>

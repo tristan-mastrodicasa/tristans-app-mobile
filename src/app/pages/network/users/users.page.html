@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon name="search" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="primary">
+      <ion-button [routerLink]="['/network/find-users']">
+        <ion-icon name="person-add" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      Network
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="card-container-no-padding">
+
+    <div class="white-card ion-padding">
+
+      <ion-row class="segment-padding" (ionChange)="segmentChanged($event)">
+        <ion-segment mode="ios">
+          <ion-segment-button mode="ios" value="follow-back" checked>
+            <ion-label>Follow Backs</ion-label>
+          </ion-segment-button>
+          <ion-segment-button mode="ios" value="following">
+            <ion-label>Following</ion-label>
+          </ion-segment-button>
+          <ion-segment-button mode="ios" value="followers">
+            <ion-label>Followers</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-row>
+
+      <div *ngIf="userProfile != undefined">
+
+        <ion-label class="list-title">You</ion-label>
+
+        <ion-row class="ion-padding-vertical">
+
+          <app-user-item
+            id="{{ userProfile.id }}"
+            photo="{{ userProfile.photo }}"
+            firstName="{{ userProfile.firstName }}"
+            username="{{ userProfile.username }}"
+            influence="{{ userProfile.influence }}"
+            class="width-full"></app-user-item>
+
+        </ion-row>
+
+      </div>
+
+      <div *ngIf="segment == 'follow-back'">
+
+        <div *ngIf="followBacks.recentCanvas[0] != undefined">
+
+          <ion-label class="list-title">Canvas Active</ion-label>
+
+          <ion-row class="ion-padding-vertical">
+
+            <app-user-item *ngFor="let user of followBacks.recentCanvas"
+              [id]="user.id"
+              [photo]="user.photo"
+              [firstName]="user.firstName"
+              [username]="user.username"
+              [influence]="user.influence"
+              class="width-full"></app-user-item>
+
+          </ion-row>
+
+        </div>
+
+        <div *ngIf="followBacks.userList[0] != undefined">
+
+          <ion-label class="list-title">Follow Backs</ion-label>
+
+          <ion-row class="ion-padding-vertical">
+
+            <app-user-item *ngFor="let user of followBacks.userList"
+              [id]="user.id"
+              [photo]="user.photo"
+              [firstName]="user.firstName"
+              [username]="user.username"
+              [influence]="user.influence"
+              class="width-full"></app-user-item>
+
+          </ion-row>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

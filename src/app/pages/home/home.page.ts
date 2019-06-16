@@ -4,7 +4,7 @@ import { IonInfiniteScroll, NavController } from '@ionic/angular';
 import { first } from 'rxjs/operators';
 
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
-import { GlobalStore } from '../../services/state/global.store';
+import { GlobalStore } from '../../state/global.store';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
    * Handles the inifinite scroll functionality
    * @param  infiniteScroll ROBERT WHAT IS THIS!?!?
    */
-  public ngOnInit(infiniteScroll?) {
+  public ngOnInit(infiniteScroll?: any) {
 
     // Test Http Get // get reqest can later be changed to get relevent data from server, eg in this case it would need to get memes from the user's network
     this.http2.get('api/heroes').subscribe((response) => {
@@ -42,7 +42,7 @@ export class HomePage implements OnInit {
    * Handles the inifinite scroll functionality
    * @param  infiniteScroll ROBERT WHAT IS THIS!?!?
    */
-  private loadPosts(infiniteScroll) {
+  private loadPosts(infiniteScroll: any) {
     this.ngOnInit(infiniteScroll);
   }
 
@@ -57,7 +57,7 @@ export class HomePage implements OnInit {
    * Sign the user in (testing purposes)
    */
   private yo() {
-    this.globalStore.logIn("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXR0aW5ncyI6eyJub3RpZmljYXRpb25zIjp7ImRpc2FibGVkIjpmYWxzZX19LCJuZXR3b3JrIjp7ImZvbGxvd2VycyI6eyJ1c2VycyI6W119LCJmb2xsb3dpbmciOnsidXNlcnMiOltdfX0sIm1pc2MiOnsibmF0aXZlQXBwSW5zdGFsbGVkIjpmYWxzZX0sInVzZXJuYW1lIjpudWxsLCJmaXJzdE5hbWUiOm51bGwsImluZmx1ZW5jZSI6MCwiX2lkIjoiNWNmMzMwODYwZmZlMTAxYjQ4YTBmY2M0IiwicHJvZmlsZSI6eyJub3RpZmljYXRpb25fc2V0dGluZ3MiOnsiZGlzYWJsZWQiOmZhbHNlfSwibmF0aXZlX2FwcF9pbnN0YWxsZWQiOmZhbHNlLCJwaG90b3MiOltdfSwic3RhdGlzdGljcyI6eyJpbmZsdWVuY2UiOjAsImZvbGxvd2VycyI6W10sImZvbGxvd2luZyI6W119LCJmYmlkIjoxMzAxMDQ4NDcwMDQ2ODA2LCJmaXJzdG5hbWUiOiJUcmlzdGFuIiwibGFzdG5hbWUiOiJNYXN0cm9kaWNhc2EiLCJfX3YiOjAsIm5vdGlmaWNhdGlvbnMiOltdLCJhY3Rpdml0eSI6W10sImlhdCI6MTU2MDE1NjQ4Mn0.ZhDJCRWqX7Ektw57oep6BtQM3dk30IBDMuRRxyblY_s");
+    this.globalStore.logIn('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXR0aW5ncyI6eyJub3RpZmljYXRpb25zIjp7ImRpc2FibGVkIjpmYWxzZX19LCJuZXR3b3JrIjp7ImZvbGxvd2VycyI6eyJ1c2VycyI6W119LCJmb2xsb3dpbmciOnsidXNlcnMiOltdfX0sIm1pc2MiOnsibmF0aXZlQXBwSW5zdGFsbGVkIjpmYWxzZX0sInVzZXJuYW1lIjpudWxsLCJmaXJzdE5hbWUiOm51bGwsImluZmx1ZW5jZSI6MCwiX2lkIjoiNWNmMzMwODYwZmZlMTAxYjQ4YTBmY2M0IiwicHJvZmlsZSI6eyJub3RpZmljYXRpb25fc2V0dGluZ3MiOnsiZGlzYWJsZWQiOmZhbHNlfSwibmF0aXZlX2FwcF9pbnN0YWxsZWQiOmZhbHNlLCJwaG90b3MiOltdfSwic3RhdGlzdGljcyI6eyJpbmZsdWVuY2UiOjAsImZvbGxvd2VycyI6W10sImZvbGxvd2luZyI6W119LCJmYmlkIjoxMzAxMDQ4NDcwMDQ2ODA2LCJmaXJzdG5hbWUiOiJUcmlzdGFuIiwibGFzdG5hbWUiOiJNYXN0cm9kaWNhc2EiLCJfX3YiOjAsIm5vdGlmaWNhdGlvbnMiOltdLCJhY3Rpdml0eSI6W10sImlhdCI6MTU2MDE1NjQ4Mn0.ZhDJCRWqX7Ektw57oep6BtQM3dk30IBDMuRRxyblY_s');
   }
 
 }

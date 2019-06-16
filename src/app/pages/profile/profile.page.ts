@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { IonInfiniteScroll, NavController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { first } from 'rxjs/operators';
+
+import { BackendApiService } from '../../services/backend-api/backend-api.service';
+import { GlobalStore } from '../../state/global.store';
 
 @Component({
   selector: 'app-profile',
@@ -9,39 +13,46 @@ import { IonInfiniteScroll, NavController } from '@ionic/angular';
 })
 export class ProfilePage implements OnInit {
 
-  @ViewChild(IonInfiniteScroll) private infiniteScroll: IonInfiniteScroll;
-  private postData = [];
+  private profile = {
+    own: false,
+    firstName: '',
+    username: '',
+    photo: '/assets/svg-img/default-profile-picture.svg',
+    influence: 0,
+    contentNumber: 0,
+    followers: 0
+  };
 
-  constructor(private http2: HttpClient, private nav: NavController) { }
+  constructor(
+    private nav: NavController,
+    private http: BackendApiService,
+    private globalStore: GlobalStore,
+    private route: ActivatedRoute
+  ) { }
 
   /**
-   * Handles the inifinite scroll functionality
-   * @param  infiniteScroll ROBERT WHAT IS THIS!?!?
+   * Builds the user profile based on the id passed via the URL
    */
-  public ngOnInit(infiniteScroll?) {
+  public ngOnInit() {
 
-    // Test Http Get // get reqest can later be changed to get relevent data from server, eg in this case it would need to get memes from the user's network
-    this.http2.get('api/heroes').subscribe((response) => {
-      this.postData = this.postData.concat(response);
-      if (infiniteScroll) {
-        infiniteScroll.target.complete();
-      }
+    const id = this.route.snapshot.paramMap.get('id'); // '5cf330860ffe101b48a0fcc4'
+
+    this.http.getProfileById(id).pipe(first()).subscribe((res) => {
+
+      this.profile.firstName = res.content.firstName;
+      this.profile.username = res.content.username;
+      this.profile.photo = res.content.photo;
+
+      this.profile.influence = res.content.influence;
+      this.profile.contentNumber = res.content.contentNumber;
+      this.profile.followers = res.content.followers;
+
+      if (this.globalStore.state.user_data._id === id) this.profile.own = true;
+      else this.profile.own = false;
+
     });
+
   }
 
-  /**
-   * Handles the inifinite scroll functionality
-   * @param  infiniteScroll ROBERT WHAT IS THIS!?!?
-   */
-  private loadPosts(infiniteScroll) {
-    this.ngOnInit(infiniteScroll);
-  }
-
-  /**
-   * Open the meme focus view
-   */
-  private openMeme() {
-    this.nav.navigateRoot('/meme-focus');
-  }
 
 }

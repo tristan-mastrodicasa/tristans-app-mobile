@@ -5,14 +5,9 @@
 
 /* Variable Imports */
 
-$background-color: var(--html-background-color);
-
 /* Definitions */
 
 /* Set the background of the entire app */
-/*ion-content {
-  --ion-background-color: $background-color;
-}*/
 
 ion-tab-bar {
   height: 50px;
@@ -26,4 +21,13 @@ ion-tab-button {
   --background: rgba(0, 0, 0, 0.3);
   --height: 100% !important;
   --width: 100% !important;
+}
+
+ion-label.list-title {
+  @extend .standard-list-title;
+}
+
+ion-item {
+  width: 100%;
+  --background: transparent;
 }

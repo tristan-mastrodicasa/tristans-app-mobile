@@ -1,0 +1,25 @@
+/**
+ * File creates global style rules for page components
+ * Created by Tristan Mastrodicasa
+ */
+
+/* Global Layout Styles */
+
+.card-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding-top: 12px;
+}
+
+.card-container-no-padding {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.white-card {
+  background-color: #FFFFFF;
+}
+
+.width-full {
+  width: 100%;
+}

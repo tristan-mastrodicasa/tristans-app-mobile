@@ -1,21 +1,39 @@
-<app-back-button pageTitle="Profile"></app-back-button>
+<ion-header>
+  <ion-toolbar color="primary">
 
-<ion-content text-center>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="app/home"></ion-back-button>
+    </ion-buttons>
 
-  <div class="card-container">
+    <ion-buttons slot="primary" *ngIf="profile.own">
+      <ion-button [routerLink]="['/edit/account']">
+        <ion-icon name="settings" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      Profile
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="card-container-no-padding">
 
     <div class="white-card ion-padding-vertical">
 
     	<ion-row>
     	  <ion-col text-center>
-            	<img class="avatar" src="/assets/svg-img/default-profile-picture.svg" width="100px" height="100px">
+            <img class="avatar" src="{{ profile.photo }}" width="100px" height="100px">
     	  </ion-col>
     	</ion-row>
 
     	<ion-row>
     	  <ion-col text-center>
     		    <ion-label>
-    	        	<h2>Tristan @ghoststeam217</h2>
+    	        	<h2>{{ profile.firstName }} @{{ profile.username }}</h2>
     	      	</ion-label>
     	  </ion-col>
     	</ion-row>
@@ -27,19 +45,19 @@
 
             <ion-col>
       		    <ion-label>
-      	    		<ion-icon name="star"></ion-icon> 342
+      	    		<ion-icon name="star"></ion-icon> {{ profile.influence }}
       	    	</ion-label>
             </ion-col>
 
             <ion-col >
       		    <ion-label>
-      	    		 <ion-icon name="brush"></ion-icon> 41
+      	    		 <ion-icon name="brush"></ion-icon> {{ profile.contentNumber }}
       	    	</ion-label>
             </ion-col>
 
             <ion-col >
       		    <ion-label>
-      	    		 <ion-icon name="person"></ion-icon> 56
+      	    		 <ion-icon name="person"></ion-icon> {{ profile.followers }}
       	    	</ion-label>
             </ion-col>
           </ion-grid>
@@ -47,12 +65,21 @@
     	  </ion-col>
     	</ion-row>
 
+
       <ion-row style="justify-content: center">
-        <ion-button color="primary" class="follow">
+
+        <ion-button *ngIf="profile.own" color="primary" class="follow" [routerLink]="['/edit/profile']">
+          <ion-icon slot="start" name="create"></ion-icon>
+          Edit Profile
+        </ion-button>
+
+        <ion-button *ngIf="!profile.own" color="primary" class="follow">
           <ion-icon slot="start" name="person-add"></ion-icon>
           Follow
         </ion-button>
+
       </ion-row>
+
 
     </div>
 

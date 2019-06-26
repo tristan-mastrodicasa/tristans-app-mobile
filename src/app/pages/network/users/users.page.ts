@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { BackendApiService } from '../../../services/backend-api/backend-api.service';
-import { Response, UserItem } from '../../../services/backend-api/response';
+import { UserItem } from '../../../services/backend-api/response';
 import { GlobalStore } from '../../../state/global.store';
-import { HelpersService } from '../../../services/helpers/helpers.service';
 
 @Component({
   selector: 'app-users',
@@ -34,8 +33,7 @@ export class UsersPage {
 
   constructor(
     private http: BackendApiService,
-    private globalStore: GlobalStore,
-    private helpersService: HelpersService
+    private globalStore: GlobalStore
   ) { }
 
   /**
@@ -71,9 +69,6 @@ export class UsersPage {
       this[userItemObject].recentCanvas = [];
 
       for (let i = 0; i < res.content.length; i++) {
-
-        // Format the influence number in each response object //
-        res.content[i].influence = this.helpersService.formatNumber(res.content[i].influence, 1);
 
         // The first element in all requests is the updated user object //
         if (i === 0) {

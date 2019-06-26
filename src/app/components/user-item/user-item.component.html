@@ -10,7 +10,7 @@
   </ion-label>
 
   <ion-note slot="end" class="user-item-score">
-    {{ influence }} <ion-icon name="star" class="score-star"></ion-icon>
+    <span [appFormatNumber]="influence"></span>&nbsp;<ion-icon name="star" class="score-star"></ion-icon>
   </ion-note>
 
 

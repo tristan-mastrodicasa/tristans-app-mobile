@@ -10,25 +10,38 @@ export interface Response<T> {
   content?: T;
 }
 
+/** Internally used Interfaces */
+
+interface BasicUser {
+  id: string;
+  firstName: string;
+  username: string;
+  photo: string;
+}
+
 /**
  * Content type Options
  */
 
-export interface Profile {
-  id: string;
-  firstName: string;
-  username: string;
+export interface Profile extends BasicUser {
   influence: number;
   followers: number;
   contentNumber: number;
-  photo: string;
 }
 
-export interface UserItem {
-  id: string;
-  firstName: string;
-  username: string;
+export interface UserItem extends BasicUser {
   influence: number;
-  photo: string;
   activeCanvases?: number; // Number of active canvases
+}
+
+export interface CanvasCard {
+  cid: string;
+  users: {
+    primary: BasicUser,
+    secondary: BasicUser
+  };
+  imagePath: string;
+  description?: string;
+  stars: number;
+  utcTime: number;
 }

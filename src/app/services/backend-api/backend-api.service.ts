@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Response, Profile, UserItem } from './response';
+import { Response, Profile, UserItem, CanvasCard } from './response';
 import { GlobalStore } from '../../state/global.store';
 
 import { SERVER_URL } from '../../../environments/environment';
@@ -97,6 +97,18 @@ export class BackendApiService {
    */
   public getFollowers(id: string): Observable<Response<UserItem[]>> {
     return this.http.get<Response<UserItem[]>>(this.devUrl + `followers`); // Send the id when a production server
+  }
+
+  /**
+   * Get a list of canvas cards that the user can view
+   * @param  populationTarget Which view we will be populating, along with data about the view type
+   * @param  results          How many canvases to return per request
+   * @param  page             Pagnation: How many canvases in we are (results*page)
+   * @return                  Observable<Response<CanvasCard[]>>
+   */
+  public getCanvasCards(populationTarget: {name: string, data: string}, results: number, page: number): Observable<Response<CanvasCard[]>> {
+    console.log('Page: ' + page);
+    return this.http.get<Response<CanvasCard[]>>(this.devUrl + `canvasCardList`);
   }
 
 }

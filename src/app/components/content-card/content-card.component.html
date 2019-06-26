@@ -2,24 +2,29 @@
 
   <div class="c-header clearfix">
     <div class="c-header-avatar">
-      <img class="avatar-primary" src="/assets/svg-img/default-profile-picture.svg">
-      <img class="avatar-secondary" src="/assets/svg-img/default-profile-picture.svg">
+      <img class="avatar-primary" src="{{ cardData.users.primary.photo }}">
+      <img class="avatar-secondary" src="{{ cardData.users.secondary.photo }}">
+    </div>
+
+    <div class="c-header-action" (click)="presentCanvasCardActions()">
+      <ion-icon class="more-icon" name="more" mode="ios"></ion-icon>
     </div>
 
     <div class="c-header-info">
-      <div class="c-header-info-text-bar"><b>Tristan </b><span class="light">@ghoststeam217</span></div>
-      <div class="c-header-info-text-bar"><span class="light">Jaseh @lookatme</span></div>
+      <div class="c-header-info-text-bar"><b>{{ cardData.users.primary.firstName }} </b><span class="light">@{{ cardData.users.primary.username }}</span></div>
+      <div class="c-header-info-text-bar"><span class="light">{{ cardData.users.secondary.firstName }} @{{ cardData.users.secondary.username }}</span></div>
     </div>
+
 
   </div>
 
   <div class="c-content" text-center>
-    <img tappable (click)="openMeme()" src="https://www.roberthompson.co.uk/meme-app/meme.jpg" width="500">
+    <img tappable (click)="openMeme()" src="{{ cardData.imagePath }}" width="500">
   </div>
 
   <div class="c-actions clearfix">
-    <div class="star"><ion-icon class="star-icon" name="star"></ion-icon> 3.4k</div>
-    <div class="time"><ion-icon class="time-icon" name="time"></ion-icon> 3 mins ago</div>
+    <div class="star"><ion-icon class="star-icon" name="star"></ion-icon>&nbsp;<span [appFormatNumber]="cardData.stars"></span></div>
+    <div class="time"><ion-icon class="time-icon" name="time"></ion-icon>&nbsp;<span [appFormatUtc]="cardData.utcTime"></span></div>
   </div>
 
 </div>

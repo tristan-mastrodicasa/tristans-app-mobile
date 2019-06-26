@@ -9,6 +9,7 @@ import { ProfilePage } from './profile.page';
 
 import { ComponentsModule } from '../../components/components.module';
 import { ServicesModule } from '../../services/services.module';
+import { DirectivesModule } from '../../directives/directives.module';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     ComponentsModule,
-    ServicesModule
+    ServicesModule,
+    DirectivesModule
   ],
   declarations: [ProfilePage]
 })

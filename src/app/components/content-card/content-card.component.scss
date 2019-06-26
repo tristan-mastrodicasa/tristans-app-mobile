@@ -48,6 +48,17 @@ $light-color: var(--light-text);
   margin-left: 50px;
 }
 
+.c-header-action {
+  width: auto;
+  height: 100%;
+  float: right;
+}
+
+.c-header-action > .more-icon {
+  font-size: 24px;
+  color: $light-color;
+}
+
 .c-header-info-text-bar {
   text-align: left;
   font-size: 15px;

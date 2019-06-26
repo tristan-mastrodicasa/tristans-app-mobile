@@ -18,12 +18,16 @@ A user will see a link in a group chat (**Assumption 2.1**) asking users to meme
   * To help make assumption 2.1 happen we can encourage users to share links with "referral points" -> when a user signs up they get points
 
 #### Case 3
-Users will see a meme in a group and will be interested about who made it (**Assumption 3.1**), the users will tell them about the app or the user will see the potential watermark. The user will navigate to the website or app and love it, will install the app (**Assumption 3.2**)
+Users will see a meme in a group and will be interested about who made it (**Assumption 3.1**), the users will tell them about the app or the user will see the very subtle orange border which should trigger thoughts about the app (Based of the trigger theory - Jonah Berger). The user will navigate to the website or app and love it, will install the app (**Assumption 3.2**)
 
 #### Case 4
 Users will see an ad from Facebook, SEO and/or an influencer and will download the app (**Assumption 4.1**)
   * Presenting a funny meme and encouraging users to view the home feed of the service (will require a small existing user base to be successful)
   * Present all the developers + friends as cartooned characters in a [movie poster theme](https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/af/63/c5/af63c5ee-0b8a-15f5-c53c-a81a1e96f2d0/source/1200x1200bb.jpg) ad, market the app like it was a movie involving wiz kid students
+
+#### Case 5
+Users with a lot of points will feel special (especially if there are leaderboards) and become advocates for the app (**Assumption 5.1**)
+Our app can later implement "closed beta" features for top and regular users, they can then be encouraged to invite new users who will also be able to use those features if they follow the referral link
 
 ### Engagement Strategy
 

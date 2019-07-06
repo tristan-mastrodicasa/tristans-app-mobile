@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ResponseOptions } from '@angular/http';
 
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
@@ -76,17 +75,6 @@ export class ImposterServerService implements InMemoryDbService {
     ];
 
     return {profiles, heroes, followBacks, following, followers, canvasCardList};
-  }
-
-  /**
-   * Intercept devAPI requests and format the response correctly
-   * @param  res ResponseOptions
-   * @param  ri  RequestInfo
-   * @return     ResponseOptions
-   */
-  protected responseInterceptor(res: ResponseOptions, ri: RequestInfo): ResponseOptions {
-    res.body = { error: { exists: false }, content: res.body };
-    return res;
   }
 
 }

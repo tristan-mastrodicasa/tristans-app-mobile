@@ -50,7 +50,7 @@ export class ProfilePage implements OnInit {
 
     this.http.getProfileById(id).pipe(first()).subscribe((res) => {
 
-      this.profile = res.content;
+      this.profile = res;
 
       if (this.globalStore.state.user_data._id === id) this.ownProfile = true;
       else this.ownProfile = false;
@@ -58,7 +58,7 @@ export class ProfilePage implements OnInit {
     });
 
     this.http.getCanvasCards({name: 'profile', data: id}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
-      this.posts = this.posts.concat(res.content);
+      this.posts = this.posts.concat(res);
     });
 
   }
@@ -72,7 +72,7 @@ export class ProfilePage implements OnInit {
     this.page++;
     this.http.getCanvasCards({name: 'profile', data: this.profile.id}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
 
-      this.posts = this.posts.concat(res.content);
+      this.posts = this.posts.concat(res);
 
       event.target.complete();
 

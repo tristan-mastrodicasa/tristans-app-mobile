@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Response, Profile, UserItem, CanvasCard } from './response';
+import { Error, Profile, UserItem, CanvasCard } from './response';
 import { GlobalStore } from '../../state/global.store';
 
 import { SERVER_URL } from '../../../environments/environment';
@@ -42,8 +42,8 @@ export class BackendApiService {
    * @param  accessToken Access token for facebook
    * @return Observable<Response<any>> (Response from the server)
    */
-  public logIn(accessToken: string): Observable<Response<any>> {
-    return this.http.post<Response<any>>(this.apiUrl + 'authentication/login', { access_token: accessToken });
+  public logIn(accessToken: string): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'authentication/login', { access_token: accessToken });
   }
 
   /**
@@ -51,8 +51,8 @@ export class BackendApiService {
    * @param  accessToken Access token for facebook
    * @return Observable<Response<any>> (Response from the server)
    */
-  public signUp(accessToken: string): Observable<Response<any>> {
-    return this.http.post<Response<any>>(this.apiUrl + 'authentication/signup', { access_token: accessToken });
+  public signUp(accessToken: string): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'authentication/signup', { access_token: accessToken });
   }
 
   /**
@@ -68,8 +68,8 @@ export class BackendApiService {
    * @param  id Id string (mongoose) of the user profile
    * @return    Observable<Response<Profile>>
    */
-  public getProfileById(id: string): Observable<Response<Profile>> {
-    return this.http.get<Response<Profile>>(this.devUrl + `profiles/${id}`);
+  public getProfileById(id: string): Observable<Profile> {
+    return this.http.get<Profile>(this.devUrl + `profiles/${id}`);
   }
 
   /**
@@ -77,8 +77,8 @@ export class BackendApiService {
    * @param  id ID of the client user, (from which the followbacks will be collected)
    * @return    Observable<Response<UserItem[]>>
    */
-  public getFollowBacks(id: string): Observable<Response<UserItem[]>> {
-    return this.http.get<Response<UserItem[]>>(this.devUrl + `followBacks`); // Send the id when a production server
+  public getFollowBacks(id: string): Observable<UserItem[]> {
+    return this.http.get<UserItem[]>(this.devUrl + `followBacks`); // Send the id when a production server
   }
 
   /**
@@ -86,8 +86,8 @@ export class BackendApiService {
    * @param  id ID of the client user, (from which the following list will be collected)
    * @return    Observable<Response<UserItem[]>>
    */
-  public getFollowing(id: string): Observable<Response<UserItem[]>> {
-    return this.http.get<Response<UserItem[]>>(this.devUrl + `following`); // Send the id when a production server
+  public getFollowing(id: string): Observable<UserItem[]> {
+    return this.http.get<UserItem[]>(this.devUrl + `following`); // Send the id when a production server
   }
 
   /**
@@ -95,8 +95,8 @@ export class BackendApiService {
    * @param  id ID of the client user, (from which the follower list will be collected)
    * @return    Observable<Response<UserItem[]>>
    */
-  public getFollowers(id: string): Observable<Response<UserItem[]>> {
-    return this.http.get<Response<UserItem[]>>(this.devUrl + `followers`); // Send the id when a production server
+  public getFollowers(id: string): Observable<UserItem[]> {
+    return this.http.get<UserItem[]>(this.devUrl + `followers`); // Send the id when a production server
   }
 
   /**
@@ -106,9 +106,9 @@ export class BackendApiService {
    * @param  page             Pagnation: How many canvases in we are (results*page)
    * @return                  Observable<Response<CanvasCard[]>>
    */
-  public getCanvasCards(populationTarget: {name: string, data: string}, results: number, page: number): Observable<Response<CanvasCard[]>> {
+  public getCanvasCards(populationTarget: {name: string, data: string}, results: number, page: number): Observable<CanvasCard[]> {
     console.log('Page: ' + page);
-    return this.http.get<Response<CanvasCard[]>>(this.devUrl + `canvasCardList`);
+    return this.http.get<CanvasCard[]>(this.devUrl + `canvasCardList`);
   }
 
 }

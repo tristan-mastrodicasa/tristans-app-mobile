@@ -68,17 +68,17 @@ export class UsersPage {
       this[userItemObject].userList = [];
       this[userItemObject].recentCanvas = [];
 
-      for (let i = 0; i < res.content.length; i++) {
+      for (let i = 0; i < res.length; i++) {
 
         // The first element in all requests is the updated user object //
         if (i === 0) {
-          this.userProfile = res.content[i];
+          this.userProfile = res[i];
           continue;
         }
 
         // Choose which object is populated, the active canvas list or normal user list //
-        if (res.content[i].activeCanvases !== undefined) this[userItemObject].recentCanvas.push(res.content[i]);
-        else this[userItemObject].userList.push(res.content[i]);
+        if (res[i].activeCanvases !== undefined) this[userItemObject].recentCanvas.push(res[i]);
+        else this[userItemObject].userList.push(res[i]);
 
         // Logs, testing only //
         console.log(userItemObject);

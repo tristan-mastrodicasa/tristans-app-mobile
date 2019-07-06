@@ -1,13 +1,14 @@
 /**
- * Interface for all response objects from the server,
- * <T> is the type of object / array containing the content
+ * **SHARED CODE WARNING**
+ * The interfaces defined here are used in the server!
+ * When making edits please update the client code aswell (response.interface.ts)
  */
-export interface Response<T> {
-  error: {
-    exists: boolean,
-    errorInfo?: any
-  };
-  content?: T;
+
+/**
+ * Error interface
+ */
+export interface Error {
+  error: string | object[];
 }
 
 /** Internally used Interfaces */

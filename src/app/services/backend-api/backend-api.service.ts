@@ -40,7 +40,7 @@ export class BackendApiService {
   /**
    * Send request to server to recieve JWT for future requests
    * @param  accessToken Access token for facebook
-   * @return Observable<Response<any>> (Response from the server)
+   * @return Observable<any> (Response from the server)
    */
   public logIn(accessToken: string): Observable<any> {
     return this.http.post<any>(this.apiUrl + 'authentication/login', { access_token: accessToken });
@@ -49,7 +49,7 @@ export class BackendApiService {
   /**
    * Register the user with the server
    * @param  accessToken Access token for facebook
-   * @return Observable<Response<any>> (Response from the server)
+   * @return Observable<any> (Response from the server)
    */
   public signUp(accessToken: string): Observable<any> {
     return this.http.post<any>(this.apiUrl + 'authentication/signup', { access_token: accessToken });
@@ -66,7 +66,7 @@ export class BackendApiService {
   /**
    * Test request for required profile data from local DB
    * @param  id Id string (mongoose) of the user profile
-   * @return    Observable<Response<Profile>>
+   * @return    Observable<Profile>
    */
   public getProfileById(id: string): Observable<Profile> {
     return this.http.get<Profile>(this.devUrl + `profiles/${id}`);
@@ -75,7 +75,7 @@ export class BackendApiService {
   /**
    * Test request for follow backs of the user
    * @param  id ID of the client user, (from which the followbacks will be collected)
-   * @return    Observable<Response<UserItem[]>>
+   * @return    Observable<UserItem[]>
    */
   public getFollowBacks(id: string): Observable<UserItem[]> {
     return this.http.get<UserItem[]>(this.devUrl + `followBacks`); // Send the id when a production server
@@ -84,7 +84,7 @@ export class BackendApiService {
   /**
    * Test request for who the user is following
    * @param  id ID of the client user, (from which the following list will be collected)
-   * @return    Observable<Response<UserItem[]>>
+   * @return    Observable<UserItem[]>
    */
   public getFollowing(id: string): Observable<UserItem[]> {
     return this.http.get<UserItem[]>(this.devUrl + `following`); // Send the id when a production server
@@ -93,7 +93,7 @@ export class BackendApiService {
   /**
    * Test request for the followers of the user
    * @param  id ID of the client user, (from which the follower list will be collected)
-   * @return    Observable<Response<UserItem[]>>
+   * @return    Observable<UserItem[]>
    */
   public getFollowers(id: string): Observable<UserItem[]> {
     return this.http.get<UserItem[]>(this.devUrl + `followers`); // Send the id when a production server
@@ -104,7 +104,7 @@ export class BackendApiService {
    * @param  populationTarget Which view we will be populating, along with data about the view type
    * @param  results          How many canvases to return per request
    * @param  page             Pagnation: How many canvases in we are (results*page)
-   * @return                  Observable<Response<CanvasCard[]>>
+   * @return                  Observable<CanvasCard[]>
    */
   public getCanvasCards(populationTarget: {name: string, data: string}, results: number, page: number): Observable<CanvasCard[]> {
     console.log('Page: ' + page);

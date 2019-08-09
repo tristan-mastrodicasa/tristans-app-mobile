@@ -1,38 +1,44 @@
-import { Component } from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { File } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+
+import { GlobalStore } from '../../state/global.store';
 
 @Component({
   selector: 'app-media-upload',
   templateUrl: './media-upload.page.html',
   styleUrls: ['./media-upload.page.scss'],
 })
-export class MediaUploadPage {
+export class MediaUploadPage implements OnInit {
 
   private image: string;
 
   constructor(
     private camera: Camera,
-    private file: File,
     private webView: WebView,
-    private androidPermissions: AndroidPermissions,
-    private platform: Platform
+    private filePath: FilePath,
+    private globalStore: GlobalStore
   ) { }
+
+  /**
+   * Check if the camera has taken a picture from the tab button
+   */
+  public ngOnInit() {
+
+    this.globalStore.state$.subscribe(_ => {
+      if (this.globalStore.hasPictureBeenTaken) {
+        this.displayImagePreview(this.globalStore.pictureLocation);
+        this.globalStore.resetPictureTaken();
+      }
+    });
+
+  }
 
   /**
    * Open the gallery to select a canvas picture
    */
   public selectCanvasPicture() {
-
-    this.platform.ready().then(_ => {
-      this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE).then(
-        result => console.log('Has permission?', result.hasPermission),
-        err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE)
-      );
-    });
 
     const options: CameraOptions = {
       quality: 100,
@@ -42,23 +48,25 @@ export class MediaUploadPage {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
     };
 
-    console.log(this.image);
-
     this.camera.getPicture(options).then((imageData) => {
 
-     let filename = imageData.substring(imageData.lastIndexOf('/') + 1);
-     let path = imageData.substring(0, imageData.lastIndexOf('/') + 1);
-
-     console.log('Make it?');
-
-     this.file.copyFile(path, filename, this.file.dataDirectory, 'lol.jpg').then(_ => {
-       console.log('Yep');
-       this.image = this.webView.convertFileSrc(this.file.dataDirectory + 'lol.jpg');
-     }).catch((e) => {
-       console.log(e);
-     });
+     this.displayImagePreview(imageData);
 
    });
+
+  }
+
+  /**
+   * Display the image in the media-upload view
+   * @param  contentURI The content uri of the image on the device
+   */
+  public displayImagePreview(contentURI: string) {
+
+    this.filePath.resolveNativePath(contentURI).then((path) => {
+      this.image = this.webView.convertFileSrc(path);
+    }).catch((e) => {
+      console.log(e);
+    });
 
   }
 

@@ -22,7 +22,7 @@
 
   <div class="card-container-no-padding">
 
-    <div class="white-card ion-padding-vertical">
+    <div class="white-card default-vertical-padding">
 
     	<ion-row>
     	  <ion-col text-center>
@@ -66,7 +66,7 @@
     	</ion-row>
 
 
-      <ion-row style="justify-content: center">
+      <ion-row justify-content-center>
 
         <ion-button *ngIf="ownProfile" color="primary" class="follow" [routerLink]="['/edit/profile']">
           <ion-icon slot="start" name="create"></ion-icon>
@@ -83,7 +83,7 @@
 
     </div>
 
-    <div class="ion-padding-vertical">
+    <div class="default-vertical-padding">
 
       <app-content-card *ngFor="let card of posts"
         [cardData]="card"

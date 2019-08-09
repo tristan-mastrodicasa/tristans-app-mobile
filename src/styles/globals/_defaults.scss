@@ -1,0 +1,22 @@
+/**
+ * Import into components that want to reset the default
+ * styles of some native tags
+ * Created by Tristan Mastrodicasa
+ */
+
+@import '../helpers/mixins';
+
+div, input, button, textarea {
+  @include box-sizing(border-box);
+  width: 100%;
+}
+
+span {
+	display: inline-block;
+}
+
+h1, h2, h3, h4, p, span, div, button, input {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}

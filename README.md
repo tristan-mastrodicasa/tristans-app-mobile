@@ -38,4 +38,6 @@ Read everything in /docs
 
 ## Misc
 
-Backend repo: https://github.com/ghostcoder217/meme-app-server
+Backend repo: https://github.com/ghostcoder217/tristans-app-server
+
+Only use ionic CSS utilities on ionic components!

@@ -1,9 +1,7 @@
 /**
- * File creates global style rules for page components
+ * File creates global style rules for html dealing with cards
  * Created by Tristan Mastrodicasa
  */
-
-/* Global Layout Styles */
 
 .card-container {
   max-width: 500px;
@@ -18,8 +16,4 @@
 
 .white-card {
   background-color: #FFFFFF;
-}
-
-.width-full {
-  width: 100%;
 }

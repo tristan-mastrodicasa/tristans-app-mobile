@@ -1,9 +1,5 @@
-
-$primary-color-1: var(--ion-color-meduim);
-
-.meow {
-  color: $primary-color-1;
-}
+@import 'globals/defaults';
+@import 'globals/card';
 
 .cardfooter{
 	background-color:#ff9933;

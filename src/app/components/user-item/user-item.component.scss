@@ -1,6 +1,6 @@
-/* Variables */
-
-$light-color: var(--light-text);
+@import 'globals/ion-overrides';
+@import 'globals/defaults';
+@import 'helpers/colors';
 
 span.light {
   color: $light-color;

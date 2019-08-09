@@ -2,11 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
-import { File } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
-
+import { FilePath } from '@ionic-native/file-path/ngx';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -23,10 +21,9 @@ const routes: Routes = [
 
 @NgModule({
   providers: [
-    AndroidPermissions,
     Camera,
-    File,
-    WebView
+    WebView,
+    FilePath
   ],
   imports: [
     CommonModule,

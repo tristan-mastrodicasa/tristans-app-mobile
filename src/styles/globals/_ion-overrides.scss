@@ -1,0 +1,9 @@
+/**
+ * File for overriding ionic default styles
+ * Created by Tristan Mastrodicasa
+ */
+
+ion-item {
+  width: 100%;
+  --background: transparent;
+}

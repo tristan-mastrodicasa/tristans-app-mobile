@@ -1,0 +1,33 @@
+/*
+ * File contains classes which can be
+ * applied to html elements to quickly add
+ * short css rules
+ * Created by Tristan Mastrodicasa
+ */
+
+ .width-full {
+   width: 100%;
+ }
+
+ .clearfix::after {
+   content: "";
+   clear: both;
+   display: table;
+ }
+
+.default-padding {
+  padding: 16px;
+}
+
+.default-vertical-padding {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.default-bottom-padding {
+  padding-bottom: 16px;
+}
+
+.no-padding {
+  padding: 0;
+}

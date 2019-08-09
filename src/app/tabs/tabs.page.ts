@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
+import { GlobalStore } from '../state/global.store';
+
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.page.html',
@@ -8,7 +10,10 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 })
 export class TabsPage {
 
-  constructor(private camera: Camera) { }
+  constructor(
+    private camera: Camera,
+    private globalStore: GlobalStore
+  ) { }
 
   /**
    * Open the camera functionality to take a canvas picture
@@ -24,12 +29,11 @@ export class TabsPage {
     };
 
     this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
-     let base64Image = 'data:image/jpeg;base64,' + imageData;
+     this.globalStore.pictureTaken(imageData);
+     // console.log(this.globalStore.hasPictureBeenTaken);
     }, (err) => {
-     // Handle error
-    });
+     console.log(err);
+   });
 
   }
 

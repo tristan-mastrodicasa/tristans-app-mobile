@@ -103,4 +103,43 @@ export class GlobalStore extends Store<GlobalState> {
     });
   }
 
+  /**
+   * Update the state to signal a picture has been taken for use by the media upload view
+   * @param contentURI A string giving the content URI for the taken image on the device (provided by camera.getPicture)
+   */
+  public pictureTaken(contentURI: string) {
+    this.setState({
+      ...this.state,
+      pictureTaken: true,
+      pictureData: contentURI
+    });
+  }
+
+  /**
+   * Reset the taken picture state
+   */
+  public resetPictureTaken() {
+    this.setState({
+      ...this.state,
+      pictureTaken: false,
+      pictureData: ''
+    });
+  }
+
+  /**
+   * Find out if a picture has been taken
+   * @return has a picture been taken
+   */
+  public get hasPictureBeenTaken(): boolean {
+    return this.state.pictureTaken;
+  }
+
+  /**
+   * Get the picture content URI
+   * @return content URI
+   */
+  public get pictureLocation(): string {
+    return this.state.pictureData;
+  }
+
 }

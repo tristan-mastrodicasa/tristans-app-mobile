@@ -1,12 +1,6 @@
-/* Variables */
-
-$light-color: var(--light-text);
-
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+@import 'globals/defaults';
+@import 'helpers/utility-classes';
+@import 'helpers/colors';
 
 .c-card {
   max-width: 500px;

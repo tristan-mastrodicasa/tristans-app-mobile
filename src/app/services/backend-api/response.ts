@@ -35,14 +35,40 @@ export interface UserItem extends BasicUser {
   activeCanvases?: number; // Number of active canvases
 }
 
-export interface CanvasCard {
+/**
+ * Enum for the ContentCard type to decide what type of card it is
+ */
+export enum ContentType {
+  Canvas = 'canvas',
+  Meme = 'meme'
+}
+
+/**
+ * A complex type that defines the content card
+ * The content card is defined in two ways depending on the type of card
+ */
+export type ContentCard = {
+  type: ContentType.Meme;
+  id: string;
   cid: string;
   users: {
-    primary: BasicUser,
-    secondary: BasicUser
-  };
+    primary: BasicUser;
+    secondary: BasicUser;
+  },
   imagePath: string;
   description?: string;
   stars: number;
   utcTime: number;
-}
+} | {
+  type: ContentType.Canvas;
+  id: string;
+  cid?: never;
+  users: {
+    primary: BasicUser;
+    secondary?: never;
+  },
+  imagePath: string;
+  description?: string;
+  stars: number;
+  utcTime: number;
+};

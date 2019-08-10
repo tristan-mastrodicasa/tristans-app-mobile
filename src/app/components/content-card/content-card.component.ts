@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
-import { CanvasCard } from '../../services/backend-api/response';
+import { ContentCard } from '../../services/backend-api/response';
 
 @Component({
   selector: 'app-content-card',
@@ -9,14 +9,15 @@ import { CanvasCard } from '../../services/backend-api/response';
 })
 export class ContentCardComponent {
 
-  @Input() public cardData: CanvasCard;
+  @Input() public cardData: ContentCard;
+  @Input() public cardView: 'default' | 'canvas-view' = 'default';
 
   constructor(private actionSheetController: ActionSheetController) { }
 
   /**
    * Present the additional actions for canvas cards
    */
-  private async presentCanvasCardActions() {
+  private async presentContentCardActions() {
 
     const actionSheet = await this.actionSheetController.create({
       header: 'Albums',
@@ -25,13 +26,13 @@ export class ContentCardComponent {
         role: 'destructive',
         icon: 'trash',
         handler: () => {
-          console.log('Delete clicked: ' + this.cardData.cid);
+          console.log('Delete clicked: ' + this.cardData.id);
         }
       }, {
         text: 'Share',
         icon: 'share',
         handler: () => {
-          console.log('Share clicked: '  + this.cardData.cid);
+          console.log('Share clicked: '  + this.cardData.id);
         }
       }, {
         text: 'Play (open modal)',

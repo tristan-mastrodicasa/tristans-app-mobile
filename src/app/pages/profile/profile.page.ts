@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 
 import { HelpersService } from '../../services/helpers/helpers.service';
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
-import { Profile, CanvasCard } from '../../services/backend-api/response';
+import { Profile, ContentCard } from '../../services/backend-api/response';
 import { GlobalStore } from '../../state/global.store';
 
 @Component({
@@ -15,9 +15,9 @@ import { GlobalStore } from '../../state/global.store';
 })
 export class ProfilePage implements OnInit {
 
-  @ViewChild(IonInfiniteScroll) private infiniteScroll: IonInfiniteScroll;
+  // @ViewChild(IonInfiniteScroll) private infiniteScroll: IonInfiniteScroll;
 
-  private posts = [] as CanvasCard[];
+  private posts = [] as ContentCard[];
   private cardsPerRequest = 6;
   private page = 1;
 
@@ -42,9 +42,8 @@ export class ProfilePage implements OnInit {
 
   /**
    * Builds the user profile based on the id passed via the URL
-   * @param infiniteScroll ROBERT WHAT IS THIS!?!?
    */
-  public ngOnInit(infiniteScroll?: any) {
+  public ngOnInit() {
 
     const id = this.route.snapshot.paramMap.get('id'); // '5cf330860ffe101b48a0fcc4'
 
@@ -57,7 +56,7 @@ export class ProfilePage implements OnInit {
 
     });
 
-    this.http.getCanvasCards({name: 'profile', data: id}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getContentCards({name: 'profile', data: id}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
       this.posts = this.posts.concat(res);
     });
 
@@ -70,7 +69,7 @@ export class ProfilePage implements OnInit {
   private loadPosts(event: any) {
 
     this.page++;
-    this.http.getCanvasCards({name: 'profile', data: this.profile.id}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getContentCards({name: 'profile', data: this.profile.id}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
 
       this.posts = this.posts.concat(res);
 

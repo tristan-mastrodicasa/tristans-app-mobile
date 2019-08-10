@@ -1,4 +1,7 @@
 @import 'globals/defaults';
+@import 'globals/text';
+@import 'globals/card';
+@import 'helpers/utility-classes';
 
 .upload-file > .image {
   display: block;

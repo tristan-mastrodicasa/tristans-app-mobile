@@ -12,7 +12,7 @@ import { GlobalStore } from '../../state/global.store';
 })
 export class MediaUploadPage implements OnInit {
 
-  private image: string;
+  private image = 'https://www.roberthompson.co.uk/meme-app/meme.jpg';
 
   constructor(
     private camera: Camera,
@@ -26,9 +26,9 @@ export class MediaUploadPage implements OnInit {
    */
   public ngOnInit() {
 
-    this.globalStore.state$.subscribe(_ => {
-      if (this.globalStore.hasPictureBeenTaken) {
-        this.displayImagePreview(this.globalStore.pictureLocation);
+    this.globalStore.state$.subscribe(state => {
+      if (state.pictureTaken) {
+        this.displayImagePreview(state.pictureData);
         this.globalStore.resetPictureTaken();
       }
     });

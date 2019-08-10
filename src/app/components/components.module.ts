@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { PrimaryHeaderComponent } from './interface/primary-header/primary-header.component';
 import { BackButtonComponent } from './interface/back-button/back-button.component';
@@ -13,7 +14,8 @@ import { DirectivesModule } from '../directives/directives.module';
   imports: [
     IonicModule,
     RouterModule,
-    DirectivesModule
+    DirectivesModule,
+    CommonModule
   ],
   declarations: [
     PrimaryHeaderComponent,

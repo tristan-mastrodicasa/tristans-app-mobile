@@ -126,20 +126,4 @@ export class GlobalStore extends Store<GlobalState> {
     });
   }
 
-  /**
-   * Find out if a picture has been taken
-   * @return has a picture been taken
-   */
-  public get hasPictureBeenTaken(): boolean {
-    return this.state.pictureTaken;
-  }
-
-  /**
-   * Get the picture content URI
-   * @return content URI
-   */
-  public get pictureLocation(): string {
-    return this.state.pictureData;
-  }
-
 }

@@ -9,23 +9,38 @@
    width: 100%;
  }
 
- .clearfix::after {
+.center {
+  display: block;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.clearfix::after {
    content: "";
    clear: both;
    display: table;
  }
 
+$default-size: 16px;
+
 .default-padding {
-  padding: 16px;
+  padding: $default-size;
 }
 
 .default-vertical-padding {
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: $default-size;
+  padding-bottom: $default-size;
 }
 
 .default-bottom-padding {
-  padding-bottom: 16px;
+  padding-bottom: $default-size;
+}
+
+.default-bottom-margin {
+  margin-bottom: $default-size;
 }
 
 .no-padding {

@@ -5,14 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MemeFocusPage } from './meme-focus.page';
+import { CanvasFocusPage } from './canvas-focus.page';
 
 import { ComponentsModule } from '../../components/components.module';
+import { ServicesModule } from '../../services/services.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: MemeFocusPage
+    component: CanvasFocusPage
   }
 ];
 
@@ -22,8 +23,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
+    ServicesModule
   ],
-  declarations: [MemeFocusPage]
+  declarations: [CanvasFocusPage]
 })
-export class MemeFocusPageModule {}
+export class CanvasFocusPageModule {}

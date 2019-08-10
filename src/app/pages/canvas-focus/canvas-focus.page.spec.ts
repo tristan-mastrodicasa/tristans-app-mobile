@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MemeFocusPage } from './meme-focus.page';
+import { CanvasFocusPage } from './canvas-focus.page';
 
-describe('MemeFocusPage', () => {
-  let component: MemeFocusPage;
-  let fixture: ComponentFixture<MemeFocusPage>;
+describe('CanvasFocusPage', () => {
+  let component: CanvasFocusPage;
+  let fixture: ComponentFixture<CanvasFocusPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemeFocusPage ],
+      declarations: [ CanvasFocusPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MemeFocusPage);
+    fixture = TestBed.createComponent(CanvasFocusPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

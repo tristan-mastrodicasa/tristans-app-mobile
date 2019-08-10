@@ -1,0 +1,32 @@
+<app-back-button pageTitle="Canvas View"></app-back-button>
+
+<ion-content>
+
+  <div class="card-container-no-padding">
+
+    <app-content-card *ngIf="canvasCard != null"
+      [cardData]="canvasCard"
+      cardView="canvas-view"
+    ></app-content-card>
+
+    <div *ngIf="canvasCard != null" class="default-padding">
+      <ion-label class="list-title">Memes</ion-label>
+    </div>
+
+    <div>
+
+      <app-content-card *ngFor="let card of memes"
+        [cardData]="card"
+      ></app-content-card>
+
+    </div>
+
+    <ion-infinite-scroll threshold="550px" (ionInfinite)="loadMemes($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="crescent">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </div>
+
+</ion-content>

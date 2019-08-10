@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Error, Profile, UserItem, CanvasCard } from './response';
+import { Error, Profile, UserItem, ContentCard } from './response';
 import { GlobalStore } from '../../state/global.store';
 
 import { SERVER_URL } from '../../../environments/environment';
@@ -66,7 +66,7 @@ export class BackendApiService {
   /**
    * Test request for required profile data from local DB
    * @param  id Id string (mongoose) of the user profile
-   * @return    Observable<Profile>
+   * @return    Array of user profiles
    */
   public getProfileById(id: string): Observable<Profile> {
     return this.http.get<Profile>(this.devUrl + `profiles/${id}`);
@@ -75,7 +75,7 @@ export class BackendApiService {
   /**
    * Test request for follow backs of the user
    * @param  id ID of the client user, (from which the followbacks will be collected)
-   * @return    Observable<UserItem[]>
+   * @return   Array of user items
    */
   public getFollowBacks(id: string): Observable<UserItem[]> {
     return this.http.get<UserItem[]>(this.devUrl + `followBacks`); // Send the id when a production server
@@ -84,7 +84,7 @@ export class BackendApiService {
   /**
    * Test request for who the user is following
    * @param  id ID of the client user, (from which the following list will be collected)
-   * @return    Observable<UserItem[]>
+   * @return    Array of user items
    */
   public getFollowing(id: string): Observable<UserItem[]> {
     return this.http.get<UserItem[]>(this.devUrl + `following`); // Send the id when a production server
@@ -93,22 +93,31 @@ export class BackendApiService {
   /**
    * Test request for the followers of the user
    * @param  id ID of the client user, (from which the follower list will be collected)
-   * @return    Observable<UserItem[]>
+   * @return    Array of user items
    */
   public getFollowers(id: string): Observable<UserItem[]> {
     return this.http.get<UserItem[]>(this.devUrl + `followers`); // Send the id when a production server
   }
 
   /**
-   * Get a list of canvas cards that the user can view
+   * Get a list of content cards that the user can view
    * @param  populationTarget Which view we will be populating, along with data about the view type
    * @param  results          How many canvases to return per request
    * @param  page             Pagnation: How many canvases in we are (results*page)
-   * @return                  Observable<CanvasCard[]>
+   * @return                  Array of content cards
    */
-  public getCanvasCards(populationTarget: {name: string, data: string}, results: number, page: number): Observable<CanvasCard[]> {
+  public getContentCards(populationTarget: {name: string, data: string}, results: number, page: number): Observable<ContentCard[]> {
     console.log('Page: ' + page);
-    return this.http.get<CanvasCard[]>(this.devUrl + `canvasCardList`);
+    return this.http.get<ContentCard[]>(this.devUrl + `contentCardList`);
+  }
+
+  /**
+   * Get a canvas card from an id
+   * @param  id ID of canvas
+   * @return    Canvas card
+   */
+  public getCanvasById(id: string): Observable<ContentCard> {
+    return this.http.get<ContentCard>(this.devUrl + `canvasList/${id}`);
   }
 
 }

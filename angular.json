@@ -37,11 +37,15 @@
                ]
              },
             "styles": [
-              {
-                "input": "src/global.scss"
-              }
+              "src/global.scss",
+              "src/assets/meme-generator/jquery-ui.css",
+              "src/assets/meme-generator/jquery.memegenerator.min.css",
+              "src/assets/meme-generator/bootstrap.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/meme-generator/jquery.min.js",
+              "src/assets/meme-generator/jquery-ui.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

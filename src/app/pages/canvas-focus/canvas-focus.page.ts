@@ -12,6 +12,7 @@ import { ContentCard } from '../../services/backend-api/response';
 })
 export class CanvasFocusPage implements OnInit {
 
+  private pageTitle = '';
   private canvasId: string;
   private canvasCard: ContentCard;
   private memes = [] as ContentCard[];
@@ -29,6 +30,7 @@ export class CanvasFocusPage implements OnInit {
 
     this.http.getCanvasById(this.canvasId).pipe(first()).subscribe((res) => {
       this.canvasCard = res;
+      this.pageTitle = this.canvasCard.users.primary.firstName + '\'s Canvas';
     });
 
     this.http.getContentCards({name: 'profile', data: this.canvasId}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {

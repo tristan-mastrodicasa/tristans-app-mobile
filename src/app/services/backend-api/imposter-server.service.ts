@@ -74,7 +74,7 @@ export class ImposterServerService implements InMemoryDbService {
       }, imagePath: 'https://pbs.twimg.com/media/CPRE4hiUEAA3vyG.png',  stars: 1456, utcTime: 1561081352435 }
     ];
 
-    let canvasList = [
+    let canvasList: ContentCard[] = [
       { id: 'saerrfavfaewasdaadfafeee', type: ContentType.Canvas, users: {
         primary: { id: '5cf330860ffe101b48a0fcc4', firstName: 'Tristan', username: 'ghoststeam217', photo: '/assets/svg-img/default-profile-picture.svg' },
       }, imagePath: 'https://pbs.twimg.com/media/CPRE4hiUEAA3vyG.png',  stars: 1456, utcTime: 1561081352435 },
@@ -85,7 +85,7 @@ export class ImposterServerService implements InMemoryDbService {
 
     ];
 
-    return {profiles, heroes, followBacks, following, followers, contentCardList, canvasList};
+    return { profiles, heroes, followBacks, following, followers, contentCardList, canvasList };
   }
 
 }

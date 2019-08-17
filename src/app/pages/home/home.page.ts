@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IonInfiniteScroll, NavController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { first } from 'rxjs/operators';
 
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
+import { ContentCard } from '../../services/backend-api/response';
 import { GlobalStore } from '../../state/global.store';
 
 @Component({
@@ -13,44 +14,41 @@ import { GlobalStore } from '../../state/global.store';
 })
 export class HomePage implements OnInit {
 
-  @ViewChild(IonInfiniteScroll) private infiniteScroll: IonInfiniteScroll;
-  private postData = [];
+  private posts = [] as ContentCard[];
+  private cardsPerRequest = 6;
+  private page = 1;
 
   constructor(
-    private http2: HttpClient,
-    private nav: NavController,
     private http: BackendApiService,
     private globalStore: GlobalStore
   ) { }
 
   /**
    * Handles the inifinite scroll functionality
-   * @param  infiniteScroll ROBERT WHAT IS THIS!?!?
    */
-  public ngOnInit(infiniteScroll?: any) {
+  public ngOnInit() {
 
-    // Test Http Get // get reqest can later be changed to get relevent data from server, eg in this case it would need to get memes from the user's network
-    this.http2.get('api/heroes').subscribe((response) => {
-      this.postData = this.postData.concat(response);
-      if (infiniteScroll) {
-        infiniteScroll.target.complete();
-      }
+    // Test Http Get // get reqest can later be changed to get relevent data from server, eg in this case it would need to get memes for the users home
+    this.http.getContentCards({name: 'home', extra: { id: 'useridmaybe' }}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+      this.posts = this.posts.concat(res);
     });
   }
 
   /**
-   * Handles the inifinite scroll functionality
-   * @param  infiniteScroll ROBERT WHAT IS THIS!?!?
+   * When users scroll near the bottom of the view, call for more posts
+   * @param  event Event object
    */
-  private loadPosts(infiniteScroll: any) {
-    this.ngOnInit(infiniteScroll);
-  }
+  private loadPosts(event: any) {
 
-  /**
-   * Open the meme focus view
-   */
-  private openMeme() {
-    this.nav.navigateRoot('/meme-focus');
+    this.page++;
+    this.http.getContentCards({name: 'home', extra: { id: 'useridmaybe' }}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+
+      this.posts = this.posts.concat(res);
+
+      event.target.complete();
+
+    });
+
   }
 
   /**

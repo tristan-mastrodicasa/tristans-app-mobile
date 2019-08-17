@@ -23,6 +23,7 @@
     "@auth0/angular-jwt": "^2.1.0",
     "@ionic-native/camera": "^5.12.0",
     "@ionic-native/core": "^5.12.0",
+    "@ionic-native/crop": "^5.12.0",
     "@ionic-native/facebook": "^5.6.0",
     "@ionic-native/file-path": "^5.11.0",
     "@ionic-native/ionic-webview": "^5.10.0",
@@ -33,6 +34,7 @@
     "angularx-social-login": "^1.2.7",
     "cordova-android": "7.1.4",
     "cordova-plugin-camera": "^4.1.0",
+    "cordova-plugin-crop": "^0.4.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-facebook4": "4.2.1",
     "cordova-plugin-filepath": "^1.5.6",
@@ -91,7 +93,8 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-filepath": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "cordova-plugin-crop": {}
     },
     "platforms": [
       "android"

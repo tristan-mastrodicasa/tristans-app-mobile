@@ -33,7 +33,7 @@ export class CanvasFocusPage implements OnInit {
       this.pageTitle = this.canvasCard.users.primary.firstName + '\'s Canvas';
     });
 
-    this.http.getContentCards({name: 'profile', data: this.canvasId}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getContentCards({name: 'profile', extra: { id: this.canvasId }}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
       this.memes = this.memes.concat(res);
     });
 
@@ -46,7 +46,7 @@ export class CanvasFocusPage implements OnInit {
   private loadMemes(event: any) {
 
     this.page++;
-    this.http.getContentCards({name: 'profile', data: this.canvasId}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getContentCards({name: 'profile', extra: { id: this.canvasId }}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
 
       this.memes = this.memes.concat(res);
 

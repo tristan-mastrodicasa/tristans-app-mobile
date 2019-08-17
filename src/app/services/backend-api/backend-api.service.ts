@@ -25,7 +25,7 @@ export class BackendApiService {
    * @param  reqType Type of request being sent
    * @return Object with http headers
    */
-  private genHttpOptions(reqType: string): any {
+  private genHttpOptions(reqType: string): { headers: HttpHeaders } {
 
     if (reqType === 'protected_routes') {
       return {
@@ -100,13 +100,43 @@ export class BackendApiService {
   }
 
   /**
-   * Get a list of content cards that the user can view
-   * @param  populationTarget Which view we will be populating, along with data about the view type
-   * @param  results          How many canvases to return per request
-   * @param  page             Pagnation: How many canvases in we are (results*page)
-   * @return                  Array of content cards
+   * Get an array of user items for a specific view
+   * @param  params   What kind of useritems to be populated, along with some extra parameters
+   * @param  results  How many user items to return per request
+   * @param  page     Pagnation: How many user items in we are (results*page)
+   * @return          Array of user items
    */
-  public getContentCards(populationTarget: {name: string, data: string}, results: number, page: number): Observable<ContentCard[]> {
+  public getUserItems(params: {name: string, extra: any}, results: number, page: number): Observable<UserItem[]> {
+
+    // Simulate backend results selection (would usually just pass the parameters to the server)
+    switch (params.name) {
+      case 'follow-back':
+        return this.http.get<UserItem[]>(this.devUrl + `followBacks`);
+      case 'following':
+        return this.http.get<UserItem[]>(this.devUrl + `following`);
+      case 'followers':
+        return this.http.get<UserItem[]>(this.devUrl + `followers`);
+    }
+
+  }
+
+  /**
+   * Get a user item from an id
+   * @param  id ID of user
+   * @return    User Item
+   */
+  public getUserItemById(id: string): Observable<UserItem> {
+    return this.http.get<UserItem>(this.devUrl + `userItems/${id}`);
+  }
+
+  /**
+   * Get a list of content cards that the user can view
+   * @param  params   Which view we will be populating, along with data about the view type
+   * @param  results  How many canvases to return per request
+   * @param  page     Pagnation: How many canvases in we are (results*page)
+   * @return          Array of content cards
+   */
+  public getContentCards(params: {name: string, extra: any}, results: number, page: number): Observable<ContentCard[]> {
     console.log('Page: ' + page);
     return this.http.get<ContentCard[]>(this.devUrl + `contentCardList`);
   }

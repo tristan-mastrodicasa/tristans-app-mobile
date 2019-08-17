@@ -12,24 +12,11 @@ import { GlobalStore } from '../../../state/global.store';
 })
 export class UsersPage {
 
-  private segment = 'follow-back';
+  private myUserItem: UserItem;
 
-  private userProfile: UserItem;
-
-  private followBacks = {
-    recentCanvas: [] as UserItem[],
-    userList: [] as UserItem[]
-  };
-
-  private following = {
-    recentCanvas: [] as UserItem[],
-    userList: [] as UserItem[]
-  };
-
-  private followers = {
-    recentCanvas: [] as UserItem[],
-    userList: [] as UserItem[]
-  };
+  private userItemList = [] as UserItem[];
+  private itemsPerRequest = 6;
+  private page = 1;
 
   constructor(
     private http: BackendApiService,
@@ -41,54 +28,28 @@ export class UsersPage {
    * @param  e Segment event (with details about which segment is chosen)
    */
   public segmentChanged(e: any) {
+
+    // Reset the infinite scroll variables //
+    this.page = 1;
+    this.userItemList = [];
+
+    // Refresh the user profile information //
+    this.http.getUserItemById('5cf330860ffe101b48a0fcc4').pipe(first()).subscribe((res) => {
+      this.myUserItem = res;
+    });
+
     console.log(e.detail.value);
 
-    // Establish which segment we are populating, set the right objects and http requests //
-    let userItemObject;
-    let backendService;
-
-    switch (e.detail.value) {
-      case 'follow-back':
-        userItemObject = 'followBacks';
-        backendService = 'getFollowBacks';
-        break;
-      case 'following':
-        userItemObject = 'following';
-        backendService = 'getFollowing';
-        break;
-      case 'followers':
-        userItemObject = 'followers';
-        backendService = 'getFollowers';
-        break;
-    }
-
     // Send an http request //
-    this.http[backendService](this.globalStore.state.user_data._id).pipe(first()).subscribe((res) => {
+    this.http.getUserItems({name: e.detail.value, extra: { profileId: 'myidfromglobalstore'}}, this.itemsPerRequest, this.page).pipe(first()).subscribe((res) => {
 
-      this[userItemObject].userList = [];
-      this[userItemObject].recentCanvas = [];
-
-      for (let i = 0; i < res.length; i++) {
-
-        // The first element in all requests is the updated user object //
-        if (i === 0) {
-          this.userProfile = res[i];
-          continue;
-        }
-
-        // Choose which object is populated, the active canvas list or normal user list //
-        if (res[i].activeCanvases !== undefined) this[userItemObject].recentCanvas.push(res[i]);
-        else this[userItemObject].userList.push(res[i]);
-
-        // Logs, testing only //
-        console.log(userItemObject);
-        console.log(backendService);
-        console.log(this[userItemObject]);
-
-      }
+      this.userItemList = this.userItemList.concat(res);
+      console.log(this.userItemList);
 
     });
 
   }
+
+  /** @todo Add the load on scroll feature */
 
 }

@@ -26,7 +26,7 @@ export class MemeCreatePage implements OnInit {
 
     let id: string = this.route.snapshot.paramMap.get('id');
 
-    /** @TODO Here is where we would construct the URL to call the API and return the image for the canvas id */
+    /** @todo Here is where we would construct the URL to call the API and return the image for the canvas id */
     this.image = 'https://assets.entrepreneur.com/content/3x2/2000/20180703190744-rollsafe-meme.jpeg?width=700&crop=2:1';
 
     $(document).ready(() => {

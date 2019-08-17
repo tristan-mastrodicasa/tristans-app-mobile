@@ -37,10 +37,10 @@
                ]
              },
             "styles": [
-              "src/global.scss",
               "src/assets/meme-generator/jquery-ui.css",
               "src/assets/meme-generator/jquery.memegenerator.min.css",
-              "src/assets/meme-generator/bootstrap.min.css"
+              "src/assets/meme-generator/bootstrap.min.css",
+              "src/global.scss"
             ],
             "scripts": [
               "src/assets/meme-generator/jquery.min.js",

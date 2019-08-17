@@ -24,6 +24,11 @@
 
       <!-- https://www.djamware.com/post/5c9361e080aca754f7a9d1ef/ionic-4-angular-7-and-cordova-crop-and-upload-image -->
 
+      <ion-item lines="none">
+        <ion-label>Update profile picture</ion-label>
+        <ion-button (click)="selectProfileImage()" fill="outline" slot="end">Select<ion-icon name="images" slot="start"></ion-icon></ion-button>
+      </ion-item>
+
       <ion-item class="white" lines="full">
         <ion-label position="stacked">First Name</ion-label>
         <ion-input type="text" value="Tristan"></ion-input>

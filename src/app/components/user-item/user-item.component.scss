@@ -18,3 +18,23 @@ span.light {
   font-size: 21px;
   margin-bottom: -4px;
 }
+
+.canvas-number {
+  position: absolute;
+  width: auto;
+
+  height: 15px;
+  width: 12px;
+  padding: 0 0 0 2px;
+
+  left: 0;
+  top: 0;
+
+  line-height: 100%;
+  font-weight: bold;
+  font-size: 14px;
+
+  color: #FFFFFF;
+  background-color: #FF0000;
+  border-radius: 5px;
+}

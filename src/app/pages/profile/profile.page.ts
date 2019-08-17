@@ -15,13 +15,11 @@ import { GlobalStore } from '../../state/global.store';
 })
 export class ProfilePage implements OnInit {
 
-  // @ViewChild(IonInfiniteScroll) private infiniteScroll: IonInfiniteScroll;
-
   private posts = [] as ContentCard[];
   private cardsPerRequest = 6;
   private page = 1;
 
-  private ownProfile = false;
+  private ownProfile: boolean;
   private profile: Profile = {
     id: '',
     firstName: '',
@@ -56,7 +54,7 @@ export class ProfilePage implements OnInit {
 
     });
 
-    this.http.getContentCards({name: 'profile', data: id}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getContentCards({name: 'profile', extra: { id }}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
       this.posts = this.posts.concat(res);
     });
 
@@ -69,7 +67,7 @@ export class ProfilePage implements OnInit {
   private loadPosts(event: any) {
 
     this.page++;
-    this.http.getContentCards({name: 'profile', data: this.profile.id}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getContentCards({name: 'profile', extra: { id: this.profile.id }}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
 
       this.posts = this.posts.concat(res);
 

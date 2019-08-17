@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { UserItem } from '../../services/backend-api/response';
 
 @Component({
   selector: 'app-user-item',
@@ -7,11 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class UserItemComponent {
 
-  @Input() public id = '';
-  @Input() public photo = '/assets/svg-img/default-profile-picture.svg';
-  @Input() public firstName = '';
-  @Input() public username = '';
-  @Input() public influence = 0;
+  @Input() public userItem: UserItem;
 
   constructor() { }
 

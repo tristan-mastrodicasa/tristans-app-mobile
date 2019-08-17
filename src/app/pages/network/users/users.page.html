@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
 
     <ion-buttons slot="start">
-      <ion-button>
+      <ion-button [routerLink]="['/network/search']">
         <ion-icon name="search" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -40,61 +40,31 @@
         </ion-segment>
       </ion-row>
 
-      <div *ngIf="userProfile != undefined">
+      <div *ngIf="myUserItem != undefined">
 
         <ion-label class="list-title">You</ion-label>
 
         <ion-row class="ion-padding-vertical">
 
           <app-user-item
-            id="{{ userProfile.id }}"
-            photo="{{ userProfile.photo }}"
-            firstName="{{ userProfile.firstName }}"
-            username="{{ userProfile.username }}"
-            influence="{{ userProfile.influence }}"
+            [userItem]="myUserItem"
             class="width-full"></app-user-item>
 
         </ion-row>
 
       </div>
 
-      <div *ngIf="segment == 'follow-back'">
+      <div *ngIf="userItemList.length != 0">
 
-        <div *ngIf="followBacks.recentCanvas[0] != undefined">
+        <ion-label class="list-title">Others</ion-label>
 
-          <ion-label class="list-title">Canvas Active</ion-label>
+        <ion-row class="ion-padding-vertical">
 
-          <ion-row class="ion-padding-vertical">
+          <app-user-item *ngFor="let user of userItemList"
+            [userItem]="user"
+            class="width-full"></app-user-item>
 
-            <app-user-item *ngFor="let user of followBacks.recentCanvas"
-              [id]="user.id"
-              [photo]="user.photo"
-              [firstName]="user.firstName"
-              [username]="user.username"
-              [influence]="user.influence"
-              class="width-full"></app-user-item>
-
-          </ion-row>
-
-        </div>
-
-        <div *ngIf="followBacks.userList[0] != undefined">
-
-          <ion-label class="list-title">Follow Backs</ion-label>
-
-          <ion-row class="ion-padding-vertical">
-
-            <app-user-item *ngFor="let user of followBacks.userList"
-              [id]="user.id"
-              [photo]="user.photo"
-              [firstName]="user.firstName"
-              [username]="user.username"
-              [influence]="user.influence"
-              class="width-full"></app-user-item>
-
-          </ion-row>
-
-        </div>
+        </ion-row>
 
       </div>
 

@@ -66,7 +66,7 @@
     	</ion-row>
 
 
-      <ion-row justify-content-center>
+      <ion-row justify-content-center *ngIf="ownProfile != null">
 
         <ion-button *ngIf="ownProfile" color="primary" class="follow" [routerLink]="['/edit/profile']">
           <ion-icon slot="start" name="create"></ion-icon>

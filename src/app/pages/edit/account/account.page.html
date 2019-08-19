@@ -2,37 +2,55 @@
 
 <ion-content>
 
-  <div class="card-container">
+  <div class="card-container-no-padding">
 
-    <div class="white-card default-padding">
+    <div class="white-card">
 
-      <ion-label class="list-title">Notifications</ion-label>
-
-      <ion-item lines="none">
-        Canvas invites
-        <ion-toggle color="primary" slot="end"></ion-toggle>
-      </ion-item>
-
-      <ion-item lines="none">
-        People you follow upload canvases
-        <ion-toggle color="primary" slot="end"></ion-toggle>
-      </ion-item>
-
-      <ion-item lines="none">
-        Users meme your canvas
-        <ion-toggle color="primary" slot="end"></ion-toggle>
-      </ion-item>
-
-      <ion-item lines="none">
-        Point increases
-        <ion-toggle color="primary" slot="end"></ion-toggle>
-      </ion-item>
-
-      <div class="default-bottom-padding">
-        <ion-label class="list-title">Misc</ion-label>
+      <div class="default-padding list-title-padding">
+        <ion-label class="list-title">Notifications</ion-label>
       </div>
 
-      <ion-button (click)="logOut()" expand="block" color="danger">Log Out<ion-icon name="log-out" slot="start" mode="ios"></ion-icon></ion-button>
+      <ion-item lines="full">
+        <ion-label>
+        <h2 class="radio-header">Canvas invites</h2>
+        <p text-wrap>Recieve canvas invites from users in your network</p>
+        </ion-label>
+        <ion-toggle color="primary" slot="end"></ion-toggle>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label>
+        <h2 class="radio-header">Uploaded Canvases</h2>
+        <p text-wrap>Recieve notifications whenever a user you follow uploads a canvas</p>
+        </ion-label>
+        <ion-toggle color="primary" slot="end"></ion-toggle>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label>
+        <h2 class="radio-header">Created Memes</h2>
+        <p text-wrap>Get notified whenever a user creates a meme from your canvas</p>
+        </ion-label>
+        <ion-toggle color="primary" slot="end"></ion-toggle>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label>
+        <h2 class="radio-header">Point Increases</h2>
+        <p text-wrap>Recieve notifications about increases in your infulence points</p>
+        </ion-label>
+        <ion-toggle color="primary" slot="end"></ion-toggle>
+      </ion-item>
+
+      <div class="default-padding">
+
+        <div class="default-bottom-padding">
+          <ion-label class="list-title">Misc</ion-label>
+        </div>
+
+        <ion-button (click)="logOut()" expand="block" color="danger">Log Out<ion-icon name="log-out" slot="start" mode="ios"></ion-icon></ion-button>
+
+      </div>
 
     </div>
 

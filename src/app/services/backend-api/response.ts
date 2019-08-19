@@ -36,9 +36,19 @@ export interface UserItem extends BasicUser {
 }
 
 /**
+ * Enum for content visibility
+ */
+export enum EVisibility {
+  public = 'public',
+  followers = 'followers',
+  followBacks = 'follow-backs',
+  specificUsers = 'specific-users',
+}
+
+/**
  * Enum for the ContentCard type to decide what type of card it is
  */
-export enum ContentType {
+export enum EContentType {
   Canvas = 'canvas',
   Meme = 'meme'
 }
@@ -48,7 +58,7 @@ export enum ContentType {
  * The content card is defined in two ways depending on the type of card
  */
 export type ContentCard = {
-  type: ContentType.Meme;
+  type: EContentType.Meme;
   id: string;
   cid: string;
   users: {
@@ -58,9 +68,10 @@ export type ContentCard = {
   imagePath: string;
   description?: string;
   stars: number;
+  starred: boolean;
   utcTime: number;
 } | {
-  type: ContentType.Canvas;
+  type: EContentType.Canvas;
   id: string;
   cid?: never;
   users: {
@@ -70,5 +81,6 @@ export type ContentCard = {
   imagePath: string;
   description?: string;
   stars: number;
+  starred: boolean;
   utcTime: number;
 };

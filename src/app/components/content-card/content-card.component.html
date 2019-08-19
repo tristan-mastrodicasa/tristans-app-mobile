@@ -25,7 +25,10 @@
   </div>
 
   <div class="c-actions clearfix">
-    <div class="star"><ion-icon class="star-icon" name="star"></ion-icon>&nbsp;<span [appFormatNumber]="cardData.stars"></span></div>
+    <div [ngClass]="cardData.starred ? 'star-selected' : 'star'" (click)="starToggle()">
+      <ion-icon *ngIf="!cardData.starred" class="star-icon" name="star-outline"></ion-icon>
+      <ion-icon *ngIf="cardData.starred" class="star-icon" name="star"></ion-icon>&nbsp;<span [appFormatNumber]="cardData.stars"></span>
+    </div>
     <div class="time"><ion-icon class="time-icon" name="time"></ion-icon>&nbsp;<span [appFormatUtc]="cardData.utcTime"></span></div>
   </div>
 

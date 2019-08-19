@@ -14,9 +14,19 @@
 
       <img [src]="image" class="center"/>
 
-      <ion-item class='default-bottom-margin'>
+      <ion-item class="default-bottom-margin">
         <ion-label position="floating" class="list-title">Description</ion-label>
         <ion-textarea></ion-textarea>
+      </ion-item>
+
+      <ion-item class="default-bottom-margin">
+        <ion-label>Visibility</ion-label>
+        <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One">
+          <ion-select-option value="public">Public</ion-select-option>
+          <ion-select-option value="followers">Followers</ion-select-option>
+          <ion-select-option value="follow-backs">Follow Backs</ion-select-option>
+          <ion-select-option value="specific-users">Specific Users</ion-select-option>
+        </ion-select>
       </ion-item>
 
       <ion-button expand="full" color="primary" class="default-bottom-margin">Submit</ion-button>

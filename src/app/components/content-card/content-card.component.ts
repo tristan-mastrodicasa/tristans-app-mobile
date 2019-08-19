@@ -60,4 +60,16 @@ export class ContentCardComponent {
 
   }
 
+  /**
+   * Manages the starring action for content cards
+   */
+  private starToggle() {
+    this.cardData.starred = (this.cardData.starred ? false : true );
+
+    if (this.cardData.starred) this.cardData.stars++;
+    else this.cardData.stars--;
+
+    /** @todo send star request to backend API */
+  }
+
 }

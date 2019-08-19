@@ -84,6 +84,18 @@ $actions-size: 16px;
   font-size: $actions-size;
 }
 
+.star-selected {
+  width: auto;
+  float: left;
+  color: #e5c100;
+  font-size: $actions-size;
+}
+
+.star-icon {
+  margin-bottom: -3.5px;
+  font-size: 20px;
+}
+
 .time {
   width: auto;
   float: right;
@@ -94,11 +106,6 @@ $actions-size: 16px;
 .time-icon {
   margin-bottom: -3px;
   font-size: 17px;
-}
-
-.star-icon {
-  margin-bottom: -3.5px;
-  font-size: 20px;
 }
 
 .alert-icon {

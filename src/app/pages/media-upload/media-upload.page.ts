@@ -13,6 +13,9 @@ import { GlobalStore } from '../../state/global.store';
 export class MediaUploadPage implements OnInit {
 
   private image = 'https://www.roberthompson.co.uk/meme-app/meme.jpg';
+  private customActionSheetOptions: any = {
+    header: 'Visibility'
+  };
 
   constructor(
     private camera: Camera,

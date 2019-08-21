@@ -14,6 +14,8 @@ Navigate to the repo folder and run
 
 	$ npm install
 
+Set up the environments files
+
 Then within the repo folder run
 
 	$ ionic serve

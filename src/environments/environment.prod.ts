@@ -1,5 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  serveFromCache: false,
+  serverUrl: 'http://locahost:8080/api/'
 };
-
-export const SERVER_URL = 'http://locahost:8080/api/';

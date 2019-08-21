@@ -3,16 +3,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Error, Profile, UserItem, ContentCard } from './response';
+import { Profile, UserItem, ContentCard } from './response';
 import { GlobalStore } from '../../state/global.store';
 
-import { SERVER_URL } from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
+/** @todo Add .pipe(catchError(this.handleError)); to all requests in the future */
 @Injectable()
 export class BackendApiService {
 
-  private apiUrl: string = SERVER_URL;
-  private devUrl = 'api/';
+  private apiUrl: string = (environment.serveFromCache ? 'api/' : environment.serverUrl);
 
   constructor(
     private http: HttpClient,
@@ -69,55 +69,19 @@ export class BackendApiService {
    * @return    Array of user profiles
    */
   public getProfileById(id: string): Observable<Profile> {
-    return this.http.get<Profile>(this.devUrl + `profiles/${id}`);
-  }
-
-  /**
-   * Test request for follow backs of the user
-   * @param  id ID of the client user, (from which the followbacks will be collected)
-   * @return   Array of user items
-   */
-  public getFollowBacks(id: string): Observable<UserItem[]> {
-    return this.http.get<UserItem[]>(this.devUrl + `followBacks`); // Send the id when a production server
-  }
-
-  /**
-   * Test request for who the user is following
-   * @param  id ID of the client user, (from which the following list will be collected)
-   * @return    Array of user items
-   */
-  public getFollowing(id: string): Observable<UserItem[]> {
-    return this.http.get<UserItem[]>(this.devUrl + `following`); // Send the id when a production server
-  }
-
-  /**
-   * Test request for the followers of the user
-   * @param  id ID of the client user, (from which the follower list will be collected)
-   * @return    Array of user items
-   */
-  public getFollowers(id: string): Observable<UserItem[]> {
-    return this.http.get<UserItem[]>(this.devUrl + `followers`); // Send the id when a production server
+    return this.http.get<Profile>(this.apiUrl + `profiles/${id}`);
   }
 
   /**
    * Get an array of user items for a specific view
-   * @param  params   What kind of useritems to be populated, along with some extra parameters
-   * @param  results  How many user items to return per request
-   * @param  page     Pagnation: How many user items in we are (results*page)
+   * @param  segment   What kind of useritems to be populated
+   * @param  profileId Id of the user we are collecting the network user items from
+   * @param  results   How many user items to return per request
+   * @param  page      Pagnation: How many user items in we are (results*page)
    * @return          Array of user items
    */
-  public getUserItems(params: {name: string, extra: any}, results: number, page: number): Observable<UserItem[]> {
-
-    // Simulate backend results selection (would usually just pass the parameters to the server)
-    switch (params.name) {
-      case 'follow-back':
-        return this.http.get<UserItem[]>(this.devUrl + `followBacks`);
-      case 'following':
-        return this.http.get<UserItem[]>(this.devUrl + `following`);
-      case 'followers':
-        return this.http.get<UserItem[]>(this.devUrl + `followers`);
-    }
-
+  public getNetworkUserItems(segment: string, profileId: string, results: number, page: number): Observable<UserItem[]> {
+    return this.http.get<UserItem[]>(this.apiUrl + `user/${profileId}/network/${segment}`);
   }
 
   /**
@@ -126,7 +90,7 @@ export class BackendApiService {
    * @return    User Item
    */
   public getUserItemById(id: string): Observable<UserItem> {
-    return this.http.get<UserItem>(this.devUrl + `userItems/${id}`);
+    return this.http.get<UserItem>(this.apiUrl + `userItems/${id}`);
   }
 
   /**
@@ -138,7 +102,7 @@ export class BackendApiService {
    */
   public getContentCards(params: {name: string, extra: any}, results: number, page: number): Observable<ContentCard[]> {
     console.log('Page: ' + page);
-    return this.http.get<ContentCard[]>(this.devUrl + `contentCardList`);
+    return this.http.get<ContentCard[]>(this.apiUrl + `contentCardList`);
   }
 
   /**
@@ -147,7 +111,7 @@ export class BackendApiService {
    * @return    Canvas card
    */
   public getCanvasById(id: string): Observable<ContentCard> {
-    return this.http.get<ContentCard>(this.devUrl + `canvasList/${id}`);
+    return this.http.get<ContentCard>(this.apiUrl + `canvasList/${id}`);
   }
 
 }

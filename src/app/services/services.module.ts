@@ -12,6 +12,8 @@ import { ImposterServerService } from './backend-api/imposter-server.service';
 import { AuthService } from './auth/auth.service';
 import { HelpersService } from './helpers/helpers.service';
 
+import { environment } from '../../environments/environment';
+
 @NgModule({
   providers: [
     BackendApiService,
@@ -21,9 +23,9 @@ import { HelpersService } from './helpers/helpers.service';
   imports: [
     CommonModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
+    (environment.serveFromCache ? HttpClientInMemoryWebApiModule.forRoot(
       ImposterServerService, { dataEncapsulation: false, delay: 900, passThruUnknownUrl: true }
-    ),
+    ) : []),
     IonicStorageModule.forRoot(),
     LoginPageModule
   ]

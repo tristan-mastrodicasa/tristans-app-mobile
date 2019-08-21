@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl } from 'angular-in-memory-web-api';
 
 import { ContentCard, EContentType, UserItem, Profile } from './response';
 
@@ -8,22 +8,36 @@ import { ContentCard, EContentType, UserItem, Profile } from './response';
 export class ImposterServerService implements InMemoryDbService {
 
   /**
+   * Intercept url's and modifies requests as necessary, this allows the backend-service
+   * to format requests the same way it would when requesting from a live server
+   */
+  public parseRequestUrl(url: string, requestInfoUtils: RequestInfoUtilities): ParsedRequestUrl {
+
+    // Break the url into juicy bits //
+    let urlParts: string[] = url.split('/');
+
+    // If the api url is accessing the user resource than format as follows //
+    if (urlParts[1] === 'user') {
+      let id: string = urlParts[2];
+
+      if (urlParts[3] === 'network') {
+
+        let userItemType: string = urlParts[4];
+
+        console.log('Collect users from userid: ' + id);
+        url = `api/${userItemType}`;
+
+        return requestInfoUtils.parseRequestUrl(url);
+
+      }
+    }
+
+    return requestInfoUtils.parseRequestUrl(url);
+  }
+  /**
    * Create the database for the imposter server
    */
   public createDb() {
-
-    const heroes = [
-      { id: 11, name: 'Dr Nice' },
-      { id: 12, name: 'Narco' },
-      { id: 13, name: 'Bombasto' },
-      { id: 14, name: 'Celeritas' },
-      { id: 15, name: 'Magneta' },
-      { id: 16, name: 'RubberMan' },
-      { id: 17, name: 'Dynama' },
-      { id: 18, name: 'Dr IQ' },
-      { id: 19, name: 'Magma' },
-      { id: 20, name: 'Tornado' }
-    ];
 
     let profiles: Profile[] = [
       { id: '5cf330860ffe101b48a0fcc4', firstName: 'Tristan', username: 'ghoststeam217', influence: 7089, followers: 31, contentNumber: 70, photo: '/assets/svg-img/default-profile-picture.svg' },
@@ -41,7 +55,7 @@ export class ImposterServerService implements InMemoryDbService {
       { id: 'fcf330860fasdasdfe10cdd4', firstName: 'Johanne', username: 'user9272311', influence: 11, photo: '/assets/img/test/testi3.jpg' },
     ];
 
-    let followBacks: UserItem[]  = [
+    let follow_backs: UserItem[]  = [
       { id: 'bcaaa3060fasdasdfe3acdd4', firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg', activeCanvases: 4 },
       { id: '3cf330126531201b48a0fcc4', firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg', activeCanvases: 1  },
     ];
@@ -90,7 +104,7 @@ export class ImposterServerService implements InMemoryDbService {
 
     ];
 
-    return { profiles, heroes, userItems, followBacks, following, followers, contentCardList, canvasList };
+    return { profiles, userItems, followers, following, follow_backs, contentCardList, canvasList };
   }
 
 }

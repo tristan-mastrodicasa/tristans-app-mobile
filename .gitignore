@@ -33,3 +33,6 @@ resources/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+src/environments/environment.prod.ts
+src/environments/environment.ts

@@ -13,6 +13,7 @@ import { GlobalStore } from '../../../state/global.store';
 export class UsersPage {
 
   private myUserItem: UserItem;
+  private segment: string;
 
   private userItemList = [] as UserItem[];
   private itemsPerRequest = 6;
@@ -29,6 +30,9 @@ export class UsersPage {
    */
   public segmentChanged(e: any) {
 
+    let segment = e.detail.value;
+    this.segment = segment;
+
     // Reset the infinite scroll variables //
     this.page = 1;
     this.userItemList = [];
@@ -41,9 +45,11 @@ export class UsersPage {
     console.log(e.detail.value);
 
     // Send an http request //
-    this.http.getUserItems({name: e.detail.value, extra: { profileId: 'myidfromglobalstore'}}, this.itemsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getNetworkUserItems(segment, '5cf330860ffe101b48a0fcc4', this.itemsPerRequest, this.page).pipe(first()).subscribe((res) => {
 
-      this.userItemList = this.userItemList.concat(res);
+      // So that if the user swaps segments fast the list will not populate unless //
+      // the current segment (this.segment) is the same as the segment requested (segment) //
+      if (segment === this.segment) this.userItemList = res;
       console.log(this.userItemList);
 
     });

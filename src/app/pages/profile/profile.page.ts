@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 
 import { HelpersService } from '../../services/helpers/helpers.service';
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
-import { Profile, ContentCard } from '../../services/backend-api/response';
+import { Profile, ContentCard } from '../../services/backend-api/response.interface';
 import { GlobalStore } from '../../state/global.store';
 
 @Component({
@@ -54,7 +54,7 @@ export class ProfilePage implements OnInit {
 
     });
 
-    this.http.getContentCards({name: 'profile', extra: { id }}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getContentCards('profile', id, this.cardsPerRequest, this.page).toPromise().then((res) => {
       this.posts = this.posts.concat(res);
     });
 
@@ -67,7 +67,7 @@ export class ProfilePage implements OnInit {
   private loadPosts(event: any) {
 
     this.page++;
-    this.http.getContentCards({name: 'profile', extra: { id: this.profile.id }}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getContentCards('profile', this.profile.id, this.cardsPerRequest, this.page).toPromise().then((res) => {
 
       this.posts = this.posts.concat(res);
 

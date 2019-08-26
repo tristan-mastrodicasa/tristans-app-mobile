@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl } from 'angular-in-memory-web-api';
 
-import { ContentCard, EContentType, UserItem, Profile } from './response';
+import { ContentCard, EContentType, UserItem, Profile } from './response.interface';
 
 @Injectable()
 export class ImposterServerService implements InMemoryDbService {
@@ -13,22 +13,31 @@ export class ImposterServerService implements InMemoryDbService {
    */
   public parseRequestUrl(url: string, requestInfoUtils: RequestInfoUtilities): ParsedRequestUrl {
 
+    console.log(url);
+
     // Break the url into juicy bits //
-    let urlParts: string[] = url.split('/');
+    let params: Map<string, string[]> = requestInfoUtils.parseRequestUrl(url).query;
+    let urlParts: string[] = url.split('?')[0].split('/');
 
     // If the api url is accessing the user resource than format as follows //
-    if (urlParts[1] === 'user') {
+    if (urlParts[1] === 'users') {
       let id: string = urlParts[2];
 
       if (urlParts[3] === 'network') {
 
-        let userItemType: string = urlParts[4];
+        let userItemType: string = params.get('category')[0];
 
         console.log('Collect users from userid: ' + id);
         url = `api/${userItemType}`;
 
         return requestInfoUtils.parseRequestUrl(url);
 
+      }
+    } else if (urlParts[1] === 'content') {
+      return requestInfoUtils.parseRequestUrl('api/contentCardList');
+    } else if (urlParts[1] === 'canvases') {
+      if (urlParts[3] === 'memes') {
+        return requestInfoUtils.parseRequestUrl('api/contentCardList');
       }
     }
 
@@ -47,7 +56,7 @@ export class ImposterServerService implements InMemoryDbService {
       { id: 'bcaaa3060fasdasdfe3acdd4', firstName: 'Chris', username: 'wutisdis', influence: 14, followers: 61, contentNumber: 75, photo: '/assets/img/test/testi2.jpg' },
     ];
 
-    let userItems: UserItem[] = [
+    let users: UserItem[] = [
       { id: 'ccfssffe101b48a0ddddfcc4', firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg', activeCanvases: 1 },
       { id: 'bcaaa3060fasdasdfe3acdd4', firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg', activeCanvases: 4 },
       { id: '3cf330126531201b48a0fcc4', firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg', activeCanvases: 1 },
@@ -93,7 +102,7 @@ export class ImposterServerService implements InMemoryDbService {
       }, imagePath: 'https://pbs.twimg.com/media/CPRE4hiUEAA3vyG.png',  stars: 1456, starred: false, utcTime: 1561081352435 }
     ];
 
-    let canvasList: ContentCard[] = [
+    let canvases: ContentCard[] = [
       { id: 'saerrfavfaewasdaadfafeee', type: EContentType.Canvas, users: {
         primary: { id: '5cf330860ffe101b48a0fcc4', firstName: 'Tristan', username: 'ghoststeam217', photo: '/assets/svg-img/default-profile-picture.svg' },
       }, imagePath: 'https://pbs.twimg.com/media/CPRE4hiUEAA3vyG.png',  stars: 1456, starred: false, utcTime: 1561081352435 },
@@ -104,7 +113,7 @@ export class ImposterServerService implements InMemoryDbService {
 
     ];
 
-    return { profiles, userItems, followers, following, follow_backs, contentCardList, canvasList };
+    return { profiles, users, followers, following, follow_backs, contentCardList, canvases };
   }
 
 }

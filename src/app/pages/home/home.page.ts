@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
-import { first } from 'rxjs/operators';
 
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
-import { ContentCard } from '../../services/backend-api/response';
+import { ContentCard } from '../../services/backend-api/response.interface';
 import { GlobalStore } from '../../state/global.store';
 
 @Component({
@@ -29,7 +27,7 @@ export class HomePage implements OnInit {
   public ngOnInit() {
 
     // Test Http Get // get reqest can later be changed to get relevent data from server, eg in this case it would need to get memes for the users home
-    this.http.getContentCards({name: 'home', extra: { id: 'useridmaybe' }}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getContentCards('home', 'myUserId', this.cardsPerRequest, this.page).toPromise().then((res) => {
       this.posts = this.posts.concat(res);
     });
   }
@@ -41,7 +39,7 @@ export class HomePage implements OnInit {
   private loadPosts(event: any) {
 
     this.page++;
-    this.http.getContentCards({name: 'home', extra: { id: 'useridmaybe' }}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getContentCards('home', 'myUserId', this.cardsPerRequest, this.page).toPromise().then((res) => {
 
       this.posts = this.posts.concat(res);
 

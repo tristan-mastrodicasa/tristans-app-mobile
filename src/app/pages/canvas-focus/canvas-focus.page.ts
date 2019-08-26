@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
-import { ContentCard } from '../../services/backend-api/response';
+import { ContentCard } from '../../services/backend-api/response.interface';
 
 @Component({
   selector: 'app-canvas-focus',
@@ -33,7 +33,7 @@ export class CanvasFocusPage implements OnInit {
       this.pageTitle = this.canvasCard.users.primary.firstName + '\'s Canvas';
     });
 
-    this.http.getContentCards({name: 'profile', extra: { id: this.canvasId }}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getCanvasMemes(this.canvasId, this.cardsPerRequest, this.page).toPromise().then((res) => {
       this.memes = this.memes.concat(res);
     });
 
@@ -46,7 +46,7 @@ export class CanvasFocusPage implements OnInit {
   private loadMemes(event: any) {
 
     this.page++;
-    this.http.getContentCards({name: 'profile', extra: { id: this.canvasId }}, this.cardsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getCanvasMemes(this.canvasId, this.cardsPerRequest, this.page).toPromise().then((res) => {
 
       this.memes = this.memes.concat(res);
 

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { first } from 'rxjs/operators';
 
 import { BackendApiService } from '../../../services/backend-api/backend-api.service';
-import { UserItem } from '../../../services/backend-api/response';
+import { UserItem } from '../../../services/backend-api/response.interface';
 import { GlobalStore } from '../../../state/global.store';
 
 @Component({
@@ -38,14 +37,14 @@ export class UsersPage {
     this.userItemList = [];
 
     // Refresh the user profile information //
-    this.http.getUserItemById('5cf330860ffe101b48a0fcc4').pipe(first()).subscribe((res) => {
+    this.http.getUserItemById('5cf330860ffe101b48a0fcc4').toPromise().then((res) => {
       this.myUserItem = res;
     });
 
     console.log(e.detail.value);
 
     // Send an http request //
-    this.http.getNetworkUserItems(segment, '5cf330860ffe101b48a0fcc4', this.itemsPerRequest, this.page).pipe(first()).subscribe((res) => {
+    this.http.getNetworkUserItems(segment, '5cf330860ffe101b48a0fcc4', this.itemsPerRequest, this.page).toPromise().then((res) => {
 
       // So that if the user swaps segments fast the list will not populate unless //
       // the current segment (this.segment) is the same as the segment requested (segment) //

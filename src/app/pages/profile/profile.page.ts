@@ -1,9 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IonInfiniteScroll, NavController } from '@ionic/angular';
 import { first } from 'rxjs/operators';
 
-import { HelpersService } from '../../services/helpers/helpers.service';
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
 import { Profile, ContentCard } from '../../services/backend-api/response.interface';
 import { GlobalStore } from '../../state/global.store';
@@ -19,7 +17,7 @@ export class ProfilePage implements OnInit {
   private cardsPerRequest = 6;
   private page = 1;
 
-  private ownProfile: boolean;
+  public ownProfile: boolean;
   private profile: Profile = {
     id: '',
     firstName: '',
@@ -31,11 +29,9 @@ export class ProfilePage implements OnInit {
   };
 
   constructor(
-    private nav: NavController,
     private http: BackendApiService,
     private globalStore: GlobalStore,
     private route: ActivatedRoute
-    // private helpersService: HelpersService
   ) { }
 
   /**
@@ -64,7 +60,7 @@ export class ProfilePage implements OnInit {
    * When users scroll near the bottom of the view, call for more posts
    * @param  event Event object
    */
-  private loadPosts(event: any) {
+  public loadPosts(event: any) {
 
     this.page++;
     this.http.getContentCards('profile', this.profile.id, this.cardsPerRequest, this.page).toPromise().then((res) => {

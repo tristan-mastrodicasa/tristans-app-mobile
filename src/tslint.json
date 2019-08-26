@@ -91,6 +91,7 @@
     "no-trailing-whitespace": true,
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
+    "no-unused-variable": [false, "check-parameters"],
     "typedef": [true, "parameter"],
     "no-var-keyword": true,
     "object-literal-sort-keys": false,

@@ -18,7 +18,7 @@ export class AccountPage {
   /**
    * Log the user out of the application
    */
-  private logOut() {
+  public logOut() {
     this.globalStore.logOut();
     this.router.navigate(['app/home']);
   }

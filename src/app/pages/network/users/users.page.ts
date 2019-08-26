@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { BackendApiService } from '../../../services/backend-api/backend-api.service';
 import { UserItem } from '../../../services/backend-api/response.interface';
-import { GlobalStore } from '../../../state/global.store';
+// import { GlobalStore } from '../../../state/global.store';
 
 @Component({
   selector: 'app-users',
@@ -11,7 +11,7 @@ import { GlobalStore } from '../../../state/global.store';
 })
 export class UsersPage {
 
-  private myUserItem: UserItem;
+  public myUserItem: UserItem;
   private segment: string;
 
   private userItemList = [] as UserItem[];
@@ -20,7 +20,7 @@ export class UsersPage {
 
   constructor(
     private http: BackendApiService,
-    private globalStore: GlobalStore
+    // private globalStore: GlobalStore
   ) { }
 
   /**

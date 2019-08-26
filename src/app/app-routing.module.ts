@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'edit/profile', loadChildren: './pages/edit/profile/profile.module#ProfilePageModule', canActivate: [AuthService], data: { type: 'user-experience' } },
   { path: 'edit/account', loadChildren: './pages/edit/account/account.module#AccountPageModule', canActivate: [AuthService], data: { type: 'user-experience' } },
   { path: 'canvas/:id', loadChildren: './pages/canvas-focus/canvas-focus.module#CanvasFocusPageModule' },
-  { path: 'meme-create/:id', loadChildren: './pages/meme-create/meme-create.module#MemeCreatePageModule' },
+  { path: 'meme-create', loadChildren: './pages/meme-create/meme-create.module#MemeCreatePageModule' },
   { path: 'network/search', loadChildren: './pages/network/search/search.module#SearchPageModule' },
 ];
 

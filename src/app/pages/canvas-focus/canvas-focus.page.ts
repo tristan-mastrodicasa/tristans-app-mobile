@@ -12,10 +12,11 @@ import { ContentCard } from '../../services/backend-api/response.interface';
 })
 export class CanvasFocusPage implements OnInit {
 
-  private pageTitle = '';
-  private canvasId: string;
-  private canvasCard: ContentCard;
-  private memes = [] as ContentCard[];
+  public pageTitle = '';
+  public canvasId: string;
+  public canvasCard: ContentCard;
+  public memes = [] as ContentCard[];
+
   private cardsPerRequest = 6;
   private page = 1;
 
@@ -43,7 +44,7 @@ export class CanvasFocusPage implements OnInit {
    * When users scroll near the bottom of the view, call for more posts
    * @param  event Event object
    */
-  private loadMemes(event: any) {
+  public loadMemes(event: any) {
 
     this.page++;
     this.http.getCanvasMemes(this.canvasId, this.cardsPerRequest, this.page).toPromise().then((res) => {

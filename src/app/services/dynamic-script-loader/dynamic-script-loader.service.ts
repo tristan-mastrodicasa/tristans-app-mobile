@@ -7,7 +7,9 @@ interface Scripts {
 
 export const ScriptStore: Scripts[] = [
   { name: 'jquery.memegenerator.min', src: 'assets/meme-generator/jquery.memegenerator.min.js' },
-  { name: 'jquery.memegenerator', src: 'assets/meme-generator/jquery.memegenerator.js' }
+  { name: 'jquery.memegenerator', src: 'assets/meme-generator/jquery.memegenerator.js' },
+  { name: 'gapi', src: 'assets/oauth/google-oauth20.js' },
+  { name: 'fb', src: 'assets/oauth/facebook-oauth.js'}
 ];
 
 declare var document: any;
@@ -40,7 +42,7 @@ export class DynamicScriptLoaderService {
    * @param  name Key for the script source
    */
   private loadScript(name: string) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       if (!this.scripts[name].loaded) {
         // load script
         let script = document.createElement('script');
@@ -60,7 +62,7 @@ export class DynamicScriptLoaderService {
                 resolve({script: name, loaded: true, status: 'Loaded'});
             };
         }
-        script.onerror = (error: any) => resolve({script: name, loaded: false, status: 'Loaded'});
+        script.onerror = (_error: any) => resolve({script: name, loaded: false, status: 'Loaded'});
         document.getElementsByTagName('head')[0].appendChild(script);
       } else {
         resolve({ script: name, loaded: true, status: 'Already Loaded' });

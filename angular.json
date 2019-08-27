@@ -44,7 +44,9 @@
             ],
             "scripts": [
               "src/assets/meme-generator/jquery.min.js",
-              "src/assets/meme-generator/jquery-ui.min.js"
+              "src/assets/meme-generator/jquery-ui.min.js",
+              "src/assets/oauth/google-oauth20.js",
+              "src/assets/oauth/facebook-oauth.js"
             ],
             "es5BrowserSupport": true
           },

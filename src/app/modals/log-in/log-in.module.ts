@@ -1,21 +1,8 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader/dynamic-script-loader.service';
 
 import { LogInPage } from './log-in.page';
-
-import { FacebookLoginProvider, SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
-
-
-let config = new AuthServiceConfig([
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('323465568348747')
-  }
-]);
-
-export function provideConfig() {
-  return config;
-}
 
 @NgModule({
   declarations: [
@@ -23,14 +10,8 @@ export function provideConfig() {
   ],
   imports: [
     IonicModule,
-    SocialLoginModule
   ],
-  providers: [
-    {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
-  ],
+  providers: [DynamicScriptLoaderService],
   exports: [
     LogInPage
   ],

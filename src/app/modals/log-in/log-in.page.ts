@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { ModalController, LoadingController, AlertController } from '@ionic/angular';
 import { first } from 'rxjs/operators';
-
-import { AuthService, FacebookLoginProvider } from 'angularx-social-login';
+declare var gapi: any;
+declare var FB: any;
 
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
+import { environment } from '../../../environments/environment';
 import { GlobalStore } from '../../state/global.store';
+import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader/dynamic-script-loader.service';
 
 @Component({
   selector: 'app-log-in',
@@ -14,21 +16,21 @@ import { GlobalStore } from '../../state/global.store';
 })
 export class LogInPage {
 
-  private loading = false;
+  public loading = false;
 
   constructor(
     private modalController: ModalController,
-    private authService: AuthService,
     private http: BackendApiService,
     private loadingController: LoadingController,
     private alertController: AlertController,
-    private globalStore: GlobalStore
+    private globalStore: GlobalStore,
+    private scriptLoader: DynamicScriptLoaderService,
   ) { }
 
   /**
    * Close the login options modal
    */
-  private closeModal() {
+  public closeModal() {
     this.modalController.dismiss();
   }
 
@@ -57,47 +59,53 @@ export class LogInPage {
   }
 
   /**
-   * Function initiates the FB login sequence and subsequently updates the login state of the
-   * application (client side). Currently the angularx-social-login module is used as a placeholder
-   * until we are able to implement the native cordova plugin when we test compiled native apps
+   * Login with facebook oauth
    */
-  private signInWithFB() {
+  public signInWithFB() {
 
-    // Here we use the placeholder login module to start the process //
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((user) => {
+    this.scriptLoader.load('fb').then(() => {
 
-      // Present the loading dialog //
-      this.presentLoading();
+      FB.init({ appId: environment.facebook_client_id, version: environment.facebook_sdk_version });
+      FB.login((response) => {
+          if (response.authResponse) {
+           console.log(response);
+           /*FB.api('/me', (response) => {
+             console.log('Good to see you, ' + response.name + '.');
+           });*/
 
-      // When the user logs into facebok try logging in with their auth token //
-      this.http.logIn(user.authToken).pipe(first()).subscribe((res1) => {
+           // Post the auth/facebook/redirect with the access code to generate profile / login and recieve cookie
+           /** @todo Consider renaming the auth/facebook/redirect route */
 
-        // If an error with the res1 auth token exists, try creating a profile with it //
-        if (res1.error.exists) {
+          } else {
+           console.log('User cancelled login or did not fully authorize.');
+          }
+      });
 
-            this.http.signUp(user.authToken).pipe(first()).subscribe((res2) => {
+    });
 
-              if (res2.error.exists) this.presentError('There was an issue with your access token');
-              else {
+  }
 
-                // If the signup was successful try logging in again //
-                this.http.logIn(user.authToken).pipe(first()).subscribe((res3) => {
-                  this.globalStore.logIn(res3.content.jwtToken);
-                });
+  /**
+   * Login with google OAuth2.0
+   */
+  public signInWithGoogle() {
 
-              }
+    this.scriptLoader.load('gapi').then(() => {
 
-              this.loadingController.dismiss();
+      gapi.load('auth2', () => {
 
-            });
+        gapi.auth2.init({
+          client_id: environment.google_client_id
+        }).then(googleAuth => {
 
-        } else {
+          googleAuth.signIn({
+            scope: 'profile email'
+          }).then(googleUser => {
+            // Post the auth/google/redirect with the access code to generate profile / login and recieve cookie
+            /** @todo Consider renaming the auth/google/redirect route */
+          });
 
-          // If the res1 auth token logs the user in update the state //
-          this.globalStore.logIn(res1.content.jwtToken);
-          this.loadingController.dismiss();
-
-        }
+        });
 
       });
 

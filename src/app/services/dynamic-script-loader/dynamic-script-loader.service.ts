@@ -7,9 +7,7 @@ interface Scripts {
 
 export const ScriptStore: Scripts[] = [
   { name: 'jquery.memegenerator.min', src: 'assets/meme-generator/jquery.memegenerator.min.js' },
-  { name: 'jquery.memegenerator', src: 'assets/meme-generator/jquery.memegenerator.js' },
-  { name: 'gapi', src: 'assets/oauth/google-oauth20.js' },
-  { name: 'fb', src: 'assets/oauth/facebook-oauth.js'}
+  { name: 'jquery.memegenerator', src: 'assets/meme-generator/jquery.memegenerator.js' }
 ];
 
 declare var document: any;

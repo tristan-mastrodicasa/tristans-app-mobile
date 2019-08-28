@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ModalController, LoadingController, AlertController } from '@ionic/angular';
 import { first } from 'rxjs/operators';
 
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
 import { environment } from '../../../environments/environment';
 import { GlobalStore } from '../../state/global.store';
@@ -20,7 +23,9 @@ export class LogInPage {
     private http: BackendApiService,
     private loadingController: LoadingController,
     private alertController: AlertController,
-    private globalStore: GlobalStore
+    private globalStore: GlobalStore,
+    private googlePlus: GooglePlus,
+    private fb: Facebook
   ) { }
 
   /**
@@ -59,6 +64,13 @@ export class LogInPage {
    */
   public signInWithFB() {
 
+    this.fb.login(['public_profile', 'user_friends', 'email'])
+    .then((res: FacebookLoginResponse) => console.log('Logged into Facebook!', res))
+    .catch(e => console.log('Error logging into Facebook', e));
+
+
+    this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
+
   }
 
   /**
@@ -66,6 +78,9 @@ export class LogInPage {
    */
   public signInWithGoogle() {
 
+    this.googlePlus.login({ client_id: environment.google_client_id })
+    .then(res => console.log(res))
+    .catch(err => console.error(err));
 
   }
 

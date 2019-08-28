@@ -24,8 +24,9 @@
     "@ionic-native/camera": "^5.12.0",
     "@ionic-native/core": "^5.12.0",
     "@ionic-native/crop": "^5.12.0",
-    "@ionic-native/facebook": "^5.6.0",
+    "@ionic-native/facebook": "^5.12.0",
     "@ionic-native/file-path": "^5.11.0",
+    "@ionic-native/google-plus": "^5.12.0",
     "@ionic-native/ionic-webview": "^5.10.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
@@ -35,8 +36,9 @@
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-crop": "^0.4.0",
     "cordova-plugin-device": "^2.0.2",
-    "cordova-plugin-facebook4": "4.2.1",
+    "cordova-plugin-facebook4": "^6.0.0",
     "cordova-plugin-filepath": "^1.5.6",
+    "cordova-plugin-googleplus": "^8.0.0",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
     "cordova-plugin-ionic-webview": "^4.0.1",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -81,10 +83,6 @@
   "cordova": {
     "plugins": {
       "cordova-sqlite-storage": {},
-      "cordova-plugin-facebook4": {
-        "APP_ID": "323465568348747",
-        "APP_NAME": "Meme App"
-      },
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
@@ -93,7 +91,18 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-filepath": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-crop": {}
+      "cordova-plugin-crop": {},
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.839993677318-s1gvojqej4kdm6gd3qsd7s80gjk3meii",
+        "PLAY_SERVICES_VERSION": "11.8.0",
+        "WEB_APPLICATION_CLIENT_ID": "839993677318-0nc1mhc3vvqhtq4ienhqq6ntej0k4rr8.apps.googleusercontent.com"
+      },
+      "cordova-plugin-facebook4": {
+        "APP_ID": "488241528641864",
+        "APP_NAME": "tristansApp",
+        "FACEBOOK_HYBRID_APP_EVENTS": "false",
+        "FACEBOOK_ANDROID_SDK_VERSION": "5.2.0"
+      }
     },
     "platforms": [
       "android"

@@ -1,4 +1,4 @@
-# Meme App
+# Tristan's App
 
 ## Set up Environment
 

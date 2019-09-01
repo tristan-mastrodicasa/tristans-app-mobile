@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Profile, UserItem, ContentCard } from './response.interface';
+import { Profile, UserItem, ContentCard, Token } from './response.interface';
 import { GlobalStore } from '../../state/global.store';
 
 import { environment } from '../../../environments/environment';
 
 /** @todo Add .pipe(catchError(this.handleError)); to all requests in the future */
+/** @todo Add the loading display to this file */
 @Injectable()
 export class BackendApiService {
 
@@ -38,12 +39,19 @@ export class BackendApiService {
   }
 
   /**
-   * Send request to server to recieve JWT for future requests
-   * @param  accessToken Access token for facebook
+   * Send the server the authcode and return a cookie for the user to login with
+   * @param  authCode Auth code for server authentication with google
    * @return Observable<any> (Response from the server)
    */
-  public logIn(accessToken: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl + 'authentication/login', { access_token: accessToken });
+  public googleLogIn(authCode: string): Observable<Token> {
+    return this.http.post<Token>(environment.serverUrl + 'auth/google/authcode', { code: authCode });
+  }
+
+  /**
+   * Test
+   */
+  public test(): Observable<HttpResponse<any>> {
+    return this.http.get<any>(environment.serverUrl + 'auth/test');
   }
 
   /**

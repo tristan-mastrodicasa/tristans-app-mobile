@@ -8,6 +8,4 @@ export interface Env {
   serveFromCache: boolean;
   serverUrl: string;
   google_client_id: string;
-  facebook_client_id: string;
-  facebook_sdk_version: string;
 }

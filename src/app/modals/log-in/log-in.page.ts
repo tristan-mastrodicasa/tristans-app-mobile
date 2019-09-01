@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { ModalController, LoadingController, AlertController } from '@ionic/angular';
-import { first } from 'rxjs/operators';
 
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
 import { environment } from '../../../environments/environment';
-import { GlobalStore } from '../../state/global.store';
+// import { GlobalStore } from '../../state/global.store';
+import { Token } from '../../services/backend-api/response.interface';
 
 @Component({
   selector: 'app-log-in',
@@ -23,7 +23,7 @@ export class LogInPage {
     private http: BackendApiService,
     private loadingController: LoadingController,
     private alertController: AlertController,
-    private globalStore: GlobalStore,
+    // private globalStore: GlobalStore,
     private googlePlus: GooglePlus,
     private fb: Facebook
   ) { }
@@ -37,6 +37,7 @@ export class LogInPage {
 
   /**
    * Present the error message should something go wrong with the login process
+   * @todo move this to backend-api
    * @param message Message to display
    */
   private async presentError(message: string) {
@@ -51,6 +52,7 @@ export class LogInPage {
 
   /**
    * Present the loading screen
+   * @todo move this to backend-api
    */
   private async presentLoading() {
     const loading = await this.loadingController.create({
@@ -65,7 +67,7 @@ export class LogInPage {
   public signInWithFB() {
 
     this.fb.login(['public_profile', 'user_friends', 'email'])
-    .then((res: FacebookLoginResponse) => console.log('Logged into Facebook!', res))
+    .then((res: FacebookLoginResponse) => console.log(res))
     .catch(e => console.log('Error logging into Facebook', e));
 
 
@@ -78,8 +80,19 @@ export class LogInPage {
    */
   public signInWithGoogle() {
 
-    this.googlePlus.login({ client_id: environment.google_client_id })
-    .then(res => console.log(res))
+    this.googlePlus.login({ scope: 'profile email picture', webClientId: environment.google_client_id, offline: true })
+    .then(res => {
+      console.log(res.serverAuthCode);
+
+      this.presentLoading(); /** @todo move this to backend-api */
+      this.http.googleLogIn(res.serverAuthCode).toPromise().then((authRes: Token) => {
+
+        console.log(authRes.token);
+        this.loadingController.dismiss();
+
+      });
+
+    })
     .catch(err => console.error(err));
 
   }

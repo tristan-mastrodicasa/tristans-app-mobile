@@ -78,21 +78,27 @@ export class LogInPage {
    */
   public signInWithGoogle() {
 
+    // Launch the google api //
     this.googlePlus.login({ scope: 'profile email picture', webClientId: environment.google_client_id, offline: true })
     .then(res => {
       console.log(res.serverAuthCode);
 
+      // Send the authtoken to the backend to confirm and collect jwt //
       this.presentLoading();
       this.http.googleLogIn(res.serverAuthCode).toPromise().then((authRes: Token) => {
 
+        // Update client state with Jwt //
         console.log(authRes.token);
         this.globalStore.setToken(authRes.token);
         this.loadingController.dismiss();
 
+      }, (err) => {
+        this.loadingController.dismiss();
+        this.presentError(err.message);
       });
 
     })
-    .catch(err => console.error(err));
+    .catch(_ => this.presentError('There was an issue reaching Google'));
 
   }
 

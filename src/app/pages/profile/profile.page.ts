@@ -45,7 +45,7 @@ export class ProfilePage implements OnInit {
 
       this.profile = res;
 
-      if (this.globalStore.state.user_data._id === id) this.ownProfile = true;
+      if (/*this.globalStore.state.user_id*/'5cf330860ffe101b48a0fcc4' === id) this.ownProfile = true;
       else this.ownProfile = false;
 
     });

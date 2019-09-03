@@ -21,7 +21,7 @@ export class AccountPage {
    * Log the user out of the application
    */
   public logOut() {
-    this.globalStore.logOut();
+    this.globalStore.removeToken();
     this.router.navigate(['app/home']);
   }
 

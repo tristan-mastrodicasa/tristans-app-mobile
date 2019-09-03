@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,6 @@ import { GlobalStore } from '../../state/global.store';
 import { environment } from '../../../environments/environment';
 
 /** @todo Add .pipe(catchError(this.handleError)); to all requests in the future */
-/** @todo Add the loading display to this file */
 @Injectable()
 export class BackendApiService {
 
@@ -21,21 +20,11 @@ export class BackendApiService {
   ) { }
 
   /**
-   * Generate the http options for all https requsests based on the
-   * type of request being sent
-   * @param  reqType Type of request being sent
+   * Generate the http headers for routes requiring authorization
    * @return Object with http headers
    */
-  private genHttpOptions(reqType: string): { headers: HttpHeaders } {
-
-    if (reqType === 'protected_routes') {
-      return {
-        headers: new HttpHeaders({
-          Authorization: `JWT ${this.globalStore.state.jwt_token}`
-        })
-      };
-    }
-
+  private authHeaders(): HttpHeaders {
+    return new HttpHeaders({ Authorization: `Bearer ${this.globalStore.state.jwt_token}` });
   }
 
   /**
@@ -50,8 +39,8 @@ export class BackendApiService {
   /**
    * Test
    */
-  public test(): Observable<HttpResponse<any>> {
-    return this.http.get<any>(environment.serverUrl + 'auth/test');
+  public test(): Observable<{ msg: string }> {
+    return this.http.get<{ msg: string }>(environment.serverUrl + 'auth/test', { headers: this.authHeaders() });
   }
 
   /**

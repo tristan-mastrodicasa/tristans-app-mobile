@@ -6,7 +6,7 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
 import { environment } from '../../../environments/environment';
-// import { GlobalStore } from '../../state/global.store';
+import { GlobalStore } from '../../state/global.store';
 import { Token } from '../../services/backend-api/response.interface';
 
 @Component({
@@ -23,7 +23,7 @@ export class LogInPage {
     private http: BackendApiService,
     private loadingController: LoadingController,
     private alertController: AlertController,
-    // private globalStore: GlobalStore,
+    private globalStore: GlobalStore,
     private googlePlus: GooglePlus,
     private fb: Facebook
   ) { }
@@ -37,7 +37,6 @@ export class LogInPage {
 
   /**
    * Present the error message should something go wrong with the login process
-   * @todo move this to backend-api
    * @param message Message to display
    */
   private async presentError(message: string) {
@@ -52,7 +51,6 @@ export class LogInPage {
 
   /**
    * Present the loading screen
-   * @todo move this to backend-api
    */
   private async presentLoading() {
     const loading = await this.loadingController.create({
@@ -84,10 +82,11 @@ export class LogInPage {
     .then(res => {
       console.log(res.serverAuthCode);
 
-      this.presentLoading(); /** @todo move this to backend-api */
+      this.presentLoading();
       this.http.googleLogIn(res.serverAuthCode).toPromise().then((authRes: Token) => {
 
         console.log(authRes.token);
+        this.globalStore.setToken(authRes.token);
         this.loadingController.dismiss();
 
       });

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UserItem } from '../../services/backend-api/response.interface';
+import { UserItem } from '../../models/data.types';
 
 @Component({
   selector: 'app-user-item',

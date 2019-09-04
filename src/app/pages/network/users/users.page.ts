@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { BackendApiService } from '../../../services/backend-api/backend-api.service';
-import { UserItem } from '../../../services/backend-api/response.interface';
+import { UserItem } from '../../../models/data.types';
 // import { GlobalStore } from '../../../state/global.store';
 
 @Component({

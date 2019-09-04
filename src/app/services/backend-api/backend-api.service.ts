@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Profile, UserItem, ContentCard, Token } from './response.interface';
+import { Profile, UserItem, ContentCard } from '../../models/data.types';
+import { Token } from '../../models/response.interfaces';
 import { GlobalStore } from '../../state/global.store';
 
 import { environment } from '../../../environments/environment';

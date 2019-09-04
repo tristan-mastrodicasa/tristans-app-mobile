@@ -6,7 +6,7 @@ import { GlobalState } from './global.state';
 import { Store } from 'rxjs-observable-store';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-import { JwtContent } from '../services/backend-api/response.interface';
+import { JwtContent } from '../models/response.interfaces';
 
 /**
  * State Management Service

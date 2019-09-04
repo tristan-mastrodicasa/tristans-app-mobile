@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl } from 'angular-in-memory-web-api';
 
-import { ContentCard, EContentType, UserItem, Profile } from './response.interface';
+import { ContentCard, UserItem, Profile } from '../../models/data.types';
+import { EContentType } from '../../models/enums';
 
 @Injectable()
 export class ImposterServerService implements InMemoryDbService {

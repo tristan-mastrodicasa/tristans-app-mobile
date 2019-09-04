@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
-import { ContentCard } from '../../services/backend-api/response.interface';
+import { ContentCard } from '../../models/data.types';
 
 @Component({
   selector: 'app-content-card',

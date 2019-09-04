@@ -31,7 +31,7 @@ export class CanvasFocusPage implements OnInit {
 
     this.http.getCanvasById(this.canvasId).pipe(first()).subscribe((res) => {
       this.canvasCard = res;
-      this.pageTitle = this.canvasCard.users.primary.firstName + '\'s Canvas';
+      this.pageTitle = `${this.canvasCard.users.primary.firstName}'s Canvas`;
     });
 
     this.http.getCanvasMemes(this.canvasId, this.cardsPerRequest, this.page).toPromise().then((res) => {
@@ -46,7 +46,7 @@ export class CanvasFocusPage implements OnInit {
    */
   public loadMemes(event: any) {
 
-    this.page++;
+    this.page += 1;
     this.http.getCanvasMemes(this.canvasId, this.cardsPerRequest, this.page).toPromise().then((res) => {
 
       this.memes = this.memes.concat(res);

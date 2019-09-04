@@ -17,7 +17,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private http: BackendApiService,
-    private globalStore: GlobalStore
+    private globalStore: GlobalStore,
   ) { }
 
   /**
@@ -37,7 +37,7 @@ export class HomePage implements OnInit {
    */
   public loadPosts(event: any) {
 
-    this.page++;
+    this.page += 1;
     this.http.getContentCards('home', 'myUserId', this.cardsPerRequest, this.page).toPromise().then((res) => {
 
       this.posts = this.posts.concat(res);
@@ -60,7 +60,7 @@ export class HomePage implements OnInit {
    */
   public test() {
 
-    this.http.test().subscribe(res => {
+    this.http.test().subscribe((res) => {
       alert(res.msg);
     });
 

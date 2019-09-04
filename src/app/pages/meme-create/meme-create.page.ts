@@ -38,7 +38,7 @@ export class MemeCreatePage implements OnInit {
           colorPicker: (_mg, selector) => {
             $(selector).parent().hide();
           },
-          showAdvancedSettings: false
+          showAdvancedSettings: false,
         }));
 
       });

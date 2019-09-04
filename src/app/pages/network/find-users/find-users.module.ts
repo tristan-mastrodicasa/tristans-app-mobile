@@ -12,8 +12,8 @@ import { ComponentsModule } from '../../../components/components.module';
 const routes: Routes = [
   {
     path: '',
-    component: FindUsersPage
-  }
+    component: FindUsersPage,
+  },
 ];
 
 @NgModule({
@@ -22,8 +22,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
   ],
-  declarations: [FindUsersPage]
+  declarations: [FindUsersPage],
 })
 export class FindUsersPageModule {}

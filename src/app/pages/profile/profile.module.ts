@@ -14,8 +14,8 @@ import { DirectivesModule } from '../../directives/directives.module';
 const routes: Routes = [
   {
     path: '',
-    component: ProfilePage
-  }
+    component: ProfilePage,
+  },
 ];
 
 @NgModule({
@@ -26,8 +26,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ComponentsModule,
     ServicesModule,
-    DirectivesModule
+    DirectivesModule,
   ],
-  declarations: [ProfilePage]
+  declarations: [ProfilePage],
 })
 export class ProfilePageModule {}

@@ -25,13 +25,13 @@ export class ProfilePage implements OnInit {
     photo: '/assets/svg-img/default-profile-picture.svg',
     influence: 0,
     contentNumber: 0,
-    followers: 0
+    followers: 0,
   };
 
   constructor(
     private http: BackendApiService,
     private globalStore: GlobalStore,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   /**
@@ -45,7 +45,7 @@ export class ProfilePage implements OnInit {
 
       this.profile = res;
 
-      if (/*this.globalStore.state.user_id*/'5cf330860ffe101b48a0fcc4' === id) this.ownProfile = true;
+      if ('5cf330860ffe101b48a0fcc4' === id) this.ownProfile = true;
       else this.ownProfile = false;
 
     });
@@ -62,7 +62,7 @@ export class ProfilePage implements OnInit {
    */
   public loadPosts(event: any) {
 
-    this.page++;
+    this.page += 1;
     this.http.getContentCards('profile', this.profile.id, this.cardsPerRequest, this.page).toPromise().then((res) => {
 
       this.posts = this.posts.concat(res);
@@ -72,6 +72,5 @@ export class ProfilePage implements OnInit {
     });
 
   }
-
 
 }

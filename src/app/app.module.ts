@@ -24,14 +24,14 @@ import { ServicesModule } from './services/services.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     ComponentsModule,
-    ServicesModule
+    ServicesModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    GlobalStore
+    GlobalStore,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

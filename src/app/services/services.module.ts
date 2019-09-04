@@ -18,16 +18,16 @@ import { environment } from '../../environments/environment';
   providers: [
     BackendApiService,
     AuthService,
-    HelpersService
+    HelpersService,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     (environment.serveFromCache ? HttpClientInMemoryWebApiModule.forRoot(
-      ImposterServerService, { dataEncapsulation: false, delay: 900, passThruUnknownUrl: true }
+      ImposterServerService, { dataEncapsulation: false, delay: 900, passThruUnknownUrl: true },
     ) : []),
     IonicStorageModule.forRoot(),
-    LoginPageModule
-  ]
+    LoginPageModule,
+  ],
 })
 export class ServicesModule { }

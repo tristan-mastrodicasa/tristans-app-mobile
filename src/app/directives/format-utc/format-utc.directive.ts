@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appFormatUtc]'
+  selector: '[appFormatUtc]',
 })
 export class FormatUtcDirective {
 
@@ -30,18 +30,19 @@ export class FormatUtcDirective {
     const elapsed = current - previous;
 
     if (elapsed < msPerMinute) {
-      return Math.round(elapsed / 1000) + ' seconds ago';
-    } else if (elapsed < msPerHour) {
-      return Math.round(elapsed / msPerMinute) + ' minutes ago';
-    } else if (elapsed < msPerDay ) {
-      return Math.round(elapsed / msPerHour ) + ' hours ago';
-    } else if (elapsed < msPerMonth) {
-      return Math.round(elapsed / msPerDay) + ' days ago';
-    } else if (elapsed < msPerYear) {
-      return Math.round(elapsed / msPerMonth) + ' months ago';
-    } else {
-      return Math.round(elapsed / msPerYear ) + ' years ago';
+      return `${Math.round(elapsed / 1000)} seconds ago`;
+    }  if (elapsed < msPerHour) {
+      return `${Math.round(elapsed / msPerMinute)} minutes ago`;
+    }  if (elapsed < msPerDay) {
+      return `${Math.round(elapsed / msPerHour)} hours ago`;
+    }  if (elapsed < msPerMonth) {
+      return `${Math.round(elapsed / msPerDay)} days ago`;
+    }  if (elapsed < msPerYear) {
+      return `${Math.round(elapsed / msPerMonth)} months ago`;
     }
+
+    return `${Math.round(elapsed / msPerYear)} years ago`;
+
   }
 
 }

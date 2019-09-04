@@ -7,8 +7,8 @@ import { FormatUtcDirective } from './format-utc/format-utc.directive';
 @NgModule({
   declarations: [FormatNumberDirective, FormatUtcDirective],
   imports: [
-    CommonModule
+    CommonModule,
   ],
-  exports: [FormatNumberDirective, FormatUtcDirective]
+  exports: [FormatNumberDirective, FormatUtcDirective],
 })
 export class DirectivesModule { }

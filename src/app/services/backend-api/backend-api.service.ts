@@ -16,7 +16,7 @@ export class BackendApiService {
 
   constructor(
     private http: HttpClient,
-    private globalStore: GlobalStore
+    private globalStore: GlobalStore,
   ) { }
 
   /**
@@ -24,7 +24,7 @@ export class BackendApiService {
    * @return Object with http headers
    */
   private authHeaders(): HttpHeaders {
-    return new HttpHeaders({ Authorization: `Bearer ${this.globalStore.state.jwt_token}` });
+    return new HttpHeaders({ Authorization: `Bearer ${this.globalStore.state.jwt}` });
   }
 
   /**
@@ -33,14 +33,14 @@ export class BackendApiService {
    * @return Observable<any> (Response from the server)
    */
   public googleLogIn(authCode: string): Observable<Token> {
-    return this.http.post<Token>(environment.serverUrl + 'auth/google/authcode', { code: authCode });
+    return this.http.post<Token>(`${environment.serverUrl}auth/google/authcode`, { code: authCode });
   }
 
   /**
    * Test
    */
   public test(): Observable<{ msg: string }> {
-    return this.http.get<{ msg: string }>(environment.serverUrl + 'auth/test', { headers: this.authHeaders() });
+    return this.http.get<{ msg: string }>(`${environment.serverUrl}auth/test`, { headers: this.authHeaders() });
   }
 
   /**
@@ -49,7 +49,7 @@ export class BackendApiService {
    * @return Observable<any> (Response from the server)
    */
   public signUp(accessToken: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl + 'authentication/signup', { access_token: accessToken });
+    return this.http.post<any>(`${this.apiUrl}authentication/signup`, { access_token: accessToken });
   }
 
   /**
@@ -58,7 +58,7 @@ export class BackendApiService {
    * @return    Array of user profiles
    */
   public getProfileById(id: string): Observable<Profile> {
-    return this.http.get<Profile>(this.apiUrl + `profiles/${id}`);
+    return this.http.get<Profile>(`${this.apiUrl}profiles/${id}`);
   }
 
   /**
@@ -71,12 +71,12 @@ export class BackendApiService {
    */
   public getNetworkUserItems(segment: string, userId: string, results: number, page: number): Observable<UserItem[]> {
 
-    let params: HttpParams = new HttpParams()
+    const params: HttpParams = new HttpParams()
       .set('category', segment)
       .set('results', results.toString())
       .set('page', page.toString());
 
-    return this.http.get<UserItem[]>(this.apiUrl + `users/${userId}/network`, { params });
+    return this.http.get<UserItem[]>(`${this.apiUrl}users/${userId}/network`, { params });
   }
 
   /**
@@ -85,7 +85,7 @@ export class BackendApiService {
    * @return        User Item
    */
   public getUserItemById(userId: string): Observable<UserItem> {
-    return this.http.get<UserItem>(this.apiUrl + `users/${userId}`);
+    return this.http.get<UserItem>(`${this.apiUrl}users/${userId}`);
   }
 
   /**
@@ -97,15 +97,15 @@ export class BackendApiService {
    * @return          Array of content cards
    */
   public getContentCards(target: string, userId: string, results: number, page: number): Observable<ContentCard[]> {
-    console.log('Page: ' + page);
+    console.log(`'Page: ${page}`);
 
-    let params: HttpParams = new HttpParams()
+    const params: HttpParams = new HttpParams()
       .set('target', target)
       .set('userId', userId)
       .set('results', results.toString())
       .set('page', page.toString());
 
-    return this.http.get<ContentCard[]>(this.apiUrl + 'content',  { params });
+    return this.http.get<ContentCard[]>(`${this.apiUrl}content`,  { params });
   }
 
   /**
@@ -117,13 +117,13 @@ export class BackendApiService {
    */
   public getCanvasMemes(canvasId: string, results: number, page: number): Observable<ContentCard[]> {
 
-    console.log('Page: ' + page);
+    console.log(`'Page: ${page}`);
 
-    let params: HttpParams = new HttpParams()
+    const params: HttpParams = new HttpParams()
       .set('results', results.toString())
       .set('page', page.toString());
 
-    return this.http.get<ContentCard[]>(this.apiUrl + `canvases/${canvasId}/memes`, { params });
+    return this.http.get<ContentCard[]>(`${this.apiUrl}canvases/${canvasId}/memes`, { params });
 
   }
 
@@ -133,7 +133,7 @@ export class BackendApiService {
    * @return          Canvas card
    */
   public getCanvasById(canvasId: string): Observable<ContentCard> {
-    return this.http.get<ContentCard>(this.apiUrl + `canvases/${canvasId}`);
+    return this.http.get<ContentCard>(`${this.apiUrl}canvases/${canvasId}`);
   }
 
 }

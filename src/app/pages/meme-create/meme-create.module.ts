@@ -13,21 +13,21 @@ import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader
 const routes: Routes = [
   {
     path: '',
-    component: MemeCreatePage
-  }
+    component: MemeCreatePage,
+  },
 ];
 
 @NgModule({
   providers: [
-    DynamicScriptLoaderService
+    DynamicScriptLoaderService,
   ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ServicesModule
+    ServicesModule,
   ],
-  declarations: [MemeCreatePage]
+  declarations: [MemeCreatePage],
 })
 export class MemeCreatePageModule {}

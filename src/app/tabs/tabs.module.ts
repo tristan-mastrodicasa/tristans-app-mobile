@@ -12,15 +12,15 @@ import { ServicesModule } from '../services/services.module';
 
 @NgModule({
   providers: [
-    Camera
+    Camera,
   ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     TabsPageRoutingModule,
-    ServicesModule
+    ServicesModule,
   ],
-  declarations: [TabsPage]
+  declarations: [TabsPage],
 })
 export class TabsPageModule {}

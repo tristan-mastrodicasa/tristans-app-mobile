@@ -46,8 +46,8 @@ export class GlobalStore extends Store<GlobalState> {
   public get hasToken(): Promise<boolean> {
 
     return this.storage.get('state').then((state) => {
-      if (state == null || state.jwt_token == null) return false;
-      else return true;
+      if (state == null || state.jwt == null) return false;
+      return true;
     });
 
   }
@@ -59,12 +59,12 @@ export class GlobalStore extends Store<GlobalState> {
    */
   public setToken(jwt: string) {
 
-    let jwtContent: JwtContent = this.jwt.decodeToken(jwt);
+    const jwtContent: JwtContent = this.jwt.decodeToken(jwt);
 
     this.setState({
       ...this.state,
-      jwt_token: jwt,
-      user_id: jwtContent.id,
+      jwt,
+      userId: jwtContent.id,
     });
 
     this.storage.set('state', this.state);
@@ -76,8 +76,8 @@ export class GlobalStore extends Store<GlobalState> {
   public removeToken() {
     this.setState({
       ...this.state,
-      jwt_token: null,
-      user_id: null,
+      jwt: null,
+      userId: null,
     });
 
     this.storage.set('state', this.state);
@@ -91,7 +91,7 @@ export class GlobalStore extends Store<GlobalState> {
     this.setState({
       ...this.state,
       pictureTaken: true,
-      pictureData: contentURI
+      pictureData: contentURI,
     });
   }
 
@@ -102,7 +102,7 @@ export class GlobalStore extends Store<GlobalState> {
     this.setState({
       ...this.state,
       pictureTaken: false,
-      pictureData: ''
+      pictureData: '',
     });
   }
 

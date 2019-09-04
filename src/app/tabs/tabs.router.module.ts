@@ -14,9 +14,9 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../pages/home/home.module#HomePageModule'
-          }
-        ]
+            loadChildren: '../pages/home/home.module#HomePageModule',
+          },
+        ],
       },
       {
         path: 'media-upload',
@@ -24,10 +24,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../pages/media-upload/media-upload.module#MediaUploadPageModule',
-          }
+          },
         ],
         canActivate: [AuthService],
-        data: { type: 'user-experience' }
+        data: { type: 'user-experience' },
       },
       {
         path: 'network',
@@ -35,29 +35,29 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../pages/network/users/users.module#UsersPageModule',
-          }
+          },
         ],
         canActivate: [AuthService],
-        data: { type: 'user-experience' }
+        data: { type: 'user-experience' },
       },
       {
         path: '',
         redirectTo: '/app/home',
-        pathMatch: 'full'
-      }
-    ]
+        pathMatch: 'full',
+      },
+    ],
   },
   {
-     path: '',
-     redirectTo: '/app/home',
-     pathMatch: 'full'
-   }
+    path: '',
+    redirectTo: '/app/home',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class TabsPageRoutingModule {}

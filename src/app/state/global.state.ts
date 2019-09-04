@@ -1,6 +1,6 @@
 export class GlobalState {
-  public jwt_token: string;
-  public user_id: number;
+  public jwt: string;
+  public userId: number;
 
   public pictureTaken = false;
   public pictureData: string;

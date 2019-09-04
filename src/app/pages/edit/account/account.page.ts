@@ -14,7 +14,7 @@ export class AccountPage {
   constructor(
     private globalStore: GlobalStore,
     private router: Router,
-    private http: BackendApiService
+    private http: BackendApiService,
   ) { }
 
   /**

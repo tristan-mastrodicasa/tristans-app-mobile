@@ -11,7 +11,7 @@ export class AuthService implements CanActivate {
 
   constructor(
     private globalStore: GlobalStore,
-    private modalController: ModalController
+    private modalController: ModalController,
   ) { }
 
   /**
@@ -32,7 +32,7 @@ export class AuthService implements CanActivate {
           this.presentModal();
           return false;
 
-        } else return true;
+        }  return true;
 
       }
 
@@ -48,7 +48,7 @@ export class AuthService implements CanActivate {
     const modal = await this.modalController.create({
       component: LogInPage,
       showBackdrop: true,
-      cssClass: 'login-modal'
+      cssClass: 'login-modal',
     });
     return await modal.present();
   }

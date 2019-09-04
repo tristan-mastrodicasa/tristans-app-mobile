@@ -25,7 +25,7 @@ export class LogInPage {
     private alertController: AlertController,
     private globalStore: GlobalStore,
     private googlePlus: GooglePlus,
-    private fb: Facebook
+    private fb: Facebook,
   ) { }
 
   /**
@@ -41,9 +41,9 @@ export class LogInPage {
    */
   private async presentError(message: string) {
     const alert = await this.alertController.create({
-      header: 'Error',
       message,
-      buttons: ['Dismiss']
+      header: 'Error',
+      buttons: ['Dismiss'],
     });
 
     await alert.present();
@@ -54,7 +54,7 @@ export class LogInPage {
    */
   private async presentLoading() {
     const loading = await this.loadingController.create({
-      message: 'Loading'
+      message: 'Loading',
     });
     await loading.present();
   }
@@ -68,7 +68,6 @@ export class LogInPage {
     .then((res: FacebookLoginResponse) => console.log(res))
     .catch(e => console.log('Error logging into Facebook', e));
 
-
     this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
 
   }
@@ -79,26 +78,32 @@ export class LogInPage {
   public signInWithGoogle() {
 
     // Launch the google api //
-    this.googlePlus.login({ scope: 'profile email picture', webClientId: environment.google_client_id, offline: true })
-    .then(res => {
-      console.log(res.serverAuthCode);
+    this.googlePlus.login({ scope: 'profile email picture', webClientId: environment.google_client_id, offline: true }).then(
+      (res) => {
+        console.log(res.serverAuthCode);
 
-      // Send the authtoken to the backend to confirm and collect jwt //
-      this.presentLoading();
-      this.http.googleLogIn(res.serverAuthCode).toPromise().then((authRes: Token) => {
+        // Send the authtoken to the backend to confirm and collect jwt //
+        this.presentLoading();
+        this.http.googleLogIn(res.serverAuthCode).toPromise().then(
 
-        // Update client state with Jwt //
-        console.log(authRes.token);
-        this.globalStore.setToken(authRes.token);
-        this.loadingController.dismiss();
+          // Login successful //
+          (authRes: Token) => {
 
-      }, (err) => {
-        this.loadingController.dismiss();
-        this.presentError(err.message);
-      });
+            // Update client state with Jwt //
+            console.log(authRes.token);
+            this.globalStore.setToken(authRes.token);
+            this.loadingController.dismiss();
 
-    })
-    .catch(_ => this.presentError('There was an issue reaching Google'));
+          },
+
+          // Login failed //
+          (err) => {
+            this.loadingController.dismiss();
+            this.presentError(err.message);
+          });
+
+      },
+    ).catch(_ => this.presentError('There was an issue reaching Google'));
 
   }
 

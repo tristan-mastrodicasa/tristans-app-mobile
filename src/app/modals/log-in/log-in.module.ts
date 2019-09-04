@@ -7,17 +7,17 @@ import { LogInPage } from './log-in.page';
 
 @NgModule({
   declarations: [
-    LogInPage
+    LogInPage,
   ],
   imports: [
     IonicModule,
   ],
   providers: [GooglePlus, Facebook],
   exports: [
-    LogInPage
+    LogInPage,
   ],
   entryComponents: [
-    LogInPage
-  ]
+    LogInPage,
+  ],
 })
 export class LoginPageModule { }

@@ -15,23 +15,23 @@ import { ComponentsModule } from '../../components/components.module';
 const routes: Routes = [
   {
     path: '',
-    component: MediaUploadPage
-  }
+    component: MediaUploadPage,
+  },
 ];
 
 @NgModule({
   providers: [
     Camera,
     WebView,
-    FilePath
+    FilePath,
   ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
   ],
-  declarations: [MediaUploadPage]
+  declarations: [MediaUploadPage],
 })
 export class MediaUploadPageModule {}

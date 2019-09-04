@@ -12,7 +12,7 @@ export class TabsPage {
 
   constructor(
     private camera: Camera,
-    private globalStore: GlobalStore
+    private globalStore: GlobalStore,
   ) { }
 
   /**
@@ -25,15 +25,15 @@ export class TabsPage {
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      sourceType: this.camera.PictureSourceType.CAMERA
+      sourceType: this.camera.PictureSourceType.CAMERA,
     };
 
     this.camera.getPicture(options).then((imageData) => {
-     this.globalStore.pictureTaken(imageData);
+      this.globalStore.pictureTaken(imageData);
      // console.log(this.globalStore.hasPictureBeenTaken);
-    }, (err) => {
-     console.log(err);
-   });
+    },                                   (err) => {
+      console.log(err);
+    });
 
   }
 

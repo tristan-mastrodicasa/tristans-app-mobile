@@ -1,41 +1,28 @@
 {
-  "extends": "../tslint.json",
+  "extends": ["../tslint.json", "tslint-config-airbnb"],
+  "linterOptions": {
+      "exclude": [
+          "**/*.spec.ts"
+      ]
+  },
   "rules": {
-    "directive-selector": [
+    "completed-docs": [
       true,
-      "attribute",
-      "app",
-      "camelCase"
+      {
+        "enums": true,
+        "methods": true,
+        "interface": true
+      }
     ],
-    "component-selector": [
-      true,
-      "element",
-      "app",
-      "page",
-      "kebab-case"
-    ],
-    "arrow-return-shorthand": true,
-    "callable-types": true,
-    "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
-    "curly": false,
-    "eofline": false,
-    "forin": true,
-    "import-spacing": true,
-    "indent": [
-      true,
-      "spaces",
-	    2
-    ],
-    "interface-over-type-literal": true,
-    "label-position": true,
     "max-line-length": [
       false,
-      140
+      100
     ],
+    "variable-name": {
+      "options": [
+        "allow-leading-underscore"
+      ]
+    },
     "member-ordering": [
       true,
       {
@@ -48,105 +35,6 @@
         ]
       }
     ],
-    "member-access": true,
-    "completed-docs": [
-      true,
-      {
-        "enums": true,
-        "methods": true
-      }
-    ],
-  	"only-arrow-functions": [
-  		true,
-  		"allow-named-functions"
-  	],
-    "no-arg": true,
-    "no-bitwise": true,
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
-    "no-construct": true,
-    "no-debugger": true,
-    "no-duplicate-super": true,
-    "no-empty-interface": true,
-    "no-eval": true,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
-  	"no-internal-module": true,
-  	"no-duplicate-imports": true,
-    "no-misused-new": true,
-    "no-non-null-assertion": true,
-    "no-redundant-jsdoc": true,
-    "no-shadowed-variable": true,
-    "no-string-literal": true,
-    "no-string-throw": true,
-    "no-switch-case-fall-through": true,
-    "no-trailing-whitespace": true,
-    "no-unnecessary-initializer": true,
-    "no-unused-expression": true,
-    "no-unused-variable": [false, "check-parameters"],
-    "typedef": [true, "parameter"],
-    "no-var-keyword": true,
-    "object-literal-sort-keys": false,
-  	"max-classes-per-file": [
-  		true,
-  		1
-  	],
-    "one-line": [
-      true,
-      "check-open-brace",
-      "check-catch",
-      "check-else",
-      "check-whitespace"
-    ],
-    "prefer-const": false,
-    "quotemark": [
-      true,
-      "single"
-    ],
-    "radix": true,
-    "semicolon": [
-      true,
-      "always"
-    ],
-    "typedef-whitespace": [
-      true,
-      {
-        "call-signature": "nospace",
-        "index-signature": "nospace",
-        "parameter": "nospace",
-        "property-declaration": "nospace",
-        "variable-declaration": "nospace"
-      },
-  	  {
-  	    "call-signature": "onespace",
-  	    "index-signature": "onespace",
-  	    "parameter": "onespace",
-  	    "property-declaration": "onespace",
-  	    "variable-declaration": "onespace"
-  	  }
-    ],
-  	"file-name-casing": [
-  		true,
-  		"kebab-case"
-  	],
-    "unified-signatures": true,
-    "variable-name": false,
-    "whitespace": [
-      true,
-      "check-branch",
-      "check-decl",
-      "check-operator",
-      "check-separator",
-      "check-type",
-      "check-preblock"
-    ]
+    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}]
   }
 }

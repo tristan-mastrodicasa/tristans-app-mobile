@@ -16,21 +16,21 @@ export class ImposterServerService implements InMemoryDbService {
     console.log(url);
 
     // Break the url into juicy bits //
-    let params: Map<string, string[]> = requestInfoUtils.parseRequestUrl(url).query;
-    let urlParts: string[] = url.split('?')[0].split('/');
+    const params: Map<string, string[]> = requestInfoUtils.parseRequestUrl(url).query;
+    const urlParts: string[] = url.split('?')[0].split('/');
 
     // If the api url is accessing the user resource than format as follows //
     if (urlParts[1] === 'users') {
-      let id: string = urlParts[2];
+      const id: string = urlParts[2];
 
       if (urlParts[3] === 'network') {
 
-        let userItemType: string = params.get('category')[0];
+        const userItemType: string = params.get('category')[0];
 
-        console.log('Collect users from userid: ' + id);
-        url = `api/${userItemType}`;
+        console.log(`'Collect users from userid: ${id}`);
+        const newUrl = `api/${userItemType}`;
 
-        return requestInfoUtils.parseRequestUrl(url);
+        return requestInfoUtils.parseRequestUrl(newUrl);
 
       }
     } else if (urlParts[1] === 'content') {
@@ -48,7 +48,7 @@ export class ImposterServerService implements InMemoryDbService {
    */
   public createDb() {
 
-    let profiles: Profile[] = [
+    const profiles: Profile[] = [
       { id: '5cf330860ffe101b48a0fcc4', firstName: 'Tristan', username: 'ghoststeam217', influence: 7089, followers: 31, contentNumber: 70, photo: '/assets/svg-img/default-profile-picture.svg' },
       { id: '3cf330126531201b48a0fcc4', firstName: 'Jake', username: 'user12143', influence: 33124, followers: 3221, contentNumber: 310, photo: '/assets/img/test/testi1.jpg' },
       { id: 'ccfssffe101b48a0ddddfcc4', firstName: 'Malinda', username: 'user2441212', influence: 223, followers: 1, contentNumber: 70, photo: '/assets/img/test/testi2.jpg' },
@@ -56,7 +56,7 @@ export class ImposterServerService implements InMemoryDbService {
       { id: 'bcaaa3060fasdasdfe3acdd4', firstName: 'Chris', username: 'wutisdis', influence: 14, followers: 61, contentNumber: 75, photo: '/assets/img/test/testi2.jpg' },
     ];
 
-    let users: UserItem[] = [
+    const users: UserItem[] = [
       { id: 'ccfssffe101b48a0ddddfcc4', firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg', activeCanvases: 1 },
       { id: 'bcaaa3060fasdasdfe3acdd4', firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg', activeCanvases: 4 },
       { id: '3cf330126531201b48a0fcc4', firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg', activeCanvases: 1 },
@@ -64,20 +64,20 @@ export class ImposterServerService implements InMemoryDbService {
       { id: 'fcf330860fasdasdfe10cdd4', firstName: 'Johanne', username: 'user9272311', influence: 11, photo: '/assets/img/test/testi3.jpg' },
     ];
 
-    let follow_backs: UserItem[]  = [
+    const follow_backs: UserItem[]  = [ // tslint:disable-line
       { id: 'bcaaa3060fasdasdfe3acdd4', firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg', activeCanvases: 4 },
       { id: '3cf330126531201b48a0fcc4', firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg', activeCanvases: 1  },
     ];
 
-    let following: UserItem[] = [
+    const following: UserItem[] = [
       { id: 'fcf330860fasdasdfe10cdd4', firstName: 'Johanne', username: 'user9272311', influence: 11, photo: '/assets/img/test/testi3.jpg' },
     ];
 
-    let followers: UserItem[] = [
+    const followers: UserItem[] = [
       { id: 'ccfssffe101b48a0ddddfcc4', firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg', activeCanvases: 1 },
     ];
 
-    let contentCardList: ContentCard[] = [
+    const contentCardList: ContentCard[] = [
       { id: 'ccfssffe1f4h48a0dddfcc94', cid: 'fcf330860fdhdisnfe10cdd4', type: EContentType.Meme, users: {
         primary: { id: '5cf330860ffe101b48a0fcc4', firstName: 'Tristan', username: 'ghoststeam217', photo: '/assets/svg-img/default-profile-picture.svg' },
         secondary: { id: 'bcaaa3060fasdasdfe3acdd4', firstName: 'Chris', username: 'wutisdis', photo: '/assets/img/test/testi2.jpg' },
@@ -99,10 +99,10 @@ export class ImposterServerService implements InMemoryDbService {
 
       { id: 'saerrfavfaewasdaadfafeee', type: EContentType.Canvas, users: {
         primary: { id: '5cf330860ffe101b48a0fcc4', firstName: 'Tristan', username: 'ghoststeam217', photo: '/assets/svg-img/default-profile-picture.svg' },
-      }, imagePath: 'https://pbs.twimg.com/media/CPRE4hiUEAA3vyG.png',  stars: 1456, starred: false, utcTime: 1561081352435 }
+      }, imagePath: 'https://pbs.twimg.com/media/CPRE4hiUEAA3vyG.png',  stars: 1456, starred: false, utcTime: 1561081352435 },
     ];
 
-    let canvases: ContentCard[] = [
+    const canvases: ContentCard[] = [
       { id: 'saerrfavfaewasdaadfafeee', type: EContentType.Canvas, users: {
         primary: { id: '5cf330860ffe101b48a0fcc4', firstName: 'Tristan', username: 'ghoststeam217', photo: '/assets/svg-img/default-profile-picture.svg' },
       }, imagePath: 'https://pbs.twimg.com/media/CPRE4hiUEAA3vyG.png',  stars: 1456, starred: false, utcTime: 1561081352435 },

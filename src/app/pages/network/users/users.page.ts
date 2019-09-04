@@ -29,7 +29,7 @@ export class UsersPage {
    */
   public segmentChanged(e: any) {
 
-    let segment = e.detail.value;
+    const segment = e.detail.value;
     this.segment = segment;
 
     // Reset the infinite scroll variables //

@@ -13,8 +13,8 @@ import { ServicesModule } from '../../../services/services.module';
 const routes: Routes = [
   {
     path: '',
-    component: UsersPage
-  }
+    component: UsersPage,
+  },
 ];
 
 @NgModule({
@@ -24,8 +24,8 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     ComponentsModule,
-    ServicesModule
+    ServicesModule,
   ],
-  declarations: [UsersPage]
+  declarations: [UsersPage],
 })
 export class UsersPageModule {}

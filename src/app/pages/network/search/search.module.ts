@@ -12,8 +12,8 @@ import { ComponentsModule } from '../../../components/components.module';
 const routes: Routes = [
   {
     path: '',
-    component: SearchPage
-  }
+    component: SearchPage,
+  },
 ];
 
 @NgModule({
@@ -22,8 +22,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
   ],
-  declarations: [SearchPage]
+  declarations: [SearchPage],
 })
 export class SearchPageModule {}

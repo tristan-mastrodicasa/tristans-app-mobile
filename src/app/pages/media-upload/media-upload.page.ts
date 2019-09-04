@@ -14,14 +14,14 @@ export class MediaUploadPage implements OnInit {
 
   public image = 'https://www.roberthompson.co.uk/meme-app/meme.jpg';
   public customActionSheetOptions: any = {
-    header: 'Visibility'
+    header: 'Visibility',
   };
 
   constructor(
     private camera: Camera,
     private webView: WebView,
     private filePath: FilePath,
-    private globalStore: GlobalStore
+    private globalStore: GlobalStore,
   ) { }
 
   /**
@@ -29,7 +29,7 @@ export class MediaUploadPage implements OnInit {
    */
   public ngOnInit() {
 
-    this.globalStore.state$.subscribe(state => {
+    this.globalStore.state$.subscribe((state) => {
       if (state.pictureTaken) {
         this.displayImagePreview(state.pictureData);
         this.globalStore.resetPictureTaken();
@@ -48,14 +48,14 @@ export class MediaUploadPage implements OnInit {
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
     };
 
     this.camera.getPicture(options).then((imageData) => {
 
-     this.displayImagePreview(imageData);
+      this.displayImagePreview(imageData);
 
-   });
+    });
 
   }
 

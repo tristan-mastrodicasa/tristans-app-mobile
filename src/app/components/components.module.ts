@@ -15,19 +15,19 @@ import { DirectivesModule } from '../directives/directives.module';
     IonicModule,
     RouterModule,
     DirectivesModule,
-    CommonModule
+    CommonModule,
   ],
   declarations: [
     PrimaryHeaderComponent,
     BackButtonComponent,
     ContentCardComponent,
-    UserItemComponent
+    UserItemComponent,
   ],
   exports: [
     PrimaryHeaderComponent,
     BackButtonComponent,
     ContentCardComponent,
-    UserItemComponent
-  ]
+    UserItemComponent,
+  ],
 })
 export class ComponentsModule { }

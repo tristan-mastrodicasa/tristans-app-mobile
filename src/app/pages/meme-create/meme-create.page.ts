@@ -33,6 +33,7 @@ export class MemeCreatePage implements OnInit {
 
       this.scriptLoader.load('jquery.memegenerator').then(() => {
 
+         /** @todo fix the boldness of the meme text */
         console.log($('#meme').memeGenerator({
           useBootstrap: true,
           colorPicker: (_mg, selector) => {

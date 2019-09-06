@@ -582,8 +582,8 @@
 					if(!$(this).hasClass("row"))
 					{
 						$(this).addClass("row");
-						$(this).find(".mg-textbox-text").addClass("form-control").wrap($("<div></div>").addClass("col-md-4"));
-						$(this).find(".mg-textbox-size").addClass("form-control").wrap($("<div></div>").addClass("col-md-2"));
+						$(this).find(".mg-textbox-text").addClass("form-control").wrap($("<div></div>").addClass("col-xs-9").css("padding-right", "0"));
+						$(this).find(".mg-textbox-size").addClass("form-control").wrap($("<div></div>").addClass("col-xs-3"));
 						$(this).find(".mg-textbox-border-width").addClass("form-control").wrap($("<div></div>").addClass("col-md-2"));
 						$(this).find(".colorpicker").addClass("form-control")
 						$(this).find(".colorpickerContainer").addClass("col-md-2");
@@ -593,7 +593,7 @@
 
 				if(!controls.find(".mg-add-textbox").hasClass("btn"))
 				{
-					controls.find(".mg-add-textbox").addClass("btn btn-default btn-block").wrap($("<div></div>").addClass("row"));
+					controls.find(".mg-add-textbox").addClass("btn btn-default btn-block").wrap($("<div></div>").addClass("row").css("padding", "0 15px 0 15px"));
 				}
 
 				if(!controls.find(".mg-advanced-settings-toggle").hasClass("btn"))

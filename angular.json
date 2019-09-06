@@ -44,7 +44,8 @@
             ],
             "scripts": [
               "src/assets/meme-generator/jquery.min.js",
-              "src/assets/meme-generator/jquery-ui.min.js"
+              "src/assets/meme-generator/jquery-ui.min.js",
+              "src/assets/meme-generator/jquery.ui.touch-punch.min.js"
             ],
             "es5BrowserSupport": true
           },

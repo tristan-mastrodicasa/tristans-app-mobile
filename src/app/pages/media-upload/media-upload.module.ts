@@ -11,6 +11,7 @@ import { IonicModule } from '@ionic/angular';
 import { MediaUploadPage } from './media-upload.page';
 
 import { ComponentsModule } from '../../components/components.module';
+import { ServicesModule } from '../../services/services.module';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     ComponentsModule,
+    ServicesModule,
   ],
   declarations: [MediaUploadPage],
 })

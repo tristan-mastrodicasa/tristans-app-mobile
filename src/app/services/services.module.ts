@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
@@ -19,6 +20,7 @@ import { environment } from '../../environments/environment';
     BackendApiService,
     AuthService,
     HelpersService,
+    FileTransfer,
   ],
   imports: [
     CommonModule,

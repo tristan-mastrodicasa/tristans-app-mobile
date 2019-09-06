@@ -4,6 +4,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 
 import { GlobalStore } from '../../state/global.store';
+import { BackendApiService } from '../../services/backend-api/backend-api.service';
 
 @Component({
   selector: 'app-media-upload',
@@ -12,7 +13,9 @@ import { GlobalStore } from '../../state/global.store';
 })
 export class MediaUploadPage implements OnInit {
 
-  public image = 'https://www.roberthompson.co.uk/meme-app/meme.jpg';
+  public webImagePath: string;
+  public localImagePath: string;
+
   public customActionSheetOptions: any = {
     header: 'Visibility',
   };
@@ -22,6 +25,7 @@ export class MediaUploadPage implements OnInit {
     private webView: WebView,
     private filePath: FilePath,
     private globalStore: GlobalStore,
+    private http: BackendApiService,
   ) { }
 
   /**
@@ -30,9 +34,9 @@ export class MediaUploadPage implements OnInit {
   public ngOnInit() {
 
     this.globalStore.state$.subscribe((state) => {
-      if (state.pictureTaken) {
-        this.displayImagePreview(state.pictureData);
-        this.globalStore.resetPictureTaken();
+      if (state.stagedCanvasPicture != null) {
+        this.displayImagePreview(state.stagedCanvasPicture);
+        this.globalStore.resetCanvasPicture();
       }
     });
 
@@ -53,6 +57,7 @@ export class MediaUploadPage implements OnInit {
 
     this.camera.getPicture(options).then((imageData) => {
 
+      this.globalStore.setCanvasPicture(imageData);
       this.displayImagePreview(imageData);
 
     });
@@ -65,12 +70,42 @@ export class MediaUploadPage implements OnInit {
    */
   public displayImagePreview(contentURI: string) {
 
+    this.localImagePath = contentURI;
+
     this.filePath.resolveNativePath(contentURI).then((path) => {
-      this.image = this.webView.convertFileSrc(path);
+      this.webImagePath = this.webView.convertFileSrc(path);
     }).catch((e) => {
       console.log(e);
     });
 
+  }
+
+  /**
+   * Upload the content, redirect to page hosting the image
+   */
+  public confirmUpload() {
+
+    if (this.localImagePath != null) {
+      console.log('here');
+
+      this.http.uploadCanvas(this.localImagePath).then(
+          (res) => {
+            console.log(JSON.parse(res.response));
+          },
+          (err) => {
+            console.log(err);
+          },
+      );
+
+    }
+
+  }
+
+  /**
+   * Cancel the image upload
+   */
+  public cancelUpload() {
+    this.webImagePath = null;
   }
 
 }

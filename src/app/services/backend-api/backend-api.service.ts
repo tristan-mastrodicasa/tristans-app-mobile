@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { FileTransfer, FileUploadOptions, FileTransferObject, FileUploadResult } from '@ionic-native/file-transfer/ngx';
 
 import { Observable } from 'rxjs';
 
@@ -18,6 +19,7 @@ export class BackendApiService {
   constructor(
     private http: HttpClient,
     private globalStore: GlobalStore,
+    private fileTransfer: FileTransfer,
   ) { }
 
   /**
@@ -135,6 +137,28 @@ export class BackendApiService {
    */
   public getCanvasById(canvasId: string): Observable<ContentCard> {
     return this.http.get<ContentCard>(`${this.apiUrl}canvases/${canvasId}`);
+  }
+
+  /**
+   * Upload a canvas to the server
+   * @param  filePath    Local path of the fiile
+   * @param  description Description of the canvas
+   * @return             Indication of success
+   */
+  public uploadCanvas(filePath: string, description?: string): Promise<FileUploadResult> {
+
+    const fileTransfer: FileTransferObject = this.fileTransfer.create();
+
+    const options: FileUploadOptions = {
+      fileKey: 'file',
+      fileName: 'name.jpg',
+      params: {
+        description,
+      },
+    };
+
+    return fileTransfer.upload(filePath, `${environment.serverUrl}api/upload/canvas`, options);
+
   }
 
 }

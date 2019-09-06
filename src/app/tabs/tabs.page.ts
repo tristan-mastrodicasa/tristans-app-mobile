@@ -34,7 +34,7 @@ export class TabsPage {
 
         this.camera.getPicture(options).then(
           (imageData) => {
-            this.globalStore.pictureTaken(imageData);
+            this.globalStore.setCanvasPicture(imageData);
              // console.log(this.globalStore.hasPictureBeenTaken);
           },
           (err) => {

@@ -5,7 +5,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject, FileUploadResult }
 import { Observable } from 'rxjs';
 
 import { Profile, UserItem, ContentCard } from '../../models/data.types';
-import { Token } from '../../models/response.interfaces';
+import { Token, CanvasUploaded } from '../../models/response.interfaces';
 import { GlobalStore } from '../../state/global.store';
 
 import { environment } from '../../../environments/environment';
@@ -145,7 +145,7 @@ export class BackendApiService {
    * @param  description Description of the canvas
    * @return             Indication of success
    */
-  public uploadCanvas(filePath: string, description?: string): Promise<FileUploadResult> {
+  public uploadCanvas(filePath: string, description?: string): Promise<CanvasUploaded> {
 
     const fileTransfer: FileTransferObject = this.fileTransfer.create();
 
@@ -157,7 +157,10 @@ export class BackendApiService {
       },
     };
 
-    return fileTransfer.upload(filePath, `${environment.serverUrl}api/upload/canvas`, options);
+    return fileTransfer.upload(filePath, `${environment.serverUrl}api/upload/canvas`, options).then((res) => {
+      const canvasUploaded: CanvasUploaded = JSON.parse(res.response);
+      return canvasUploaded;
+    });
 
   }
 

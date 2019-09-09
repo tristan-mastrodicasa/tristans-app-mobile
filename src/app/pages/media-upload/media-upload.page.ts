@@ -90,7 +90,7 @@ export class MediaUploadPage implements OnInit {
 
       this.http.uploadCanvas(this.localImagePath).then(
           (res) => {
-            console.log(JSON.parse(res.response));
+            console.log(res);
           },
           (err) => {
             console.log(err);

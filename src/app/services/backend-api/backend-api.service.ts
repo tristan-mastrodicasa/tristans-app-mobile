@@ -4,11 +4,11 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 
 import { Observable } from 'rxjs';
 
-import { Profile, UserItem, ContentCard } from '../../models/data.types';
-import { Token, CanvasUploaded } from '../../models/response.interfaces';
-import { GlobalStore } from '../../state/global.store';
+import { Profile, UserItem, ContentCard } from 'models/data.types';
+import { Token, CanvasUploaded } from 'models/response.interfaces';
+import { GlobalStore } from 'state/global.store';
 
-import { environment } from '../../../environments/environment';
+import { environment } from 'environments/environment';
 
 /** @todo Add .pipe(catchError(this.handleError)); to all requests in the future */
 @Injectable()

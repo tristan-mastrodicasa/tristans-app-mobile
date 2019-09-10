@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { BackendApiService } from '../../../services/backend-api/backend-api.service';
-import { UserItem } from '../../../models/data.types';
-// import { GlobalStore } from '../../../state/global.store';
+import { BackendApiService } from 'services/backend-api/backend-api.service';
+import { UserItem } from 'models/data.types';
+// import { GlobalStore } from 'state/global.store';
 
 @Component({
   selector: 'app-users',

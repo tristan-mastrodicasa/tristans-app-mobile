@@ -3,12 +3,12 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { PrimaryHeaderComponent } from './interface/primary-header/primary-header.component';
-import { BackButtonComponent } from './interface/back-button/back-button.component';
+import { PrimaryHeaderComponent } from './interface/primary-header/primary-header.component'; // tslint:disable-line
+import { BackButtonComponent } from './interface/back-button/back-button.component'; // tslint:disable-line
 
-import { ContentCardComponent } from './content-card/content-card.component';
-import { UserItemComponent } from './user-item/user-item.component';
-import { DirectivesModule } from '../directives/directives.module';
+import { ContentCardComponent } from './content-card/content-card.component'; // tslint:disable-line
+import { UserItemComponent } from './user-item/user-item.component'; // tslint:disable-line
+import { DirectivesModule } from 'directives/directives.module';
 
 @NgModule({
   imports: [

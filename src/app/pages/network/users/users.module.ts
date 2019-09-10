@@ -5,10 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UsersPage } from './users.page';
+import { UsersPage } from './users.page'; //tslint:disable-line
 
-import { ComponentsModule } from '../../../components/components.module';
-import { ServicesModule } from '../../../services/services.module';
+import { ComponentsModule } from 'components/components.module';
+import { ServicesModule } from 'services/services.module';
 
 const routes: Routes = [
   {

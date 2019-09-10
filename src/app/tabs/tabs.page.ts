@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
-import { GlobalStore } from '../state/global.store';
+import { GlobalStore } from 'state/global.store';
 
 @Component({
   selector: 'app-tabs',

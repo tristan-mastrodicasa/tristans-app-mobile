@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { BackendApiService } from '../../services/backend-api/backend-api.service';
-import { ContentCard } from '../../models/data.types';
+import { BackendApiService } from 'services/backend-api/backend-api.service';
+import { ContentCard } from 'models/data.types';
 
 @Component({
   selector: 'app-canvas-focus',

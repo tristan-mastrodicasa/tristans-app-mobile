@@ -36,6 +36,7 @@
       }
     ],
     "member-access": true,
-    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}]
+    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
+    "no-relative-imports": true
   }
 }

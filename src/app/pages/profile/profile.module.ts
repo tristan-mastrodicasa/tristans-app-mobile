@@ -5,11 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProfilePage } from './profile.page';
+import { ProfilePage } from './profile.page'; //tslint:disable-line
 
-import { ComponentsModule } from '../../components/components.module';
-import { ServicesModule } from '../../services/services.module';
-import { DirectivesModule } from '../../directives/directives.module';
+import { ComponentsModule } from 'components/components.module';
+import { ServicesModule } from 'services/services.module';
+import { DirectivesModule } from 'directives/directives.module';
 
 const routes: Routes = [
   {

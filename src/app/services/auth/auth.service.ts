@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 
-import { GlobalStore } from '../../state/global.store';
+import { GlobalStore } from 'state/global.store';
 
-import { LogInPage } from '../../modals/log-in/log-in.page';
+import { LogInPage } from 'modals/log-in/log-in.page';
 
 @Injectable()
 export class AuthService implements CanActivate {

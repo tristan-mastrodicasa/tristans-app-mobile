@@ -5,10 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MemeCreatePage } from './meme-create.page';
+import { MemeCreatePage } from './meme-create.page'; //tslint:disable-line
 
-import { ServicesModule } from '../../services/services.module';
-import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader/dynamic-script-loader.service';
+import { ServicesModule } from 'services/services.module';
+import { DynamicScriptLoaderService } from 'services/dynamic-script-loader/dynamic-script-loader.service';
 
 const routes: Routes = [
   {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import { ActivatedRoute } from '@angular/router';
 
-import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader/dynamic-script-loader.service';
+import { DynamicScriptLoaderService } from 'services/dynamic-script-loader/dynamic-script-loader.service';
 
 declare var $: any;
 

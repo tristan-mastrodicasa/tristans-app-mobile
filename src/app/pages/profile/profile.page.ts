@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { BackendApiService } from '../../services/backend-api/backend-api.service';
-import { Profile, ContentCard } from '../../models/data.types';
-import { GlobalStore } from '../../state/global.store';
+import { BackendApiService } from 'services/backend-api/backend-api.service';
+import { Profile, ContentCard } from 'models/data.types';
+import { GlobalStore } from 'state/global.store';
 
 @Component({
   selector: 'app-profile',

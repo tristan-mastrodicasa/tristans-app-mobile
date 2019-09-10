@@ -5,9 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FindUsersPage } from './find-users.page';
+import { FindUsersPage } from './find-users.page'; //tslint:disable-line
 
-import { ComponentsModule } from '../../../components/components.module';
+import { ComponentsModule } from 'components/components.module';
 
 const routes: Routes = [
   {

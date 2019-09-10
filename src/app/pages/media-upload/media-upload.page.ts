@@ -3,8 +3,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 
-import { GlobalStore } from '../../state/global.store';
-import { BackendApiService } from '../../services/backend-api/backend-api.service';
+import { GlobalStore } from 'state/global.store';
+import { BackendApiService } from 'services/backend-api/backend-api.service';
 
 @Component({
   selector: 'app-media-upload',

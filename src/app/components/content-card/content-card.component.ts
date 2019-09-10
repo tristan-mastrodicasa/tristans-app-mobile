@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
-import { ContentCard } from '../../models/data.types';
+import { ContentCard } from 'models/data.types';
 
 @Component({
   selector: 'app-content-card',
@@ -17,7 +17,7 @@ export class ContentCardComponent {
   /**
    * Present the additional actions for canvas cards
    */
-  private async presentContentCardActions() {
+  public async presentContentCardActions() {
 
     const actionSheet = await this.actionSheetController.create({
       header: 'Albums',

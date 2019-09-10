@@ -4,10 +4,10 @@ import { ModalController, LoadingController, AlertController } from '@ionic/angu
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 
-import { BackendApiService } from '../../services/backend-api/backend-api.service';
-import { environment } from '../../../environments/environment';
-import { GlobalStore } from '../../state/global.store';
-import { Token } from '../../models/response.interfaces';
+import { BackendApiService } from 'services/backend-api/backend-api.service';
+import { environment } from 'environments/environment';
+import { GlobalStore } from 'state/global.store';
+import { Token } from 'models/response.interfaces';
 
 @Component({
   selector: 'app-log-in',

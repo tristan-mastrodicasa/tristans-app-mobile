@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TabsPage } from './tabs.page';
 
-import { AuthService } from '../services/auth/auth.service';
+import { TabsPage } from './tabs.page'; //tslint:disable-line
+
+import { AuthService } from 'services/auth/auth.service';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../pages/home/home.module#HomePageModule',
+            loadChildren: 'pages/home/home.module#HomePageModule',
           },
         ],
       },
@@ -23,7 +24,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../pages/media-upload/media-upload.module#MediaUploadPageModule',
+            loadChildren: 'pages/media-upload/media-upload.module#MediaUploadPageModule',
           },
         ],
         canActivate: [AuthService],
@@ -34,7 +35,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../pages/network/users/users.module#UsersPageModule',
+            loadChildren: 'pages/network/users/users.module#UsersPageModule',
           },
         ],
         canActivate: [AuthService],

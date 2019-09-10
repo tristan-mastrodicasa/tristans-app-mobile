@@ -32,12 +32,6 @@ Read everything in /docs
 2. Make sure it works and builds without failing lol
 2. run `npm run lint` to check if code is clean
 
-## Notes on Environment Changes
-
-1. I have moved ionic's theme.scss to src/styles/helpers/variables.global.scss
-2. To access global variables in individual component and page scss you need to run var(--variable);
-3. When you import a variable into a component/page assign it to another local variable at the top of the scss so we know what is being used
-
 ## Misc
 
 Backend repo: https://github.com/ghostcoder217/tristans-app-server

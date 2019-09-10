@@ -5,7 +5,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { Observable } from 'rxjs';
 
 import { Profile, UserItem, ContentCard } from 'models/data.types';
-import { Token, CanvasUploaded } from 'models/response.interfaces';
+import { Error, Token, CanvasUploaded } from 'models/response.interfaces';
 import { GlobalStore } from 'state/global.store';
 
 import { environment } from 'environments/environment';
@@ -145,22 +145,28 @@ export class BackendApiService {
    * @param  description Description of the canvas
    * @return             Indication of success
    */
-  public async uploadCanvas(filePath: string, description?: string): Promise<CanvasUploaded> {
+  public async uploadCanvas(filePath: string, description?: string): Promise<CanvasUploaded | Error[]> {
 
     const fileTransfer: FileTransferObject = this.fileTransfer.create();
 
     const options: FileUploadOptions = {
-      fileKey: 'file',
-      fileName: 'name.jpg',
+      fileKey: 'canvas',
+      fileName: 'canvasFile',
       params: {
         description,
       },
     };
 
-    return fileTransfer.upload(filePath, `${environment.serverUrl}api/upload/canvas`, options).then((res) => {
-      const canvasUploaded: CanvasUploaded = JSON.parse(res.response);
-      return canvasUploaded;
-    });
+    return fileTransfer.upload(filePath, `${environment.serverUrl}api/upload/canvas`, options).then(
+      (res) => {
+        const canvasUploaded: CanvasUploaded = JSON.parse(res.response);
+        return canvasUploaded;
+      },
+      (err) => {
+        const errors: Error[] = JSON.parse(err.body).errors;
+        return errors;
+      },
+    );
 
   }
 

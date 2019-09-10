@@ -15,6 +15,7 @@ export class MediaUploadPage implements OnInit {
 
   public webImagePath: string;
   public localImagePath: string;
+  public description: string;
 
   public customActionSheetOptions: any = {
     header: 'Visibility',
@@ -48,7 +49,7 @@ export class MediaUploadPage implements OnInit {
   public selectCanvasPicture() {
 
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -88,7 +89,7 @@ export class MediaUploadPage implements OnInit {
     if (this.localImagePath != null) {
       console.log('here');
 
-      this.http.uploadCanvas(this.localImagePath).then(
+      this.http.uploadCanvas(this.localImagePath, this.description).then(
           (res) => {
             console.log(res);
           },

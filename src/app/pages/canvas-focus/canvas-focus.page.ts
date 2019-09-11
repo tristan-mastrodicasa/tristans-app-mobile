@@ -13,7 +13,7 @@ import { ContentCard } from 'models/data.types';
 export class CanvasFocusPage implements OnInit {
 
   public pageTitle = '';
-  public canvasId: string;
+  public canvasId: number;
   public canvasCard: ContentCard;
   public memes = [] as ContentCard[];
 
@@ -27,7 +27,7 @@ export class CanvasFocusPage implements OnInit {
    */
   public ngOnInit() {
 
-    this.canvasId = this.route.snapshot.paramMap.get('id');
+    this.canvasId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
 
     this.http.getCanvasById(this.canvasId).pipe(first()).subscribe((res) => {
       this.canvasCard = res;

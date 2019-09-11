@@ -60,7 +60,7 @@ export class BackendApiService {
    * @param  id Id string of the user profile
    * @return    Array of user profiles
    */
-  public getProfileById(id: string): Observable<Profile> {
+  public getProfileById(id: number): Observable<Profile> {
     return this.http.get<Profile>(`${this.apiUrl}profiles/${id}`);
   }
 
@@ -72,7 +72,7 @@ export class BackendApiService {
    * @param  page      Pagnation: How many user items in we are (results*page)
    * @return          Array of user items
    */
-  public getNetworkUserItems(segment: string, userId: string, results: number, page: number): Observable<UserItem[]> {
+  public getNetworkUserItems(segment: string, userId: number, results: number, page: number): Observable<UserItem[]> {
 
     const params: HttpParams = new HttpParams()
       .set('category', segment)
@@ -87,7 +87,7 @@ export class BackendApiService {
    * @param  userId ID of user
    * @return        User Item
    */
-  public getUserItemById(userId: string): Observable<UserItem> {
+  public getUserItemById(userId: number): Observable<UserItem> {
     return this.http.get<UserItem>(`${this.apiUrl}users/${userId}`);
   }
 
@@ -99,12 +99,12 @@ export class BackendApiService {
    * @param  page     Pagnation: How many content cards in we are (results*page)
    * @return          Array of content cards
    */
-  public getContentCards(target: string, userId: string, results: number, page: number): Observable<ContentCard[]> {
+  public getContentCards(target: string, userId: number, results: number, page: number): Observable<ContentCard[]> {
     console.log(`'Page: ${page}`);
 
     const params: HttpParams = new HttpParams()
       .set('target', target)
-      .set('userId', userId)
+      .set('userId', userId.toString())
       .set('results', results.toString())
       .set('page', page.toString());
 
@@ -118,7 +118,7 @@ export class BackendApiService {
    * @param  page     Pagnation: How many content cards in we are (results*page)
    * @return          Array of content cards
    */
-  public getCanvasMemes(canvasId: string, results: number, page: number): Observable<ContentCard[]> {
+  public getCanvasMemes(canvasId: number, results: number, page: number): Observable<ContentCard[]> {
 
     console.log(`'Page: ${page}`);
 
@@ -135,7 +135,7 @@ export class BackendApiService {
    * @param  canvasId ID of canvas
    * @return          Canvas card
    */
-  public getCanvasById(canvasId: string): Observable<ContentCard> {
+  public getCanvasById(canvasId: number): Observable<ContentCard> {
     return this.http.get<ContentCard>(`${this.apiUrl}canvases/${canvasId}`);
   }
 
@@ -157,7 +157,7 @@ export class BackendApiService {
       },
     };
 
-    return fileTransfer.upload(filePath, `${environment.serverUrl}api/upload/canvas`, options).then(
+    return fileTransfer.upload(filePath, `${environment.serverUrl}api/canvas/upload`, options).then(
       (res) => {
         const canvasUploaded: CanvasUploaded = JSON.parse(res.response);
         return canvasUploaded;

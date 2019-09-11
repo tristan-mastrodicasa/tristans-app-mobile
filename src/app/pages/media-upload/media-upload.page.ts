@@ -93,14 +93,12 @@ export class MediaUploadPage implements OnInit {
 
       this.loadingService.presentLoading();
       this.http.uploadCanvas(this.localImagePath, this.description).then(
-          (res) => {
-            console.log(res);
-            this.loadingService.closeLoading();
-          },
-          (err) => {
-            console.log(err);
-            this.loadingService.closeLoading();
-          },
+        (res) => {
+          this.loadingService.closeLoading();
+
+          if (res[0]) this.loadingService.presentError(res[0].detail);
+          else console.log(res);
+        },
       );
 
     }

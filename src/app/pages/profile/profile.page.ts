@@ -19,7 +19,7 @@ export class ProfilePage implements OnInit {
 
   public ownProfile: boolean;
   private profile: Profile = {
-    id: '',
+    id: null,
     firstName: '',
     username: '',
     photo: '/assets/svg-img/default-profile-picture.svg',
@@ -39,13 +39,13 @@ export class ProfilePage implements OnInit {
    */
   public ngOnInit() {
 
-    const id = this.route.snapshot.paramMap.get('id'); // '5cf330860ffe101b48a0fcc4'
+    const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10); // 1
 
     this.http.getProfileById(id).pipe(first()).subscribe((res) => {
 
       this.profile = res;
 
-      if ('5cf330860ffe101b48a0fcc4' === id) this.ownProfile = true;
+      if (id === 1) this.ownProfile = true;
       else this.ownProfile = false;
 
     });

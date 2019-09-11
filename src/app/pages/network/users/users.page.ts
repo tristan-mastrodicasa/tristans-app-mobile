@@ -37,14 +37,14 @@ export class UsersPage {
     this.userItemList = [];
 
     // Refresh the user profile information //
-    this.http.getUserItemById('5cf330860ffe101b48a0fcc4').toPromise().then((res) => {
+    this.http.getUserItemById(1).toPromise().then((res) => {
       this.myUserItem = res;
     });
 
     console.log(e.detail.value);
 
     // Send an http request //
-    this.http.getNetworkUserItems(segment, '5cf330860ffe101b48a0fcc4', this.itemsPerRequest, this.page).toPromise().then((res) => {
+    this.http.getNetworkUserItems(segment, 1, this.itemsPerRequest, this.page).toPromise().then((res) => {
 
       // So that if the user swaps segments fast the list will not populate unless //
       // the current segment (this.segment) is the same as the segment requested (segment) //

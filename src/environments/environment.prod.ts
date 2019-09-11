@@ -1,4 +1,4 @@
-import { Env } from './env.interface';
+import { Env } from './env.interface'; // tslint:disable-line
 
 export const environment: Env = {
   production: true,

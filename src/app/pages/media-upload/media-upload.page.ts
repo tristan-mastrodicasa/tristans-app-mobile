@@ -5,6 +5,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 
 import { GlobalStore } from 'state/global.store';
 import { BackendApiService } from 'services/backend-api/backend-api.service';
+import { LoadingService } from 'services/loading/loading.service';
 
 @Component({
   selector: 'app-media-upload',
@@ -27,6 +28,7 @@ export class MediaUploadPage implements OnInit {
     private filePath: FilePath,
     private globalStore: GlobalStore,
     private http: BackendApiService,
+    private loadingService: LoadingService,
   ) { }
 
   /**
@@ -89,12 +91,15 @@ export class MediaUploadPage implements OnInit {
     if (this.localImagePath != null) {
       console.log('here');
 
+      this.loadingService.presentLoading();
       this.http.uploadCanvas(this.localImagePath, this.description).then(
           (res) => {
             console.log(res);
+            this.loadingService.closeLoading();
           },
           (err) => {
             console.log(err);
+            this.loadingService.closeLoading();
           },
       );
 

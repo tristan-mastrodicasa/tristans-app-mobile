@@ -12,6 +12,7 @@ import { BackendApiService } from './backend-api/backend-api.service'; //tslint:
 import { ImposterServerService } from './backend-api/imposter-server.service'; //tslint:disable-line
 import { AuthService } from './auth/auth.service'; //tslint:disable-line
 import { HelpersService } from './helpers/helpers.service'; //tslint:disable-line
+import { LoadingService } from './loading/loading.service'; //tslint:disable-line
 
 import { environment } from 'environments/environment';
 
@@ -20,6 +21,7 @@ import { environment } from 'environments/environment';
     BackendApiService,
     AuthService,
     HelpersService,
+    LoadingService,
     FileTransfer,
   ],
   imports: [

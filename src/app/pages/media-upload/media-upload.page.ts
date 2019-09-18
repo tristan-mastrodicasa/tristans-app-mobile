@@ -7,6 +7,8 @@ import { GlobalStore } from 'state/global.store';
 import { BackendApiService } from 'services/backend-api/backend-api.service';
 import { LoadingService } from 'services/loading/loading.service';
 
+import { canvasImageConfig } from 'configs/canvas-image.config';
+
 @Component({
   selector: 'app-media-upload',
   templateUrl: './media-upload.page.html',
@@ -51,11 +53,13 @@ export class MediaUploadPage implements OnInit {
   public selectCanvasPicture() {
 
     const options: CameraOptions = {
-      quality: 50,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
+      quality: canvasImageConfig.quality,
+      destinationType: this.camera.DestinationType[canvasImageConfig.destinationType],
+      encodingType: this.camera.EncodingType[canvasImageConfig.encodingType],
+      mediaType: this.camera.MediaType[canvasImageConfig.mediaType],
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      targetHeight: canvasImageConfig.targetHeight,
+      targetWidth: canvasImageConfig.targetWidth,
     };
 
     this.camera.getPicture(options).then((imageData) => {

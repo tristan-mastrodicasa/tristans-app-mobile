@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 import { GlobalStore } from 'state/global.store';
+import { canvasImageConfig } from 'configs/canvas-image.config';
 
 @Component({
   selector: 'app-tabs',
@@ -25,11 +26,13 @@ export class TabsPage {
       if (hasToken) {
 
         const options: CameraOptions = {
-          quality: 50,
-          destinationType: this.camera.DestinationType.FILE_URI,
-          encodingType: this.camera.EncodingType.JPEG,
-          mediaType: this.camera.MediaType.PICTURE,
+          quality: canvasImageConfig.quality,
+          destinationType: this.camera.DestinationType[canvasImageConfig.destinationType],
+          encodingType: this.camera.EncodingType[canvasImageConfig.encodingType],
+          mediaType: this.camera.MediaType[canvasImageConfig.mediaType],
           sourceType: this.camera.PictureSourceType.CAMERA,
+          targetHeight: canvasImageConfig.targetHeight,
+          targetWidth: canvasImageConfig.targetWidth,
         };
 
         this.camera.getPicture(options).then(

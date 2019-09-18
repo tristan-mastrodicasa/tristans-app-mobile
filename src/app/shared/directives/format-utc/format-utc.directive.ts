@@ -19,7 +19,7 @@ export class FormatUtcDirective {
    * @param  previous Last utc time (utc in the past)
    * @return          A string describing the time passed in human readable format
    */
-  public timeDifference(current: number, previous: number) {
+  public timeDifference(current: number, previous: number): string {
 
     const msPerMinute = 60 * 1000;
     const msPerHour = msPerMinute * 60;
@@ -30,7 +30,7 @@ export class FormatUtcDirective {
     const elapsed = current - previous;
 
     if (elapsed < msPerMinute) {
-      return `${Math.round(elapsed / 1000)} seconds ago`;
+      return 'Just Now';
     }  if (elapsed < msPerHour) {
       return `${Math.round(elapsed / msPerMinute)} minutes ago`;
     }  if (elapsed < msPerDay) {

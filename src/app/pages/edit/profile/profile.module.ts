@@ -8,7 +8,7 @@ import { Crop } from '@ionic-native/crop/ngx';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProfilePage } from './profile.page'; //tslint:disable-line
+import { ProfilePage } from './profile.page';
 
 import { ComponentsModule } from 'components/components.module';
 

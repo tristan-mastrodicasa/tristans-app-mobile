@@ -7,12 +7,12 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { AppComponent } from './app.component'; //tslint:disable-line
-import { AppRoutingModule } from './app-routing.module'; //tslint:disable-line
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
-import { GlobalStore } from './state/global.store'; //tslint:disable-line
-import { ComponentsModule } from './components/components.module'; //tslint:disable-line
-import { ServicesModule } from './services/services.module'; //tslint:disable-line
+import { GlobalStore } from './state/global.store';
+import { ComponentsModule } from './components/components.module';
+import { ServicesModule } from './services/services.module';
 
 @NgModule({
   declarations: [AppComponent],

@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MemeCreatePage } from './meme-create.page'; //tslint:disable-line
+import { MemeCreatePage } from './meme-create.page';
 
 import { ServicesModule } from 'services/services.module';
 import { DynamicScriptLoaderService } from 'services/dynamic-script-loader/dynamic-script-loader.service';

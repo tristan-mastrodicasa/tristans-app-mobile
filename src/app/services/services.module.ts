@@ -8,11 +8,11 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { LoginPageModule } from 'modals/log-in/log-in.module';
 
-import { BackendApiService } from './backend-api/backend-api.service'; //tslint:disable-line
-import { ImposterServerService } from './backend-api/imposter-server.service'; //tslint:disable-line
-import { AuthService } from './auth/auth.service'; //tslint:disable-line
-import { HelpersService } from './helpers/helpers.service'; //tslint:disable-line
-import { LoadingService } from './loading/loading.service'; //tslint:disable-line
+import { BackendApiService } from './backend-api/backend-api.service';
+import { ImposterServerService } from './backend-api/imposter-server.service';
+import { AuthService } from './auth/auth.service';
+import { HelpersService } from './helpers/helpers.service';
+import { LoadingService } from './loading/loading.service';
 
 import { environment } from 'environments/environment';
 

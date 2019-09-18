@@ -1,5 +1,5 @@
 {
-  "extends": ["../tslint.json", "tslint-config-airbnb"],
+  "extends": ["../tslint.json", "./tslint.override.json", "tslint-config-airbnb"],
   "linterOptions": {
       "exclude": [
           "**/*.spec.ts"
@@ -36,7 +36,6 @@
       }
     ],
     "member-access": true,
-    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
-    "no-relative-imports": true
+    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}]
   }
 }

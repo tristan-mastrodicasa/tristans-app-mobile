@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FindUsersPage } from './find-users.page'; //tslint:disable-line
+import { FindUsersPage } from './find-users.page';
 
 import { ComponentsModule } from 'components/components.module';
 

@@ -96,7 +96,7 @@ export class MediaUploadPage implements OnInit {
         (res) => {
           this.loadingService.closeLoading();
 
-          if (res[0]) this.loadingService.presentError(res[0].detail);
+          if (res[0]) this.loadingService.presentError(res[0].detail); /** @todo find a less hackable way to check type */
           else console.log(res);
         },
       );

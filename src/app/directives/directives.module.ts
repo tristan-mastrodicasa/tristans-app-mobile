@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FormatNumberDirective } from './format-number/format-number.directive'; // tslint:disable-line
-import { FormatUtcDirective } from './format-utc/format-utc.directive'; // tslint:disable-line
+import { FormatNumberDirective } from './format-number/format-number.directive';
+import { FormatUtcDirective } from './format-utc/format-utc.directive';
 
 @NgModule({
   declarations: [FormatNumberDirective, FormatUtcDirective],

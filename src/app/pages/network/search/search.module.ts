@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SearchPage } from './search.page'; //tslint:disable-line
+import { SearchPage } from './search.page';
 
 import { ComponentsModule } from 'components/components.module';
 

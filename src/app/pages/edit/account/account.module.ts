@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AccountPage } from './account.page'; //tslint:disable-line
+import { AccountPage } from './account.page';
 
 import { ComponentsModule } from 'components/components.module';
 import { ServicesModule } from 'services/services.module';

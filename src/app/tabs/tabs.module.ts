@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Camera } from '@ionic-native/camera/ngx';
 
-import { TabsPageRoutingModule } from './tabs.router.module'; //tslint:disable-line
-import { TabsPage } from './tabs.page'; //tslint:disable-line
+import { TabsPageRoutingModule } from './tabs.router.module';
+import { TabsPage } from './tabs.page';
 
 import { ServicesModule } from 'services/services.module';
 

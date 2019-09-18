@@ -8,7 +8,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MediaUploadPage } from './media-upload.page'; //tslint:disable-line
+import { MediaUploadPage } from './media-upload.page';
 
 import { ComponentsModule } from 'components/components.module';
 import { ServicesModule } from 'services/services.module';

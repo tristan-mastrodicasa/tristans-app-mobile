@@ -135,7 +135,7 @@ export class BackendApiService {
    * @return          Canvas card
    */
   public getCanvasById(canvasId: number): Observable<ContentCard> {
-    return this.http.get<ContentCard>(`${this.apiUrl}canvases/${canvasId}`);
+    return this.http.get<ContentCard>(`${environment.serverUrl}api/canvas/${canvasId}`);
   }
 
   /**

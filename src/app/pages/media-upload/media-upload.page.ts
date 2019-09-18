@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
+import { Router } from '@angular/router';
 
 import { GlobalStore } from 'state/global.store';
 import { BackendApiService } from 'services/backend-api/backend-api.service';
 import { LoadingService } from 'services/loading/loading.service';
 
 import { canvasImageConfig } from 'configs/canvas-image.config';
+import { CanvasUploaded } from 'shared/models';
 
 @Component({
   selector: 'app-media-upload',
@@ -31,6 +33,7 @@ export class MediaUploadPage implements OnInit {
     private globalStore: GlobalStore,
     private http: BackendApiService,
     private loadingService: LoadingService,
+    private router: Router,
   ) { }
 
   /**
@@ -101,8 +104,16 @@ export class MediaUploadPage implements OnInit {
           (res) => {
             this.loadingService.closeLoading();
 
-            if (res[0]) this.loadingService.presentError(res[0].detail); /** @todo find a less hackable way to check type */
-            else console.log(res);
+            if (res[0]) {
+
+              this.loadingService.presentError(res[0].detail); /** @todo find a less hackable way to check type */
+
+            } else {
+
+              const canvasInfo = res as CanvasUploaded;
+              this.router.navigate(['/canvas', canvasInfo.canvasId]);
+
+            }
           },
         );
 

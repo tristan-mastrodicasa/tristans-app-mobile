@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 import { ContentCard } from 'shared/models';
 
@@ -7,12 +7,19 @@ import { ContentCard } from 'shared/models';
   templateUrl: './content-card.component.html',
   styleUrls: ['./content-card.component.scss'],
 })
-export class ContentCardComponent {
+export class ContentCardComponent implements OnInit {
 
   @Input() public cardData: ContentCard;
   @Input() public cardView: 'default' | 'canvas-view' = 'default';
 
   constructor(private actionSheetController: ActionSheetController) { }
+
+  /**
+   * Initialize the description
+   */
+  public ngOnInit() {
+    if (!this.cardData.description) this.cardData.description = 'No description';
+  }
 
   /**
    * Present the additional actions for canvas cards

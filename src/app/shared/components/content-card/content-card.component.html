@@ -1,19 +1,20 @@
 <div class="c-card" [class.c-card-bottom-margin]="cardView != 'canvas-view'">
 
-  <div *ngIf="cardView != 'canvas-view'" class="c-header clearfix">
+  <div class="c-header clearfix">
     <div class="c-header-avatar">
       <img class="avatar-primary" src="{{ cardData.users.primary.photo }}">
       <img *ngIf="cardData.type == 'meme'" class="avatar-secondary" src="{{ cardData.users.secondary.photo }}">
     </div>
 
-    <div class="c-header-action" (click)="presentContentCardActions()">
+    <div *ngIf="cardView != 'canvas-view'" class="c-header-action" (click)="presentContentCardActions()">
       <ion-icon class="more-icon" name="more" mode="ios"></ion-icon>
     </div>
 
     <div class="c-header-info">
       <div class="c-header-info-text-bar"><b>{{ cardData.users.primary.firstName }} </b><span class="light">@{{ cardData.users.primary.username }}</span></div>
       <div *ngIf="cardData.type == 'meme'" class="c-header-info-text-bar"><span class="light">{{ cardData.users.secondary.firstName }} @{{ cardData.users.secondary.username }}</span></div>
-      <div *ngIf="cardData.type == 'canvas'" class="c-header-info-text-bar"><span class="light"><ion-icon class="alert-icon" name="information-circle-outline"></ion-icon>&nbsp;Closed</span></div>
+      <div *ngIf="cardData.type == 'canvas' && cardView != 'canvas-view'" class="c-header-info-text-bar"><span class="light"><ion-icon class="alert-icon" name="information-circle-outline"></ion-icon>&nbsp;Closed</span></div>
+      <div *ngIf="cardView == 'canvas-view'" class="c-header-info-text-bar">{{ cardData.description }}</div>
     </div>
 
 

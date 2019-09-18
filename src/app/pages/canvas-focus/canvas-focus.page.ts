@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { BackendApiService } from 'services/backend-api/backend-api.service';
-import { ContentCard } from 'models/data.types';
+import { ContentCard } from 'shared/models';
 
 @Component({
   selector: 'app-canvas-focus',

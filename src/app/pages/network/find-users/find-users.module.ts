@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { FindUsersPage } from './find-users.page';
 
-import { ComponentsModule } from 'components/components.module';
+import { ComponentsModule } from 'shared/components/components.module';
 
 const routes: Routes = [
   {

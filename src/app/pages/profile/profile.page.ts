@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { BackendApiService } from 'services/backend-api/backend-api.service';
-import { Profile, ContentCard } from 'models/data.types';
+import { Profile, ContentCard } from 'shared/models';
 import { GlobalStore } from 'state/global.store';
 
 @Component({

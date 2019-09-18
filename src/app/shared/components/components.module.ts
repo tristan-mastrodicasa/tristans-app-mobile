@@ -8,7 +8,7 @@ import { BackButtonComponent } from './interface/back-button/back-button.compone
 
 import { ContentCardComponent } from './content-card/content-card.component';
 import { UserItemComponent } from './user-item/user-item.component';
-import { DirectivesModule } from 'directives/directives.module';
+import { DirectivesModule } from 'shared/directives/directives.module';
 
 @NgModule({
   imports: [

@@ -8,7 +8,7 @@ import { BackendApiService } from 'services/backend-api/backend-api.service';
 import { LoadingService } from 'services/loading/loading.service';
 import { environment } from 'environments/environment';
 import { GlobalStore } from 'state/global.store';
-import { Token } from 'models/response.interfaces';
+import { Token } from 'shared/models';
 
 @Component({
   selector: 'app-log-in',

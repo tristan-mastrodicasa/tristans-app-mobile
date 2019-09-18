@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CanvasFocusPage } from './canvas-focus.page';
 
-import { ComponentsModule } from 'components/components.module';
+import { ComponentsModule } from 'shared/components/components.module';
 import { ServicesModule } from 'services/services.module';
 
 const routes: Routes = [

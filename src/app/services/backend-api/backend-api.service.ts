@@ -4,8 +4,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 
 import { Observable } from 'rxjs';
 
-import { Profile, UserItem, ContentCard } from 'models/data.types';
-import { Error, Token, CanvasUploaded } from 'models/response.interfaces';
+import { Profile, UserItem, ContentCard } from 'shared/models';
+import { Error, Token, CanvasUploaded } from 'shared/models';
 import { GlobalStore } from 'state/global.store';
 
 import { environment } from 'environments/environment';

@@ -39,7 +39,6 @@ export class MemeGeneratorComponent implements OnChanges {
 
     $('#meme').memeGenerator('destroy');
 
-     /** @todo fix the boldness of the meme text */
     $('#meme').memeGenerator({
       onInit: () => console.log('initilized'),
       useBootstrap: true,

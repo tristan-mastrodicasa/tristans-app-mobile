@@ -27,10 +27,10 @@
 		this.settings = $.extend(true, {}, {
 			defaultTextStyle: {
 				color: "#FFFFFF",
-				size: 42,
+				size: 100,
 				lineHeight: 1.2,
 				font: "Impact, Arial",
-				style: "normal",
+				style: "bold",
 				forceUppercase: true,
 
 				borderColor: "#000000",

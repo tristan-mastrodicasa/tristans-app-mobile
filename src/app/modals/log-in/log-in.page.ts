@@ -59,24 +59,28 @@ export class LogInPage {
         console.log(res.serverAuthCode);
 
         // Send the authtoken to the backend to confirm and collect jwt //
-        this.loadingService.presentLoading();
-        this.http.googleLogIn(res.serverAuthCode).toPromise().then(
+        this.loadingService.presentLoading().then(() => {
 
-          // Login successful //
-          (authRes: Token) => {
+          this.http.googleLogIn(res.serverAuthCode).toPromise().then(
 
-            // Update client state with Jwt //
-            console.log(authRes.token);
-            this.globalStore.setToken(authRes.token);
-            this.loadingService.closeLoading();
+            // Login successful //
+            (authRes: Token) => {
 
-          },
+              // Update client state with Jwt //
+              console.log(authRes.token);
+              this.globalStore.setToken(authRes.token);
+              this.loadingService.closeLoading();
 
-          // Login failed //
-          (err) => {
-            this.loadingService.closeLoading();
-            this.loadingService.presentError(err.message);
-          });
+            },
+
+            // Login failed //
+            (err) => {
+              console.log(err);
+              this.loadingService.closeLoading();
+              this.loadingService.presentError(err.message);
+            });
+
+        });
 
       },
     ).catch(_ => this.loadingService.presentError('There was an issue reaching Google'));

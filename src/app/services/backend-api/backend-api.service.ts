@@ -35,23 +35,7 @@ export class BackendApiService {
    * @return Observable<any> (Response from the server)
    */
   public googleLogIn(authCode: string): Observable<Token> {
-    return this.http.post<Token>(`${environment.serverUrl}auth/google/authcode`, { code: authCode });
-  }
-
-  /**
-   * Test
-   */
-  public test(): Observable<{ msg: string }> {
-    return this.http.get<{ msg: string }>(`${environment.serverUrl}auth/test`, { headers: this.authHeaders() });
-  }
-
-  /**
-   * Register the user with the server
-   * @param  accessToken Access token for facebook
-   * @return Observable<any> (Response from the server)
-   */
-  public signUp(accessToken: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}authentication/signup`, { access_token: accessToken });
+    return this.http.post<Token>(`${this.apiUrl}auth/google/authcode`, { code: authCode });
   }
 
   /**
@@ -60,7 +44,7 @@ export class BackendApiService {
    * @return    Array of user profiles
    */
   public getProfileById(id: number): Observable<Profile> {
-    return this.http.get<Profile>(`${this.apiUrl}profiles/${id}`);
+    return this.http.get<Profile>(`api/profile/${id}`);
   }
 
   /**
@@ -78,7 +62,7 @@ export class BackendApiService {
       .set('results', results.toString())
       .set('page', page.toString());
 
-    return this.http.get<UserItem[]>(`${this.apiUrl}users/${userId}/network`, { params });
+    return this.http.get<UserItem[]>(`api/user/${userId}/network`, { params });
   }
 
   /**
@@ -87,7 +71,7 @@ export class BackendApiService {
    * @return        User Item
    */
   public getUserItemById(userId: number): Observable<UserItem> {
-    return this.http.get<UserItem>(`${this.apiUrl}users/${userId}`);
+    return this.http.get<UserItem>(`api/user/${userId}`);
   }
 
   /**
@@ -107,7 +91,7 @@ export class BackendApiService {
       .set('results', results.toString())
       .set('page', page.toString());
 
-    return this.http.get<ContentCard[]>(`${this.apiUrl}content`,  { params });
+    return this.http.get<ContentCard[]>('api/content',  { params });
   }
 
   /**
@@ -125,7 +109,7 @@ export class BackendApiService {
       .set('results', results.toString())
       .set('page', page.toString());
 
-    return this.http.get<ContentCard[]>(`${this.apiUrl}canvases/${canvasId}/memes`, { params });
+    return this.http.get<ContentCard[]>(`api/canvas/${canvasId}/memes`, { params });
 
   }
 
@@ -135,7 +119,7 @@ export class BackendApiService {
    * @return          Canvas card
    */
   public getCanvasById(canvasId: number): Observable<ContentCard> {
-    return this.http.get<ContentCard>(`${environment.serverUrl}canvas/${canvasId}`);
+    return this.http.get<ContentCard>(`${this.apiUrl}canvas/${canvasId}`);
   }
 
   /**
@@ -145,6 +129,11 @@ export class BackendApiService {
    * @return             Indication of success
    */
   public async uploadCanvas(filePath: string, description?: string): Promise<CanvasUploaded | Error[]> {
+
+    if (environment.serveFromCache) {
+      const canvas: CanvasUploaded = { canvasId: 5 };
+      return canvas; // Cannot serve from in memory DB since file transfer is not intetcepted
+    }
 
     const fileTransfer: FileTransferObject = this.fileTransfer.create();
 
@@ -183,7 +172,7 @@ export class BackendApiService {
       .set('results', results.toString())
       .set('page', page.toString());
 
-    return this.http.get<UserItem[]>(`${this.apiUrl}search/users`, { params });
+    return this.http.get<UserItem[]>('api/search/users', { params });
 
   }
 

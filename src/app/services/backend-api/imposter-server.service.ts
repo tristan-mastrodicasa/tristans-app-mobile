@@ -1,15 +1,49 @@
 import { Injectable } from '@angular/core';
 
-import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl } from 'angular-in-memory-web-api';
-
-import { ContentCard, UserItem, Profile, EContentType } from 'shared/models';
+import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl, STATUS, ResponseOptions, RequestInfo } from 'angular-in-memory-web-api';
+import { ContentCard, UserItem, Profile, EContentType, Token } from 'shared/models';
 
 @Injectable()
 export class ImposterServerService implements InMemoryDbService {
 
+  private postGoogleAuthcode: Token = {
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTY3NTA3NzIyLCJleHAiOjE1NzAwOTk3MjJ9.CSWF6vvdt8z4rFiZ-jmqdysbav9_zOyhiTpgOR1Sqt8',
+  };
+
+  /**
+   * Intercept post methods
+   * @param  requestInfo Describes the request
+   * @return             The appropiate data simulating a response from a real server
+   */
+  public post(requestInfo: RequestInfo) {
+    console.log('posting lol -------');
+    let data = {};
+
+    const urlParts: string[] = requestInfo.url.split('?')[0].split('/');
+
+    if (urlParts[1] === 'auth') {
+      if (urlParts[2] === 'google') {
+        if (urlParts[3] === 'authcode') {
+          console.log('made it to authcode route');
+          data = this.postGoogleAuthcode;
+        }
+      }
+    }
+
+    const options: ResponseOptions = {
+      body: data,
+      status: STATUS.OK,
+      headers: requestInfo.headers,
+      url: requestInfo.url,
+    };
+
+    // use createResponse$ to return proper response
+    return requestInfo.utils.createResponse$(() => options);
+  }
+
   /**
    * Intercept url's and modifies requests as necessary, this allows the backend-service
-   * to format requests the same way it would when requesting from a live server
+   * to format request url's the same way it would when requesting from a live server
    */
   public parseRequestUrl(url: string, requestInfoUtils: RequestInfoUtilities): ParsedRequestUrl {
 
@@ -20,7 +54,7 @@ export class ImposterServerService implements InMemoryDbService {
     const urlParts: string[] = url.split('?')[0].split('/');
 
     // If the api url is accessing the user resource than format as follows //
-    if (urlParts[1] === 'users') {
+    if (urlParts[1] === 'user') {
       const id: string = urlParts[2];
 
       if (urlParts[3] === 'network') {
@@ -33,12 +67,17 @@ export class ImposterServerService implements InMemoryDbService {
         return requestInfoUtils.parseRequestUrl(newUrl);
 
       }
+
     } else if (urlParts[1] === 'content') {
       return requestInfoUtils.parseRequestUrl('api/contentCardList');
-    } else if (urlParts[1] === 'canvases') {
+    } else if (urlParts[1] === 'canvas') {
+
       if (urlParts[3] === 'memes') {
         return requestInfoUtils.parseRequestUrl('api/contentCardList');
       }
+
+      return requestInfoUtils.parseRequestUrl(`api/contentCardList/${urlParts[2]}`);
+
     } else if (urlParts[1] === 'search') {
       if (urlParts[2] === 'users') {
         return requestInfoUtils.parseRequestUrl('api/searchUsers');
@@ -47,12 +86,13 @@ export class ImposterServerService implements InMemoryDbService {
 
     return requestInfoUtils.parseRequestUrl(url);
   }
+
   /**
    * Create the database for the imposter server
    */
   public createDb() {
 
-    const profiles: Profile[] = [
+    const profile: Profile[] = [
       { id: 1, firstName: 'Tristan', username: 'ghoststeam217', influence: 7089, followers: 31, contentNumber: 70, photo: '/assets/svg-img/default-profile-picture.svg' },
       { id: 2, firstName: 'Jake', username: 'user12143', influence: 33124, followers: 3221, contentNumber: 310, photo: '/assets/img/test/testi1.jpg' },
       { id: 3, firstName: 'Malinda', username: 'user2441212', influence: 223, followers: 1, contentNumber: 70, photo: '/assets/img/test/testi2.jpg' },
@@ -60,7 +100,7 @@ export class ImposterServerService implements InMemoryDbService {
       { id: 5, firstName: 'Chris', username: 'wutisdis', influence: 14, followers: 61, contentNumber: 75, photo: '/assets/img/test/testi2.jpg' },
     ];
 
-    const users: UserItem[] = [
+    const user: UserItem[] = [
       { id: 3, firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg', activeCanvases: 1 },
       { id: 5, firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg', activeCanvases: 4 },
       { id: 2, firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg', activeCanvases: 1 },
@@ -125,7 +165,7 @@ export class ImposterServerService implements InMemoryDbService {
 
     ];
 
-    return { profiles, users, followers, following, follow_backs, contentCardList, canvases, searchUsers };
+    return { profile, user, followers, following, follow_backs, contentCardList, canvases, searchUsers };
   }
 
 }

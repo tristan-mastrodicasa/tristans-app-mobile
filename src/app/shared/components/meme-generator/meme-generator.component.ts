@@ -32,10 +32,9 @@ export class MemeGeneratorComponent implements OnChanges {
 
   /**
    * Link the meme generator
+   * @todo Scale default text depending on the size of the image
    */
   private linkMemeGenerator() {
-
-    console.log($('#meme'));
 
     $('#meme').memeGenerator('destroy');
 

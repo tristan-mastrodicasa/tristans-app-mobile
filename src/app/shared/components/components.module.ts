@@ -8,7 +8,10 @@ import { BackButtonComponent } from './interface/back-button/back-button.compone
 
 import { ContentCardComponent } from './content-card/content-card.component';
 import { UserItemComponent } from './user-item/user-item.component';
-import { DirectivesModule } from 'shared/directives/directives.module';
+import { MemeGeneratorComponent } from './meme-generator/meme-generator.component';
+import { DirectivesModule } from 'shared/directives/directives.module'; /** @todo wtf is this doing in the parent directory?? */
+
+import { DynamicScriptLoaderService } from 'services/dynamic-script-loader/dynamic-script-loader.service';
 
 @NgModule({
   imports: [
@@ -17,17 +20,22 @@ import { DirectivesModule } from 'shared/directives/directives.module';
     DirectivesModule,
     CommonModule,
   ],
+  providers: [
+    DynamicScriptLoaderService,
+  ],
   declarations: [
     PrimaryHeaderComponent,
     BackButtonComponent,
     ContentCardComponent,
     UserItemComponent,
+    MemeGeneratorComponent,
   ],
   exports: [
     PrimaryHeaderComponent,
     BackButtonComponent,
     ContentCardComponent,
     UserItemComponent,
+    MemeGeneratorComponent,
   ],
 })
 export class ComponentsModule { }

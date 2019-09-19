@@ -8,7 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { MemeCreatePage } from './meme-create.page';
 
 import { ServicesModule } from 'services/services.module';
-import { DynamicScriptLoaderService } from 'services/dynamic-script-loader/dynamic-script-loader.service';
+import { ComponentsModule } from 'shared/components/components.module';
 
 const routes: Routes = [
   {
@@ -18,15 +18,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  providers: [
-    DynamicScriptLoaderService,
-  ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
     ServicesModule,
+    ComponentsModule,
   ],
   declarations: [MemeCreatePage],
 })

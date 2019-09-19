@@ -14,7 +14,9 @@
 
       <ion-row class="ion-padding-vertical">
 
-        <app-user-item></app-user-item>
+        <app-user-item *ngFor="let user of userItemList"
+          [userItem]="user"
+          class="width-full"></app-user-item>
 
       </ion-row>
 

@@ -169,4 +169,22 @@ export class BackendApiService {
 
   }
 
+  /**
+   * Search users in the database
+   * @param  query    String to query the database with
+   * @param  results  How many user items to return per request
+   * @param  page     Pagnation: How many useritems in we are (results*page)
+   * @return          List of users
+   */
+  public searchUsers(query: string, results: number, page: number): Observable<UserItem[]> {
+
+    const params: HttpParams = new HttpParams()
+      .set('query', query)
+      .set('results', results.toString())
+      .set('page', page.toString());
+
+    return this.http.get<UserItem[]>(`${environment.serverUrl}api/search/users`, { params });
+
+  }
+
 }

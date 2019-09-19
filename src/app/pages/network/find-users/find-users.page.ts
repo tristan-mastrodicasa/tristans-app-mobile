@@ -10,7 +10,7 @@ import { UserItem } from 'shared/models';
 })
 export class FindUsersPage implements OnInit {
 
-  public userItemList: UserItem;
+  public userItemList: UserItem[];
   private page = 1;
   private results = 20;
 
@@ -22,7 +22,7 @@ export class FindUsersPage implements OnInit {
   public ngOnInit() {
 
     this.http.searchUsers('*', this.results, this.page).toPromise().then((res) => {
-      console.log(res);
+      this.userItemList = res;
     });
 
   }

@@ -10,9 +10,11 @@
     <p><span class="light">@{{ userItem.username }}</span></p>
   </ion-label>
 
-  <ion-note slot="end" class="user-item-score">
+  <ion-note *ngIf="itemType == 'default'" slot="end" class="user-item-score">
     <span [appFormatNumber]="userItem.influence"></span>&nbsp;<ion-icon name="star" class="score-star"></ion-icon>
   </ion-note>
 
+  <ion-button *ngIf="itemType == 'search' && !following" slot="end" size="small" color="primary" (click)="follow($event)">Follow</ion-button>
+  <ion-button *ngIf="itemType == 'search' && following" slot="end" size="small" color="light" (click)="unfollow($event)">Following</ion-button>
 
 </ion-item>

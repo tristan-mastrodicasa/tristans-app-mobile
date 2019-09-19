@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl } from 'angular-in-memory-web-api';
 
-import { ContentCard, UserItem, Profile } from 'shared/models';
-import { EContentType } from 'shared/models';
+import { ContentCard, UserItem, Profile, EContentType } from 'shared/models';
 
 @Injectable()
 export class ImposterServerService implements InMemoryDbService {
@@ -39,6 +38,10 @@ export class ImposterServerService implements InMemoryDbService {
     } else if (urlParts[1] === 'canvases') {
       if (urlParts[3] === 'memes') {
         return requestInfoUtils.parseRequestUrl('api/contentCardList');
+      }
+    } else if (urlParts[1] === 'search') {
+      if (urlParts[2] === 'users') {
+        return requestInfoUtils.parseRequestUrl('api/searchUsers');
       }
     }
 
@@ -78,6 +81,14 @@ export class ImposterServerService implements InMemoryDbService {
       { id: 3, firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg', activeCanvases: 1 },
     ];
 
+    const searchUsers: UserItem[] = [
+      { id: 3, firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg' },
+      { id: 5, firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg' },
+      { id: 2, firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg' },
+      { id: 1, firstName: 'Tristan', username: 'ghoststeam217', influence: 7089, photo: '/assets/svg-img/default-profile-picture.svg' }, // Client user always at position 0
+      { id: 4, firstName: 'Johanne', username: 'user9272311', influence: 11, photo: '/assets/img/test/testi3.jpg' },
+    ];
+
     const contentCardList: ContentCard[] = [
       { id: 1, cid: 2, type: EContentType.Meme, users: {
         primary: { id: 1, firstName: 'Tristan', username: 'ghoststeam217', photo: '/assets/svg-img/default-profile-picture.svg' },
@@ -114,7 +125,7 @@ export class ImposterServerService implements InMemoryDbService {
 
     ];
 
-    return { profiles, users, followers, following, follow_backs, contentCardList, canvases };
+    return { profiles, users, followers, following, follow_backs, contentCardList, canvases, searchUsers };
   }
 
 }

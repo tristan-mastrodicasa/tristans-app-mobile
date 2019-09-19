@@ -135,7 +135,7 @@ export class BackendApiService {
    * @return          Canvas card
    */
   public getCanvasById(canvasId: number): Observable<ContentCard> {
-    return this.http.get<ContentCard>(`${environment.serverUrl}api/canvas/${canvasId}`);
+    return this.http.get<ContentCard>(`${environment.serverUrl}canvas/${canvasId}`);
   }
 
   /**
@@ -156,7 +156,7 @@ export class BackendApiService {
       },
     };
 
-    return fileTransfer.upload(filePath, `${environment.serverUrl}api/canvas/upload`, options).then(
+    return fileTransfer.upload(filePath, `${environment.serverUrl}canvas/upload`, options).then(
       (res) => {
         const canvasUploaded: CanvasUploaded = JSON.parse(res.response);
         return canvasUploaded;
@@ -183,7 +183,7 @@ export class BackendApiService {
       .set('results', results.toString())
       .set('page', page.toString());
 
-    return this.http.get<UserItem[]>(`${environment.serverUrl}api/search/users`, { params });
+    return this.http.get<UserItem[]>(`${this.apiUrl}search/users`, { params });
 
   }
 

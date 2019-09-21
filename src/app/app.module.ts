@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { GlobalStore } from './state/global.store';
-import { ComponentsModule } from './shared/components/components.module';
+import { SharedModule } from './shared/shared.module';
 import { ServicesModule } from './services/services.module';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { ServicesModule } from './services/services.module';
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    ComponentsModule,
+    SharedModule,
     ServicesModule,
   ],
   providers: [

@@ -10,7 +10,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ProfilePage } from './profile.page';
 
-import { ComponentsModule } from 'shared/components/components.module';
+import { SharedModule } from 'shared/shared.module';
 
 const routes: Routes = [
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule,
+    SharedModule,
   ],
   declarations: [ProfilePage],
 })

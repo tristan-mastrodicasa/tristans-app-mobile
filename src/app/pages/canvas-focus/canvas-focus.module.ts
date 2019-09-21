@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CanvasFocusPage } from './canvas-focus.page';
 
-import { ComponentsModule } from 'shared/components/components.module';
+import { SharedModule } from 'shared/shared.module';
 import { ServicesModule } from 'services/services.module';
 
 const routes: Routes = [
@@ -23,7 +23,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule,
+    SharedModule,
     ServicesModule,
   ],
   declarations: [CanvasFocusPage],

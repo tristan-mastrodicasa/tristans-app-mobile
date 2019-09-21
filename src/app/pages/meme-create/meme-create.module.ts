@@ -8,7 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { MemeCreatePage } from './meme-create.page';
 
 import { ServicesModule } from 'services/services.module';
-import { ComponentsModule } from 'shared/components/components.module';
+import { SharedModule } from 'shared/shared.module';
 
 const routes: Routes = [
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     ServicesModule,
-    ComponentsModule,
+    SharedModule,
   ],
   declarations: [MemeCreatePage],
 })

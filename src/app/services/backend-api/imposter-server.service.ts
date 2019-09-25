@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl, STATUS, ResponseOptions, RequestInfo } from 'angular-in-memory-web-api';
 import { ContentCard, UserItem, Profile, EContentType, Token } from 'shared/models';
 
+import { environment } from 'environments/environment';
+
 @Injectable()
 export class ImposterServerService implements InMemoryDbService {
 
@@ -16,29 +18,33 @@ export class ImposterServerService implements InMemoryDbService {
    * @return             The appropiate data simulating a response from a real server
    */
   public post(requestInfo: RequestInfo) {
-    console.log('posting lol -------');
-    let data = {};
 
-    const urlParts: string[] = requestInfo.url.split('?')[0].split('/');
+    if (environment.serveFromCache) {
+      console.log('posting lol -------');
+      let data = {};
 
-    if (urlParts[1] === 'auth') {
-      if (urlParts[2] === 'google') {
-        if (urlParts[3] === 'authcode') {
+      const urlParts: string[] = requestInfo.url.split('?')[0].split('/');
+
+      if (urlParts[1] === 'auth') {
+        if (urlParts[2] === 'google-authcode') {
           console.log('made it to authcode route');
           data = this.postGoogleAuthcode;
         }
       }
+
+      const options: ResponseOptions = {
+        body: data,
+        status: STATUS.OK,
+        headers: requestInfo.headers,
+        url: requestInfo.url,
+      };
+
+      // use createResponse$ to return proper response
+      return requestInfo.utils.createResponse$(() => options);
     }
 
-    const options: ResponseOptions = {
-      body: data,
-      status: STATUS.OK,
-      headers: requestInfo.headers,
-      url: requestInfo.url,
-    };
+    return null;
 
-    // use createResponse$ to return proper response
-    return requestInfo.utils.createResponse$(() => options);
   }
 
   /**

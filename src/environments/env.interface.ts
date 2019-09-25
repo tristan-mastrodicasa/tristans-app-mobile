@@ -6,6 +6,7 @@
 export interface Env {
   production: boolean;
   serveFromCache: boolean;
+  includeCache: boolean;
   serverUrl: string;
   google_client_id: string;
 }

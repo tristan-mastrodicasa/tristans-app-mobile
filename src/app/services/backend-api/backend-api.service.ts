@@ -10,6 +10,7 @@ import { GlobalStore } from 'state/global.store';
 import { environment } from 'environments/environment';
 
 /** @todo Add .pipe(catchError(this.handleError)); to all requests in the future */
+/** @todo reform the return data and url endpoints when finished with api */
 @Injectable()
 export class BackendApiService {
 
@@ -35,7 +36,7 @@ export class BackendApiService {
    * @return Observable<any> (Response from the server)
    */
   public googleLogIn(authCode: string): Observable<Token> {
-    return this.http.post<Token>(`${this.apiUrl}auth/google/authcode`, { code: authCode });
+    return this.http.post<Token>(`${this.apiUrl}auth/google-authcode`, { code: authCode });
   }
 
   /**

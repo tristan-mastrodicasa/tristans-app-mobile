@@ -27,7 +27,7 @@ import { environment } from 'environments/environment';
   imports: [
     CommonModule,
     HttpClientModule,
-    (environment.serveFromCache ? HttpClientInMemoryWebApiModule.forRoot(
+    (environment.includeCache ? HttpClientInMemoryWebApiModule.forRoot(
       ImposterServerService, { dataEncapsulation: false, delay: 900, passThruUnknownUrl: true },
     ) : []),
     IonicStorageModule.forRoot(),

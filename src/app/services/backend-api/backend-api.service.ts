@@ -4,7 +4,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 
 import { Observable } from 'rxjs';
 
-import { Profile, UserItem, ContentCard, Error, Token, CanvasUploaded } from 'shared/models';
+import { Profile, UserItem, ContentCard, HttpError, Token, CanvasUploaded } from 'shared/models';
 import { GlobalStore } from 'state/global.store';
 
 import { environment } from 'environments/environment';
@@ -129,7 +129,7 @@ export class BackendApiService {
    * @param  description Description of the canvas
    * @return             Indication of success
    */
-  public async uploadCanvas(filePath: string, description?: string): Promise<CanvasUploaded | Error[]> {
+  public async uploadCanvas(filePath: string, description?: string): Promise<CanvasUploaded | HttpError[]> {
 
     if (environment.serveFromCache) {
       const canvas: CanvasUploaded = { canvasId: 5 };
@@ -152,7 +152,7 @@ export class BackendApiService {
         return canvasUploaded;
       },
       (err) => {
-        const errors: Error[] = JSON.parse(err.body).errors;
+        const errors: HttpError[] = JSON.parse(err.body).errors;
         return errors;
       },
     );

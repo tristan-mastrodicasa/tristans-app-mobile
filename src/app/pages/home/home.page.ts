@@ -55,4 +55,12 @@ export class HomePage implements OnInit {
     this.globalStore.setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTY3NTA3NzIyLCJleHAiOjE1NzAwOTk3MjJ9.CSWF6vvdt8z4rFiZ-jmqdysbav9_zOyhiTpgOR1Sqt8');
   }
 
+  /**
+   * Log the user out of the application
+   */
+  public logOut() {
+    this.globalStore.removeToken();
+    // this.router.navigate(['app/home']);
+  }
+
 }

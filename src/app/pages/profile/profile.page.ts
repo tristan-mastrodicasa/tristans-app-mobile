@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { BackendApiService } from 'services/backend-api/backend-api.service';
-import { Profile, ContentCard } from 'shared/models';
+import { IUser, ContentCard } from 'shared/models';
 import { GlobalStore } from 'state/global.store';
 
 @Component({
@@ -18,7 +18,7 @@ export class ProfilePage implements OnInit {
   private page = 1;
 
   public ownProfile: boolean;
-  private profile: Profile = {
+  private profile: Partial<IUser> = {
     id: null,
     firstName: '',
     username: '',

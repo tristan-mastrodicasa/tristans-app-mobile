@@ -6,7 +6,7 @@ import { GlobalState } from './global.state';
 import { Store } from 'rxjs-observable-store';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-import { JwtContent } from 'shared/models';
+import { IJwt } from 'shared/models';
 
 /**
  * State Management Service
@@ -59,7 +59,7 @@ export class GlobalStore extends Store<GlobalState> {
    */
   public setToken(jwt: string) {
 
-    const jwtContent: JwtContent = this.jwt.decodeToken(jwt);
+    const jwtContent: IJwt = this.jwt.decodeToken(jwt);
 
     this.setState({
       ...this.state,

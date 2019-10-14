@@ -8,7 +8,6 @@ import { BackendApiService } from 'services/backend-api/backend-api.service';
 import { LoadingService } from 'services/loading/loading.service';
 import { environment } from 'environments/environment';
 import { GlobalStore } from 'state/global.store';
-import { Token } from 'shared/models';
 
 @Component({
   selector: 'app-log-in',
@@ -50,6 +49,7 @@ export class LogInPage {
 
   /**
    * Login with google OAuth2.0
+   * @todo Redirect to settings for user to update basic information
    */
   public signInWithGoogle() {
 
@@ -64,7 +64,7 @@ export class LogInPage {
           this.http.googleLogIn(res.serverAuthCode).toPromise().then(
 
             // Login successful //
-            (authRes: Token) => {
+            (authRes: { token: string }) => {
 
               // Update client state with Jwt //
               console.log(authRes.token);

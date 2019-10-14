@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 import { BackendApiService } from 'services/backend-api/backend-api.service';
-import { UserItem } from 'shared/models';
-// import { GlobalStore } from 'state/global.store';
+import { IUser } from 'shared/models';
+import { GlobalStore } from 'state/global.store';
 
 @Component({
   selector: 'app-users',
@@ -11,16 +11,16 @@ import { UserItem } from 'shared/models';
 })
 export class UsersPage {
 
-  public myUserItem: UserItem;
+  public myUserItem: Partial<IUser>;
   private segment: string;
 
-  private userItemList = [] as UserItem[];
+  private userItemList = [] as Partial<IUser>[];
   private itemsPerRequest = 6;
   private page = 1;
 
   constructor(
     private http: BackendApiService,
-    // private globalStore: GlobalStore
+    private globalStore: GlobalStore,
   ) { }
 
   /**
@@ -37,7 +37,8 @@ export class UsersPage {
     this.userItemList = [];
 
     // Refresh the user profile information //
-    this.http.getUserItemById(1).toPromise().then((res) => {
+    console.log(this.globalStore.state.userId);
+    this.http.getUserItemById(this.globalStore.state.userId).toPromise().then((res) => {
       this.myUserItem = res;
     });
 

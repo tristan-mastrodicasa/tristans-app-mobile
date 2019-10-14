@@ -9,7 +9,6 @@ import { BackendApiService } from 'services/backend-api/backend-api.service';
 import { LoadingService } from 'services/loading/loading.service';
 
 import { canvasImageConfig } from 'configs/canvas-image.config';
-import { CanvasUploaded } from 'shared/models';
 
 @Component({
   selector: 'app-media-upload',
@@ -110,7 +109,7 @@ export class MediaUploadPage implements OnInit {
 
             } else {
 
-              const canvasInfo = res as CanvasUploaded;
+              const canvasInfo = res as { canvasId: number };
               this.router.navigate(['/canvas', canvasInfo.canvasId]);
 
             }

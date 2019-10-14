@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UserItem } from 'shared/models';
+import { IUser } from 'shared/models';
 
 @Component({
   selector: 'app-user-item',
@@ -8,7 +8,7 @@ import { UserItem } from 'shared/models';
 })
 export class UserItemComponent {
 
-  @Input() public userItem: UserItem;
+  @Input() public userItem: Partial<IUser>;
   @Input() public itemType: 'default' | 'search' = 'default';
 
   public following = false;

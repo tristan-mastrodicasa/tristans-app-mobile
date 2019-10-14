@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
 import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl, STATUS, ResponseOptions, RequestInfo } from 'angular-in-memory-web-api';
-import { ContentCard, UserItem, Profile, EContentType, Token } from 'shared/models';
+import { ContentCard, IUser, Profile, EContentType } from 'shared/models';
 
 import { environment } from 'environments/environment';
 
 @Injectable()
 export class ImposterServerService implements InMemoryDbService {
 
-  private postGoogleAuthcode: Token = {
+  private postGoogleAuthcode = {
     token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTY3NTA3NzIyLCJleHAiOjE1NzAwOTk3MjJ9.CSWF6vvdt8z4rFiZ-jmqdysbav9_zOyhiTpgOR1Sqt8',
   };
 
@@ -53,6 +53,7 @@ export class ImposterServerService implements InMemoryDbService {
    */
   public parseRequestUrl(url: string, requestInfoUtils: RequestInfoUtilities): ParsedRequestUrl {
 
+    console.log('local');
     console.log(url);
 
     // Break the url into juicy bits //
@@ -74,9 +75,16 @@ export class ImposterServerService implements InMemoryDbService {
 
       }
 
-    } else if (urlParts[1] === 'content') {
+      const newUrl = `api/profile/${id}`;
+      return requestInfoUtils.parseRequestUrl(newUrl);
+
+    }
+
+    if (urlParts[1] === 'content') {
       return requestInfoUtils.parseRequestUrl('api/contentCardList');
-    } else if (urlParts[1] === 'canvas') {
+    }
+
+    if (urlParts[1] === 'canvas') {
 
       if (urlParts[3] === 'memes') {
         return requestInfoUtils.parseRequestUrl('api/contentCardList');
@@ -84,7 +92,9 @@ export class ImposterServerService implements InMemoryDbService {
 
       return requestInfoUtils.parseRequestUrl(`api/contentCardList/${urlParts[2]}`);
 
-    } else if (urlParts[1] === 'search') {
+    }
+
+    if (urlParts[1] === 'search') {
       if (urlParts[2] === 'users') {
         return requestInfoUtils.parseRequestUrl('api/searchUsers');
       }
@@ -106,7 +116,7 @@ export class ImposterServerService implements InMemoryDbService {
       { id: 5, firstName: 'Chris', username: 'wutisdis', influence: 14, followers: 61, contentNumber: 75, photo: '/assets/img/test/testi2.jpg' },
     ];
 
-    const user: UserItem[] = [
+    const user: Partial<IUser>[] = [
       { id: 3, firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg', activeCanvases: 1 },
       { id: 5, firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg', activeCanvases: 4 },
       { id: 2, firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg', activeCanvases: 1 },
@@ -114,20 +124,20 @@ export class ImposterServerService implements InMemoryDbService {
       { id: 4, firstName: 'Johanne', username: 'user9272311', influence: 11, photo: '/assets/img/test/testi3.jpg' },
     ];
 
-    const follow_backs: UserItem[]  = [ // tslint:disable-line
+    const follow_backs: Partial<IUser>[]  = [ // tslint:disable-line
       { id: 5, firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg', activeCanvases: 4 },
       { id: 2, firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg', activeCanvases: 1  },
     ];
 
-    const following: UserItem[] = [
+    const following: Partial<IUser>[] = [
       { id: 4, firstName: 'Johanne', username: 'user9272311', influence: 11, photo: '/assets/img/test/testi3.jpg' },
     ];
 
-    const followers: UserItem[] = [
+    const followers: Partial<IUser>[] = [
       { id: 3, firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg', activeCanvases: 1 },
     ];
 
-    const searchUsers: UserItem[] = [
+    const searchUsers: Partial<IUser>[] = [
       { id: 3, firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg' },
       { id: 5, firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg' },
       { id: 2, firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg' },
@@ -136,7 +146,7 @@ export class ImposterServerService implements InMemoryDbService {
     ];
 
     const contentCardList: ContentCard[] = [
-      { id: 1, cid: 2, type: EContentType.Meme, users: {
+      { id: 1, cid: 2, type: EContentType.MemeWithHost, users: {
         primary: { id: 1, firstName: 'Tristan', username: 'ghoststeam217', photo: '/assets/svg-img/default-profile-picture.svg' },
         secondary: { id: 5, firstName: 'Chris', username: 'wutisdis', photo: '/assets/img/test/testi2.jpg' },
       }, imagePath: 'https://www.roberthompson.co.uk/meme-app/meme.jpg', description: 'This is a description',  stars: 56, starred: false, utcTime: 1560082767243 },
@@ -145,12 +155,12 @@ export class ImposterServerService implements InMemoryDbService {
         primary: { id: 1, firstName: 'Tristan', username: 'ghoststeam217', photo: '/assets/svg-img/default-profile-picture.svg' },
       }, imagePath: 'https://assets.entrepreneur.com/content/3x2/2000/20180703190744-rollsafe-meme.jpeg?width=700&crop=2:1', description: 'Yo there',  stars: 100000, starred: false, utcTime: 1551072737432 },
 
-      { id: 3, cid: 2, type: EContentType.Meme, users: {
+      { id: 3, cid: 2, type: EContentType.MemeWithHost, users: {
         primary: { id: 1, firstName: 'Tristan', username: 'ghoststeam217', photo: '/assets/svg-img/default-profile-picture.svg' },
         secondary: { id: 5, firstName: 'Chris', username: 'wutisdis', photo: '/assets/img/test/testi2.jpg' },
       }, imagePath: 'https://amp.businessinsider.com/images/5b2b605b1ae6621d008b543e-750-563.jpg', description: 'More content lol',  stars: 114, starred: true, utcTime: 1541081490342 },
 
-      { id: 4, cid: 5, type: EContentType.Meme, users: {
+      { id: 4, cid: 5, type: EContentType.MemeWithHost, users: {
         primary: { id: 1, firstName: 'Tristan', username: 'ghoststeam217', photo: '/assets/svg-img/default-profile-picture.svg' },
         secondary: { id: 5, firstName: 'Chris', username: 'wutisdis', photo: '/assets/img/test/testi2.jpg' },
       }, imagePath: 'https://www.todaysparent.com/wp-content/uploads/2017/06/when-your-kid-becomes-a-meme-1024x576-1497986561.jpg', description: 'Something else?',  stars: 442, starred: false, utcTime: 1531081123432 },

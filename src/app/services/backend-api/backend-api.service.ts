@@ -4,7 +4,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 
 import { Observable } from 'rxjs';
 
-import { Profile, UserItem, ContentCard, HttpError, Token, CanvasUploaded } from 'shared/models';
+import { Profile, IUser, ContentCard, IHttpError } from 'shared/models';
 import { GlobalStore } from 'state/global.store';
 
 import { environment } from 'environments/environment';
@@ -27,6 +27,7 @@ export class BackendApiService {
    * @return Object with http headers
    */
   private authHeaders(): HttpHeaders {
+    console.log(this.globalStore.state.jwt);
     return new HttpHeaders({ Authorization: `Bearer ${this.globalStore.state.jwt}` });
   }
 
@@ -35,8 +36,8 @@ export class BackendApiService {
    * @param  authCode Auth code for server authentication with google
    * @return Observable<any> (Response from the server)
    */
-  public googleLogIn(authCode: string): Observable<Token> {
-    return this.http.post<Token>(`${this.apiUrl}auth/google-authcode`, { code: authCode });
+  public googleLogIn(authCode: string): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${this.apiUrl}auth/google-authcode`, { code: authCode });
   }
 
   /**
@@ -45,7 +46,7 @@ export class BackendApiService {
    * @return    Array of user profiles
    */
   public getProfileById(id: number): Observable<Profile> {
-    return this.http.get<Profile>(`api/profile/${id}`);
+    return this.http.get<Profile>(`${this.apiUrl}user/${id}`, { headers: this.authHeaders() });
   }
 
   /**
@@ -56,14 +57,14 @@ export class BackendApiService {
    * @param  page      Pagnation: How many user items in we are (results*page)
    * @return          Array of user items
    */
-  public getNetworkUserItems(segment: string, userId: number, results: number, page: number): Observable<UserItem[]> {
+  public getNetworkUserItems(segment: string, userId: number, results: number, page: number): Observable<Partial<IUser>[]> {
 
     const params: HttpParams = new HttpParams()
       .set('category', segment)
       .set('results', results.toString())
       .set('page', page.toString());
 
-    return this.http.get<UserItem[]>(`api/user/${userId}/network`, { params });
+    return this.http.get<Partial<IUser>[]>(`api/user/${userId}/network`, { params });
   }
 
   /**
@@ -71,8 +72,11 @@ export class BackendApiService {
    * @param  userId ID of user
    * @return        User Item
    */
-  public getUserItemById(userId: number): Observable<UserItem> {
-    return this.http.get<UserItem>(`api/user/${userId}`);
+  public getUserItemById(userId: number): Observable<Partial<IUser>> {
+    console.log('headers');
+    console.log(this.authHeaders());
+    console.log(`${this.apiUrl}user/${userId}`);
+    return this.http.get<Partial<IUser>>(`${this.apiUrl}user/${userId}`, { headers: this.authHeaders() });
   }
 
   /**
@@ -129,10 +133,10 @@ export class BackendApiService {
    * @param  description Description of the canvas
    * @return             Indication of success
    */
-  public async uploadCanvas(filePath: string, description?: string): Promise<CanvasUploaded | HttpError[]> {
+  public async uploadCanvas(filePath: string, description?: string): Promise<{ canvasId: number } | IHttpError[]> {
 
     if (environment.serveFromCache) {
-      const canvas: CanvasUploaded = { canvasId: 5 };
+      const canvas = { canvasId: 5 };
       return canvas; // Cannot serve from in memory DB since file transfer is not intetcepted
     }
 
@@ -148,11 +152,11 @@ export class BackendApiService {
 
     return fileTransfer.upload(filePath, `${environment.serverUrl}canvas/upload`, options).then(
       (res) => {
-        const canvasUploaded: CanvasUploaded = JSON.parse(res.response);
+        const canvasUploaded = JSON.parse(res.response);
         return canvasUploaded;
       },
       (err) => {
-        const errors: HttpError[] = JSON.parse(err.body).errors;
+        const errors: IHttpError[] = JSON.parse(err.body).errors;
         return errors;
       },
     );
@@ -166,14 +170,14 @@ export class BackendApiService {
    * @param  page     Pagnation: How many useritems in we are (results*page)
    * @return          List of users
    */
-  public searchUsers(query: string, results: number, page: number): Observable<UserItem[]> {
+  public searchUsers(query: string, results: number, page: number): Observable<Partial<IUser>[]> {
 
     const params: HttpParams = new HttpParams()
       .set('query', query)
       .set('results', results.toString())
       .set('page', page.toString());
 
-    return this.http.get<UserItem[]>('api/search/users', { params });
+    return this.http.get<Partial<IUser>[]>('api/search/users', { params });
 
   }
 

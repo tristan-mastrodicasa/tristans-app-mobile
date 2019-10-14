@@ -39,13 +39,13 @@ export class ProfilePage implements OnInit {
    */
   public ngOnInit() {
 
-    const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10); // 1
+    const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10);
 
     this.http.getProfileById(id).pipe(first()).subscribe((res) => {
 
       this.profile = res;
 
-      if (id === 1) this.ownProfile = true;
+      if (id === this.globalStore.state.userId) this.ownProfile = true;
       else this.ownProfile = false;
 
     });

@@ -4,7 +4,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 
 import { Observable } from 'rxjs';
 
-import { Profile, IUser, ContentCard, IHttpError } from 'shared/models';
+import { IUser, ContentCard, IHttpError } from 'shared/models';
 import { GlobalStore } from 'state/global.store';
 
 import { environment } from 'environments/environment';
@@ -27,7 +27,6 @@ export class BackendApiService {
    * @return Object with http headers
    */
   private authHeaders(): HttpHeaders {
-    console.log(this.globalStore.state.jwt);
     return new HttpHeaders({ Authorization: `Bearer ${this.globalStore.state.jwt}` });
   }
 
@@ -45,8 +44,8 @@ export class BackendApiService {
    * @param  id Id string of the user profile
    * @return    Array of user profiles
    */
-  public getProfileById(id: number): Observable<Profile> {
-    return this.http.get<Profile>(`${this.apiUrl}user/${id}`, { headers: this.authHeaders() });
+  public getProfileById(id: number): Observable<Partial<IUser>> {
+    return this.http.get<Partial<IUser>>(`${this.apiUrl}user/${id}`, { headers: this.authHeaders() });
   }
 
   /**

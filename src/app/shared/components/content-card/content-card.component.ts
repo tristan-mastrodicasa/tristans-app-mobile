@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
-import { ContentCard } from 'shared/models';
+import { ContentCard } from 'core/models';
 
 @Component({
   selector: 'app-content-card',

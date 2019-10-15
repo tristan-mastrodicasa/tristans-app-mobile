@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
-import { DynamicScriptLoaderService } from 'services/dynamic-script-loader/dynamic-script-loader.service';
+import { DynamicScriptLoaderService } from 'shared/services/dynamic-script-loader.service';
 
 declare var $: any;
 

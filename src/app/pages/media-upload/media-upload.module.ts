@@ -5,13 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { Camera } from '@ionic-native/camera/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
-
 import { IonicModule } from '@ionic/angular';
 
 import { MediaUploadPage } from './media-upload.page';
-
 import { SharedModule } from 'shared/shared.module';
-import { ServicesModule } from 'services/services.module';
 
 const routes: Routes = [
   {
@@ -32,7 +29,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     SharedModule,
-    ServicesModule,
   ],
   declarations: [MediaUploadPage],
 })

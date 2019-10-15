@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BackendApiService } from 'services/backend-api/backend-api.service';
 
-import { IUser } from 'shared/models';
+import { BackendApiService } from 'core/services';
+import { IUser } from 'core/models';
 
 @Component({
   selector: 'app-find-users',

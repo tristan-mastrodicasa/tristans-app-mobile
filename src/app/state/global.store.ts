@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Store } from 'rxjs-observable-store';
 
 import { GlobalState } from './global.state';
-
-import { Store } from 'rxjs-observable-store';
-import { JwtHelperService } from '@auth0/angular-jwt';
-
-import { IJwt } from 'shared/models';
+import { IJwt } from 'core/models';
 
 /**
  * State Management Service

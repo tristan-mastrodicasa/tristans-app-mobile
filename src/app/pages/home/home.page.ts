@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BackendApiService } from 'services/backend-api/backend-api.service';
-import { ContentCard } from 'shared/models';
+import { BackendApiService } from 'core/services';
+import { ContentCard } from 'core/models';
 import { GlobalStore } from 'state/global.store';
 
 @Component({

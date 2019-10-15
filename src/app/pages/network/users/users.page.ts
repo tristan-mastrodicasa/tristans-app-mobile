@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { BackendApiService } from 'services/backend-api/backend-api.service';
-import { IUser } from 'shared/models';
+import { BackendApiService } from 'core/services';
+import { IUser } from 'core/models';
 import { GlobalStore } from 'state/global.store';
 
 @Component({

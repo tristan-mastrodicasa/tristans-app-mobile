@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl, STATUS, ResponseOptions, RequestInfo } from 'angular-in-memory-web-api';
-import { ContentCard, IUser, EContentType } from 'shared/models';
+import { ContentCard, IUser, EContentType } from 'core/models';
 
 import { environment } from 'environments/environment';
 

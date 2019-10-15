@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
@@ -13,16 +13,13 @@ import { ContentCardComponent } from './components/content-card/content-card.com
 import { UserItemComponent } from './components/user-item/user-item.component';
 import { MemeGeneratorComponent } from './components/meme-generator/meme-generator.component';
 
-import { DynamicScriptLoaderService } from 'services/dynamic-script-loader/dynamic-script-loader.service';
+import { DynamicScriptLoaderService } from './services/dynamic-script-loader.service';
 
 @NgModule({
   imports: [
     IonicModule,
     RouterModule,
     CommonModule,
-  ],
-  providers: [
-    DynamicScriptLoaderService,
   ],
   declarations: [
     FormatNumberDirective,
@@ -43,4 +40,15 @@ import { DynamicScriptLoaderService } from 'services/dynamic-script-loader/dynam
     MemeGeneratorComponent,
   ],
 })
-export class SharedModule { }
+export class SharedModule {
+
+  /**
+   * Method to define providers when importing into the root module
+   */
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [DynamicScriptLoaderService],
+    };
+  }
+}

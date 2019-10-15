@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { BackendApiService } from 'services/backend-api/backend-api.service';
-import { IUser, ContentCard } from 'shared/models';
+import { BackendApiService } from 'core/services';
+import { IUser, ContentCard } from 'core/models';
 import { GlobalStore } from 'state/global.store';
 
 @Component({

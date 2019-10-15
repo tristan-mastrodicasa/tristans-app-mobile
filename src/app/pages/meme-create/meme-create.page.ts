@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { BackendApiService } from 'services/backend-api/backend-api.service';
+import { BackendApiService } from 'core/services';
 
 @Component({
   selector: 'app-meme-create',

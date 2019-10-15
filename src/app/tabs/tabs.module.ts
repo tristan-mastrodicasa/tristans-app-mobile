@@ -7,8 +7,6 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { TabsPageRoutingModule } from './tabs.router.module';
 import { TabsPage } from './tabs.page';
 
-import { ServicesModule } from 'services/services.module';
-
 @NgModule({
   providers: [
     Camera,
@@ -18,7 +16,6 @@ import { ServicesModule } from 'services/services.module';
     FormsModule,
     IonicModule,
     TabsPageRoutingModule,
-    ServicesModule,
   ],
   declarations: [TabsPage],
 })

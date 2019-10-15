@@ -5,11 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { Camera } from '@ionic-native/camera/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
-
 import { IonicModule } from '@ionic/angular';
 
 import { ProfilePage } from './profile.page';
-
 import { SharedModule } from 'shared/shared.module';
 
 const routes: Routes = [

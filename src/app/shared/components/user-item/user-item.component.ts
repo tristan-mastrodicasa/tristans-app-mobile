@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IUser } from 'shared/models';
+import { IUser } from 'core/models';
 
 @Component({
   selector: 'app-user-item',

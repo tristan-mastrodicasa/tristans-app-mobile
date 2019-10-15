@@ -4,7 +4,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 
 import { Observable } from 'rxjs';
 
-import { IUser, ContentCard, IHttpError } from 'shared/models';
+import { IUser, ContentCard, IHttpError } from 'core/models';
 import { GlobalStore } from 'state/global.store';
 
 import { environment } from 'environments/environment';

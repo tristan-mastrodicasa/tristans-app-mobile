@@ -5,8 +5,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { Router } from '@angular/router';
 
 import { GlobalStore } from 'state/global.store';
-import { BackendApiService } from 'services/backend-api/backend-api.service';
-import { LoadingService } from 'services/loading/loading.service';
+import { BackendApiService, LoadingService } from 'core/services';
 
 import { canvasImageConfig } from 'configs/canvas-image.config';
 

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
 
-import { AuthService } from 'services/auth/auth.service';
+import { AuthService } from 'core/services';
 
 const routes: Routes = [
   {

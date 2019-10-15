@@ -4,10 +4,10 @@ import { ModalController } from '@ionic/angular';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 
-import { BackendApiService } from 'services/backend-api/backend-api.service';
-import { LoadingService } from 'services/loading/loading.service';
-import { environment } from 'environments/environment';
+import { BackendApiService } from 'core/services/backend-api.service';
+import { LoadingService } from 'core/services/loading.service';
 import { GlobalStore } from 'state/global.store';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-log-in',

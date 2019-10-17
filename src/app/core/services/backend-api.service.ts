@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-
 import { Observable } from 'rxjs';
 
 import { IUser, ContentCard, IHttpError } from 'core/models';
@@ -24,6 +23,7 @@ export class BackendApiService {
 
   /**
    * Generate the http headers for routes requiring authorization
+   * @todo move this to an interceptor later
    * @return Object with http headers
    */
   private authHeaders(): HttpHeaders {
@@ -52,18 +52,10 @@ export class BackendApiService {
    * Get an array of user items for a specific view
    * @param  segment   What kind of useritems to be populated
    * @param  userId    Id of the user we are collecting the network user items from
-   * @param  results   How many user items to return per request
-   * @param  page      Pagnation: How many user items in we are (results*page)
    * @return          Array of user items
    */
-  public getNetworkUserItems(segment: string, userId: number, results: number, page: number): Observable<Partial<IUser>[]> {
-
-    const params: HttpParams = new HttpParams()
-      .set('category', segment)
-      .set('results', results.toString())
-      .set('page', page.toString());
-
-    return this.http.get<Partial<IUser>[]>(`api/user/${userId}/network`, { params });
+  public getNetworkUserItems(segment: 'follow-backs' | 'followers' | 'following', userId: number): Observable<Partial<IUser>[]> {
+    return this.http.get<Partial<IUser>[]>(`${this.apiUrl}user/${userId}/${segment}`, { headers: this.authHeaders() });
   }
 
   /**

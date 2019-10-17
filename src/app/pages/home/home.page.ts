@@ -11,7 +11,7 @@ import { GlobalStore } from 'state/global.store';
 })
 export class HomePage implements OnInit {
 
-  private posts = [] as ContentCard[];
+  private posts: ContentCard[] = [];
   private cardsPerRequest = 6;
   private page = 1;
 

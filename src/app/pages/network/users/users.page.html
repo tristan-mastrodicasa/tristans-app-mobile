@@ -28,7 +28,7 @@
 
       <ion-row class="segment-padding" (ionChange)="segmentChanged($event)">
         <ion-segment mode="ios">
-          <ion-segment-button mode="ios" value="follow_backs" checked>
+          <ion-segment-button mode="ios" value="follow-backs" checked>
             <ion-label>Follow Backs</ion-label>
           </ion-segment-button>
           <ion-segment-button mode="ios" value="following">
@@ -60,11 +60,17 @@
 
         <ion-row class="ion-padding-vertical">
 
-          <app-user-item *ngFor="let user of userItemList"
+          <app-user-item *ngFor="let user of userItemList | slice:0:(results * page)"
             [userItem]="user"
             class="width-full"></app-user-item>
 
         </ion-row>
+
+        <ion-infinite-scroll threshold="150px" (ionInfinite)="showMoreUsers($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="crescent">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
 
       </div>
 

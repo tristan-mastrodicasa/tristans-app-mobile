@@ -12,11 +12,11 @@ import { GlobalStore } from 'state/global.store';
 export class UsersPage {
 
   public myUserItem: Partial<IUser>;
-  private segment: string;
+  private segment: 'follow-backs' | 'followers' | 'following';
 
-  private userItemList = [] as Partial<IUser>[];
-  private itemsPerRequest = 6;
-  private page = 1;
+  public userItemList = [] as Partial<IUser>[];
+  public results = 15;
+  public page = 1;
 
   constructor(
     private http: BackendApiService,
@@ -24,8 +24,16 @@ export class UsersPage {
   ) { }
 
   /**
+   * Refresh list on load
+   */
+  public ionViewDidEnter () {
+    /** @todo Implement a lightway method to refresh without so many requests */
+    if (this.segment) this.segmentChanged({ detail: { value: this.segment } });
+  }
+
+  /**
    * Upon Segment Change, populate the view with the networked users
-   * @param  e Segment event (with details about which segment is chosen)
+   * @param e Segment event (with details about which segment is chosen)
    */
   public segmentChanged(e: any) {
 
@@ -45,17 +53,26 @@ export class UsersPage {
     console.log(e.detail.value);
 
     // Send an http request //
-    this.http.getNetworkUserItems(segment, 1, this.itemsPerRequest, this.page).toPromise().then((res) => {
+    this.http.getNetworkUserItems(segment, this.globalStore.state.userId).toPromise().then((res) => {
 
       // So that if the user swaps segments fast the list will not populate unless //
       // the current segment (this.segment) is the same as the segment requested (segment) //
       if (segment === this.segment) this.userItemList = res;
       console.log(this.userItemList);
 
-    });
+    }).catch(err => console.log(err));
 
   }
 
-  /** @todo Add the load on scroll feature */
+  /**
+   * Show more users while scrolling
+   * @param  event Ionic stuff
+   */
+  public showMoreUsers(event: any) {
+    this.page += 1;
+    event.target.complete();
+  }
+
+  /** @todo Add the pull down reload (in prod) */
 
 }

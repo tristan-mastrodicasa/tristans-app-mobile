@@ -55,7 +55,7 @@ export class ImposterServerService implements InMemoryDbService {
     console.log(url);
 
     // Break the url into juicy bits //
-    const params: Map<string, string[]> = requestInfoUtils.parseRequestUrl(url).query;
+    // const params: Map<string, string[]> = requestInfoUtils.parseRequestUrl(url).query;
     const urlParts: string[] = url.split('?')[0].split('/');
 
     if (urlParts[0] !== 'api') return requestInfoUtils.parseRequestUrl(url);
@@ -64,12 +64,16 @@ export class ImposterServerService implements InMemoryDbService {
     if (urlParts[1] === 'user') {
       const id: string = urlParts[2];
 
-      if (urlParts[3] === 'network') {
+      if (urlParts[3] === 'follow-backs' || urlParts[3] === 'following' || urlParts[3] === 'followers') {
 
-        const userItemType: string = params.get('category')[0];
+        let networkType: string;
+
+        if (urlParts[3] === 'follow-backs') networkType = 'cFollowBacks';
+        else if (urlParts[3] === 'following') networkType = 'cFollowing';
+        else if (urlParts[3] === 'followers') networkType = 'cFollowers';
 
         console.log(`'Collect users from userid: ${id}`);
-        const newUrl = `app/${userItemType}`;
+        const newUrl = `app/${networkType}`;
 
         return requestInfoUtils.parseRequestUrl(newUrl);
 
@@ -124,16 +128,16 @@ export class ImposterServerService implements InMemoryDbService {
       { id: 4, firstName: 'Johanne', username: 'user9272311', influence: 11, photo: '/assets/img/test/testi3.jpg' },
     ];
 
-    const follow_backs: Partial<IUser>[]  = [ // tslint:disable-line
+    const cFollowBacks: Partial<IUser>[]  = [
       { id: 5, firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg', activeCanvases: 4 },
       { id: 2, firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg', activeCanvases: 1  },
     ];
 
-    const following: Partial<IUser>[] = [
+    const cFollowing: Partial<IUser>[] = [
       { id: 4, firstName: 'Johanne', username: 'user9272311', influence: 11, photo: '/assets/img/test/testi3.jpg' },
     ];
 
-    const followers: Partial<IUser>[] = [
+    const cFollowers: Partial<IUser>[] = [
       { id: 3, firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg', activeCanvases: 1 },
     ];
 
@@ -181,7 +185,7 @@ export class ImposterServerService implements InMemoryDbService {
 
     ];
 
-    return { profile, user_items, followers, following, follow_backs, contentCardList, canvases, searchUsers };
+    return { profile, user_items, cFollowers, cFollowing, cFollowBacks, contentCardList, canvases, searchUsers };
   }
 
 }

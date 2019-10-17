@@ -3,4 +3,10 @@ export class GlobalState {
   public userId: number;
 
   public stagedCanvasPicture: string;
+
+  /**
+   * @todo implement a cache property which stores
+   * the users network / profile etc, reload on log out
+   */
+
 }

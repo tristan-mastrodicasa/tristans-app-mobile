@@ -2,7 +2,7 @@
 
   <ion-avatar slot="start">
     <img src="{{ userItem.photo }}">
-    <div *ngIf="userItem.activeCanvases != null" class="canvas-number">{{ userItem.activeCanvases }}</div>
+    <div *ngIf="userItem.activeCanvases != null && userItem.activeCanvases != 0" class="canvas-number">{{ userItem.activeCanvases }}</div>
   </ion-avatar>
 
   <ion-label>

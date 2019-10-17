@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { BackendApiService } from 'core/services';
-import { IUser } from 'core/models';
+import { IUserItem } from 'core/models';
 import { GlobalStore } from 'state/global.store';
 
 @Component({
@@ -11,10 +11,10 @@ import { GlobalStore } from 'state/global.store';
 })
 export class UsersPage {
 
-  public myUserItem: Partial<IUser>;
+  public myUserItem: IUserItem;
   private segment: 'follow-backs' | 'followers' | 'following';
 
-  public userItemList = [] as Partial<IUser>[];
+  public userItemList = [] as IUserItem[];
   public results = 15;
   public page = 1;
 
@@ -58,7 +58,6 @@ export class UsersPage {
       // So that if the user swaps segments fast the list will not populate unless //
       // the current segment (this.segment) is the same as the segment requested (segment) //
       if (segment === this.segment) this.userItemList = res;
-      console.log(this.userItemList);
 
     }).catch(err => console.log(err));
 

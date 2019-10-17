@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IUser } from 'core/models';
+import { IUserItem } from 'core/models';
 import { BackendApiService } from 'core/services';
 
 @Component({
@@ -9,7 +9,7 @@ import { BackendApiService } from 'core/services';
 })
 export class UserItemComponent {
 
-  @Input() public userItem: Partial<IUser>;
+  @Input() public userItem: IUserItem;
   @Input() public itemType: 'default' | 'search' = 'default';
 
   public following = false;

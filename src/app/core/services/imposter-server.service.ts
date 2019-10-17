@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl, STATUS, ResponseOptions, RequestInfo } from 'angular-in-memory-web-api';
-import { ContentCard, IUser, EContentType } from 'core/models';
+import { ContentCard, IUserItem, IProfile, EContentType } from 'core/models';
 
 import { environment } from 'environments/environment';
 
@@ -106,7 +106,7 @@ export class ImposterServerService implements InMemoryDbService {
    */
   public createDb() {
 
-    const profile: Partial<IUser>[] = [
+    const profile: IProfile[] = [
       { id: 1, firstName: 'Tristan', username: 'ghoststeam217', influence: 7089, followers: 31, contentNumber: 70, photo: '/assets/svg-img/default-profile-picture.svg' },
       { id: 2, firstName: 'Jake', username: 'user12143', influence: 33124, followers: 3221, contentNumber: 310, photo: '/assets/img/test/testi1.jpg' },
       { id: 3, firstName: 'Malinda', username: 'user2441212', influence: 223, followers: 1, contentNumber: 70, photo: '/assets/img/test/testi2.jpg' },
@@ -114,7 +114,7 @@ export class ImposterServerService implements InMemoryDbService {
       { id: 5, firstName: 'Chris', username: 'wutisdis', influence: 14, followers: 61, contentNumber: 75, photo: '/assets/img/test/testi2.jpg' },
     ];
 
-    const user_items: Partial<IUser>[] = [ // tslint:disable-line
+    const user_items: IUserItem[] = [ // tslint:disable-line
       { id: 3, firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg', activeCanvases: 1 },
       { id: 5, firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg', activeCanvases: 4 },
       { id: 2, firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg', activeCanvases: 1 },
@@ -122,20 +122,20 @@ export class ImposterServerService implements InMemoryDbService {
       { id: 4, firstName: 'Johanne', username: 'user9272311', influence: 11, photo: '/assets/img/test/testi3.jpg' },
     ];
 
-    const cFollowBacks: Partial<IUser>[]  = [
+    const cFollowBacks: IUserItem[]  = [
       { id: 5, firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg', activeCanvases: 4 },
       { id: 2, firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg', activeCanvases: 1  },
     ];
 
-    const cFollowing: Partial<IUser>[] = [
+    const cFollowing: IUserItem[] = [
       { id: 4, firstName: 'Johanne', username: 'user9272311', influence: 11, photo: '/assets/img/test/testi3.jpg' },
     ];
 
-    const cFollowers: Partial<IUser>[] = [
+    const cFollowers: IUserItem[] = [
       { id: 3, firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg', activeCanvases: 1 },
     ];
 
-    const searchUsers: Partial<IUser>[] = [
+    const searchUsers: IUserItem[] = [
       { id: 3, firstName: 'Malinda', username: 'user2441212', influence: 223, photo: '/assets/img/test/testi2.jpg' },
       { id: 5, firstName: 'Chris', username: 'wutisdis', influence: 14, photo: '/assets/img/test/testi2.jpg' },
       { id: 2, firstName: 'Jake', username: 'user12143', influence: 33124, photo: '/assets/img/test/testi1.jpg' },

@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { BackendApiService } from 'core/services';
-import { IUser } from 'core/models';
+import { IUserItem } from 'core/models';
 
 @Component({
   selector: 'app-find-users',
   templateUrl: './find-users.page.html',
   styleUrls: ['./find-users.page.scss'],
 })
-export class FindUsersPage implements OnInit {
+export class FindUsersPage {
 
-  public userItemList: Partial<IUser>[];
+  public userItemList: IUserItem[];
   public page = 1;
   public results = 20;
 
@@ -19,7 +19,7 @@ export class FindUsersPage implements OnInit {
   /**
    * Show recommended users
    */
-  public ngOnInit() {
+  public ionViewDidEnter() {
 
     this.http.searchUsers('').toPromise().then((res) => {
       this.userItemList = res;

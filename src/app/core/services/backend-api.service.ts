@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { Observable } from 'rxjs';
 
-import { IUser, ContentCard, IHttpError } from 'core/models';
+import { IUserItem, IProfile, ContentCard, IHttpError } from 'core/models';
 import { GlobalStore } from 'state/global.store';
 
 import { environment } from 'environments/environment';
@@ -44,8 +44,8 @@ export class BackendApiService {
    * @param  id Id string of the user profile
    * @return    Array of user profiles
    */
-  public getProfileById(id: number): Observable<Partial<IUser>> {
-    return this.http.get<Partial<IUser>>(`${this.apiUrl}user/${id}`, { headers: this.authHeaders() });
+  public getProfileById(id: number): Observable<IProfile> {
+    return this.http.get<IProfile>(`${this.apiUrl}user/${id}`, { headers: this.authHeaders() });
   }
 
   /**
@@ -54,8 +54,8 @@ export class BackendApiService {
    * @param  userId    Id of the user we are collecting the network user items from
    * @return          Array of user items
    */
-  public getNetworkUserItems(segment: 'follow-backs' | 'followers' | 'following', userId: number): Observable<Partial<IUser>[]> {
-    return this.http.get<Partial<IUser>[]>(`${this.apiUrl}user/${userId}/${segment}`, { headers: this.authHeaders() });
+  public getNetworkUserItems(segment: 'follow-backs' | 'followers' | 'following', userId: number): Observable<IUserItem[]> {
+    return this.http.get<IUserItem[]>(`${this.apiUrl}user/${userId}/${segment}`, { headers: this.authHeaders() });
   }
 
   /**
@@ -63,11 +63,11 @@ export class BackendApiService {
    * @param  userId ID of user
    * @return        User Item
    */
-  public getUserItemById(userId: number): Observable<Partial<IUser>> {
+  public getUserItemById(userId: number): Observable<IProfile> {
     console.log('headers');
     console.log(this.authHeaders());
     console.log(`${this.apiUrl}user/${userId}`);
-    return this.http.get<Partial<IUser>>(`${this.apiUrl}user/${userId}`, { headers: this.authHeaders() });
+    return this.http.get<IProfile>(`${this.apiUrl}user/${userId}`, { headers: this.authHeaders() });
   }
 
   /**
@@ -159,12 +159,12 @@ export class BackendApiService {
    * @param  query    String to query the database with
    * @return          List of users
    */
-  public searchUsers(query: string): Observable<Partial<IUser>[]> {
+  public searchUsers(query: string): Observable<IUserItem[]> {
 
     const params: HttpParams = new HttpParams()
       .set('query', query);
 
-    return this.http.get<Partial<IUser>[]>(`${this.apiUrl}user/`, { params, headers: this.authHeaders() });
+    return this.http.get<IUserItem[]>(`${this.apiUrl}user/`, { params, headers: this.authHeaders() });
 
   }
 

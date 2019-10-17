@@ -2,6 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
+import { CoreModule } from 'core/core.module';
 
 import { FormatNumberDirective } from './directives/format-number/format-number.directive';
 import { FormatUtcDirective } from './directives/format-utc/format-utc.directive';
@@ -20,6 +21,7 @@ import { DynamicScriptLoaderService } from './services/dynamic-script-loader.ser
     IonicModule,
     RouterModule,
     CommonModule,
+    CoreModule,
   ],
   declarations: [
     FormatNumberDirective,

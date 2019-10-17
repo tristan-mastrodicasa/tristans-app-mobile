@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IUser } from 'core/models';
+import { BackendApiService } from 'core/services';
 
 @Component({
   selector: 'app-user-item',
@@ -13,7 +14,7 @@ export class UserItemComponent {
 
   public following = false;
 
-  constructor() { }
+  constructor(private http: BackendApiService) { }
 
   /**
    * Quick Follow
@@ -21,11 +22,11 @@ export class UserItemComponent {
    */
   public follow(event: any): boolean {
 
-    /** @todo send follow request */
-
     event.stopPropagation();
     event.preventDefault();
     this.following = true;
+
+    this.http.follow(this.userItem.id).toPromise().then(_ => null);
 
     return false;
   }
@@ -36,11 +37,11 @@ export class UserItemComponent {
    */
   public unfollow(event: any): boolean {
 
-    /** @todo send unfollow request */
-
     event.stopPropagation();
     event.preventDefault();
     this.following = false;
+
+    this.http.unfollow(this.userItem.id).toPromise().then(_ => null);
 
     return false;
   }

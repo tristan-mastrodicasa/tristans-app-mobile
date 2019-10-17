@@ -117,6 +117,6 @@
         <variable name="FACEBOOK_HYBRID_APP_EVENTS" value="false" />
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="5.2.0" />
     </plugin>
-    <allow-navigation href="http://localhost:8101" sessionid="b69de95b" />
+    <allow-navigation href="http://localhost:8101" sessionid="481c35b2" />
     <engine name="android" spec="7.1.4" />
 </widget>

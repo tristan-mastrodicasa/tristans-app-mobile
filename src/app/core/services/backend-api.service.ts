@@ -168,4 +168,22 @@ export class BackendApiService {
 
   }
 
+  /**
+   * Send a request to the server to follow a user
+   * You must subscribe to this function for the request to send
+   * @param  userId User if of the user to follow
+   */
+  public follow(userId: number): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}user/${userId}/follow`, {}, { headers: this.authHeaders() });
+  }
+
+  /**
+   * Send a request to the server to unfollow a user
+   * You must subscribe to this function for the request to send
+   * @param  userId User if of the user to unfollow
+   */
+  public unfollow(userId: number): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}user/${userId}/unfollow`, {}, { headers: this.authHeaders() });
+  }
+
 }

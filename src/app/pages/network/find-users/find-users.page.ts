@@ -22,7 +22,6 @@ export class FindUsersPage implements OnInit {
   public ngOnInit() {
 
     this.http.searchUsers('').toPromise().then((res) => {
-      console.log(res);
       this.userItemList = res;
     }).catch(err => console.log(err));
 

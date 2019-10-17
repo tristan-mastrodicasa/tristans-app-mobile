@@ -157,18 +157,14 @@ export class BackendApiService {
   /**
    * Search users in the database
    * @param  query    String to query the database with
-   * @param  results  How many user items to return per request
-   * @param  page     Pagnation: How many useritems in we are (results*page)
    * @return          List of users
    */
-  public searchUsers(query: string, results: number, page: number): Observable<Partial<IUser>[]> {
+  public searchUsers(query: string): Observable<Partial<IUser>[]> {
 
     const params: HttpParams = new HttpParams()
-      .set('query', query)
-      .set('results', results.toString())
-      .set('page', page.toString());
+      .set('query', query);
 
-    return this.http.get<Partial<IUser>[]>('api/search/users', { params });
+    return this.http.get<Partial<IUser>[]>(`${this.apiUrl}user/`, { params, headers: this.authHeaders() });
 
   }
 

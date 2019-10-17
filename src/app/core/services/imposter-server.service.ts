@@ -73,35 +73,29 @@ export class ImposterServerService implements InMemoryDbService {
         else if (urlParts[3] === 'followers') networkType = 'cFollowers';
 
         console.log(`'Collect users from userid: ${id}`);
-        const newUrl = `app/${networkType}`;
+        const newUrl = `api/${networkType}`;
 
         return requestInfoUtils.parseRequestUrl(newUrl);
 
       }
 
-      const newUrl = `app/profile/${id}`;
+      const newUrl = `api/profile/${id}`;
       return requestInfoUtils.parseRequestUrl(newUrl);
 
     }
 
     if (urlParts[1] === 'content') {
-      return requestInfoUtils.parseRequestUrl('app/contentCardList');
+      return requestInfoUtils.parseRequestUrl('api/contentCardList');
     }
 
     if (urlParts[1] === 'canvas') {
 
       if (urlParts[3] === 'memes') {
-        return requestInfoUtils.parseRequestUrl('app/contentCardList');
+        return requestInfoUtils.parseRequestUrl('api/contentCardList');
       }
 
-      return requestInfoUtils.parseRequestUrl(`app/contentCardList/${urlParts[2]}`);
+      return requestInfoUtils.parseRequestUrl(`api/contentCardList/${urlParts[2]}`);
 
-    }
-
-    if (urlParts[1] === 'search') {
-      if (urlParts[2] === 'users') {
-        return requestInfoUtils.parseRequestUrl('app/searchUsers');
-      }
     }
 
     return requestInfoUtils.parseRequestUrl(url);

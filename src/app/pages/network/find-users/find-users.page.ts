@@ -14,17 +14,20 @@ export class FindUsersPage {
   public page = 1;
   public results = 20;
 
+  private initialResultsShown = false;
+
   constructor(private http: BackendApiService) { }
 
   /**
    * Show recommended users
    */
   public ionViewDidEnter() {
-
-    this.http.searchUsers('').toPromise().then((res) => {
-      this.userItemList = res;
-    }).catch(err => console.log(err));
-
+    if (!this.initialResultsShown) {
+      this.http.searchUsers('').toPromise().then((res) => {
+        this.userItemList = res;
+        this.initialResultsShown = true;
+      }).catch(err => console.log(err));
+    }
   }
 
   /**

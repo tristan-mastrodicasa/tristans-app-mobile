@@ -79,6 +79,8 @@ export class ImposterServerService implements InMemoryDbService {
 
       }
 
+      if (urlParts[3] === 'content-cards') return requestInfoUtils.parseRequestUrl('api/contentCardList');
+
       const newUrl = `api/profile/${id}`;
       return requestInfoUtils.parseRequestUrl(newUrl);
 

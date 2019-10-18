@@ -2,7 +2,7 @@
 
   <div class="c-header clearfix">
     <div class="c-header-avatar">
-      <img class="avatar-primary" src="{{ cardData.users.primary.photo }}">
+      <img class="avatar-primary" src="{{ cardData.users.primary.photo }}" [routerLink]="['/profile', cardData.users.primary.id]">
       <img *ngIf="cardData.type == 'meme-with-host'" class="avatar-secondary" src="{{ cardData.users.secondary.photo }}">
     </div>
 

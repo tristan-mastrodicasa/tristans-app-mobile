@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
-import { ContentCard } from 'core/models';
+import { ContentCard, EContentType } from 'core/models';
+import { BackendApiService } from 'core/services';
 
 @Component({
   selector: 'app-content-card',
@@ -12,7 +13,10 @@ export class ContentCardComponent implements OnInit {
   @Input() public cardData: ContentCard;
   @Input() public cardView: 'default' | 'canvas-view' = 'default';
 
-  constructor(private actionSheetController: ActionSheetController) { }
+  constructor(
+    private actionSheetController: ActionSheetController,
+    private http: BackendApiService,
+  ) { }
 
   /**
    * Initialize the description
@@ -73,8 +77,17 @@ export class ContentCardComponent implements OnInit {
   public starToggle() {
     this.cardData.starred = (this.cardData.starred ? false : true);
 
-    if (this.cardData.starred) this.cardData.stars += 1;
-    else this.cardData.stars -= 1;
+    if (this.cardData.starred) {
+      this.cardData.stars += 1;
+      if (this.cardData.type === EContentType.Canvas) this.http.starCanvas(this.cardData.id).toPromise().then(_ => null);
+      if (this.cardData.type === EContentType.Meme ||
+          this.cardData.type === EContentType.MemeWithHost) this.http.starMeme(this.cardData.id).toPromise().then(_ => null);
+    } else {
+      this.cardData.stars -= 1;
+      if (this.cardData.type === EContentType.Canvas) this.http.unstarCanvas(this.cardData.id).toPromise().then(_ => null);
+      if (this.cardData.type === EContentType.Meme ||
+          this.cardData.type === EContentType.MemeWithHost) this.http.unstarMeme(this.cardData.id).toPromise().then(_ => null);
+    }
 
     /** @todo send star request to backend API */
   }

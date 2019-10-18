@@ -114,7 +114,7 @@ export class BackendApiService {
    * @return          Canvas card
    */
   public getCanvasById(canvasId: number): Observable<ContentCard> {
-    return this.http.get<ContentCard>(`${this.apiUrl}canvas/${canvasId}`);
+    return this.http.get<ContentCard>(`${this.apiUrl}canvas/${canvasId}`, { headers: this.authHeaders() });
   }
 
   /**
@@ -183,6 +183,42 @@ export class BackendApiService {
    */
   public unfollow(userId: number): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}user/${userId}/unfollow`, {}, { headers: this.authHeaders() });
+  }
+
+  /**
+   * Send a request to the server to star a canvas
+   * You must subscribe to this function for the request to send
+   * @param  canvasId Canvas to star
+   */
+  public starCanvas(canvasId: number): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}canvas/${canvasId}/star`, {}, { headers: this.authHeaders() });
+  }
+
+  /**
+   * Send a request to the server to star a meme
+   * You must subscribe to this function for the request to send
+   * @param  memeId Meme to star
+   */
+  public starMeme(memeId: number): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}meme/${memeId}/star`, {}, { headers: this.authHeaders() });
+  }
+
+  /**
+   * Send a request to the server to unstar a canvas
+   * You must subscribe to this function for the request to send
+   * @param  canvasId Canvas to unstar
+   */
+  public unstarCanvas(canvasId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}canvas/${canvasId}/star`, { headers: this.authHeaders() });
+  }
+
+  /**
+   * Send a request to the server to unstar a meme
+   * You must subscribe to this function for the request to send
+   * @param  memeId Meme to unstar
+   */
+  public unstarMeme(memeId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}meme/${memeId}/star`, { headers: this.authHeaders() });
   }
 
 }

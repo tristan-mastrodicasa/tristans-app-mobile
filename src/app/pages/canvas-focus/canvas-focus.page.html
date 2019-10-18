@@ -33,13 +33,13 @@
 
     <div>
 
-      <app-content-card *ngFor="let card of memes"
+      <app-content-card *ngFor="let card of memes | slice:0:(results * page)"
         [cardData]="card"
       ></app-content-card>
 
     </div>
 
-    <ion-infinite-scroll threshold="550px" (ionInfinite)="loadMemes($event)">
+    <ion-infinite-scroll threshold="550px" (ionInfinite)="showMoreMemes($event)">
       <ion-infinite-scroll-content
         loadingSpinner="crescent">
       </ion-infinite-scroll-content>

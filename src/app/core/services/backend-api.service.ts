@@ -102,20 +102,10 @@ export class BackendApiService {
   /**
    * Get a set of memes that were created from a specific canvas
    * @param  canvasId Id of the canvas we want to retrieve memes from
-   * @param  results  How many memes to return per request
-   * @param  page     Pagnation: How many content cards in we are (results*page)
    * @return          Array of content cards
    */
-  public getCanvasMemes(canvasId: number, results: number, page: number): Observable<ContentCard[]> {
-
-    console.log(`'Page: ${page}`);
-
-    const params: HttpParams = new HttpParams()
-      .set('results', results.toString())
-      .set('page', page.toString());
-
-    return this.http.get<ContentCard[]>(`api/canvas/${canvasId}/memes`, { params });
-
+  public getCanvasMemes(canvasId: number): Observable<ContentCard[]> {
+    return this.http.get<ContentCard[]>(`${this.apiUrl}canvas/${canvasId}/memes`, { headers: this.authHeaders() });
   }
 
   /**

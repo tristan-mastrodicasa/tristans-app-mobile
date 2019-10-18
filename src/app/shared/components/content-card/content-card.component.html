@@ -22,6 +22,7 @@
 
   <div class="c-content" text-center>
     <img tappable *ngIf="cardData.type == 'meme-with-host'" [routerLink]="['/canvas', cardData.cid]" src="{{ cardData.imagePath }}" width="500">
+    <img tappable *ngIf="cardData.type == 'meme'" src="{{ cardData.imagePath }}" width="500">
     <img tappable *ngIf="cardData.type == 'canvas'" [routerLink]="['/canvas', cardData.id]" src="{{ cardData.imagePath }}" width="500">
   </div>
 

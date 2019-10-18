@@ -64,7 +64,6 @@ export class ProfilePage implements OnInit {
     */
   public showMoreUsers(event: any) {
     this.page += 1;
-    console.log('Show user page:' + this.page);
     event.target.complete();
   }
 

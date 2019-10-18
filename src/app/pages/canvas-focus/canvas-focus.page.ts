@@ -17,8 +17,8 @@ export class CanvasFocusPage implements OnInit {
   public canvasCard: ContentCard;
   public memes = [] as ContentCard[];
 
-  private cardsPerRequest = 6;
-  private page = 1;
+  public results = 5;
+  public page = 1;
 
   constructor(private http: BackendApiService, private route: ActivatedRoute) { }
 
@@ -34,27 +34,20 @@ export class CanvasFocusPage implements OnInit {
       this.pageTitle = `${this.canvasCard.users.primary.firstName}'s Canvas`;
     });
 
-    this.http.getCanvasMemes(this.canvasId, this.cardsPerRequest, this.page).toPromise().then((res) => {
+    this.http.getCanvasMemes(this.canvasId).toPromise().then((res) => {
+      this.page = 1;
       this.memes = this.memes.concat(res);
     });
 
   }
 
   /**
-   * When users scroll near the bottom of the view, call for more posts
+   * Show more memes
    * @param  event Event object
    */
-  public loadMemes(event: any) {
-
+  public showMoreMemes(event: any) {
     this.page += 1;
-    this.http.getCanvasMemes(this.canvasId, this.cardsPerRequest, this.page).toPromise().then((res) => {
-
-      this.memes = this.memes.concat(res);
-
-      event.target.complete();
-
-    });
-
+    event.target.complete();
   }
 
 }

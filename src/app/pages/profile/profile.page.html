@@ -73,9 +73,14 @@
           Edit Profile
         </ion-button>
 
-        <ion-button *ngIf="!ownProfile" color="primary" class="follow">
+        <ion-button *ngIf="!ownProfile && !profile.youAreFollowing" color="primary" class="follow" (click)="follow()">
           <ion-icon slot="start" name="person-add"></ion-icon>
           Follow
+        </ion-button>
+
+        <ion-button *ngIf="!ownProfile && profile.youAreFollowing" color="light" class="follow" (click)="unfollow()">
+          <ion-icon slot="start" name="person-add"></ion-icon>
+          Unfollow
         </ion-button>
 
       </ion-row>

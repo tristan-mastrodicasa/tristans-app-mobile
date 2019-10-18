@@ -26,6 +26,7 @@ export class ProfilePage implements OnInit {
     influence: 0,
     contentNumber: 0,
     followers: 0,
+    youAreFollowing: false,
   };
 
   constructor(
@@ -71,6 +72,24 @@ export class ProfilePage implements OnInit {
 
     });
 
+  }
+
+  /** @todo implement drag down load */
+
+  /**
+   * Unfollow the user
+   */
+  public unfollow() {
+    this.http.unfollow(this.profile.id).toPromise().then(_ => null);
+    this.profile.youAreFollowing = false;
+  }
+
+  /**
+   * Follow the user
+   */
+  public follow() {
+    this.http.follow(this.profile.id).toPromise().then(_ => null);
+    this.profile.youAreFollowing = true;
   }
 
 }

@@ -14,8 +14,8 @@ import { GlobalStore } from 'state/global.store';
 export class ProfilePage implements OnInit {
 
   private posts = [] as ContentCard[];
-  private cardsPerRequest = 6;
-  private page = 1;
+  public page = 1;
+  public results = 5;
 
   public ownProfile: boolean;
   private profile: IProfile = {
@@ -51,27 +51,21 @@ export class ProfilePage implements OnInit {
 
     });
 
-    this.http.getContentCards('profile', id, this.cardsPerRequest, this.page).toPromise().then((res) => {
+    this.http.getUserContentCards(id).toPromise().then((res) => {
+      this.page = 1;
       this.posts = this.posts.concat(res);
     });
 
   }
 
-  /**
-   * When users scroll near the bottom of the view, call for more posts
-   * @param  event Event object
-   */
-  public loadPosts(event: any) {
-
+   /**
+    * Show more users while scrolling
+    * @param  event Ionic stuff
+    */
+  public showMoreUsers(event: any) {
     this.page += 1;
-    this.http.getContentCards('profile', this.profile.id, this.cardsPerRequest, this.page).toPromise().then((res) => {
-
-      this.posts = this.posts.concat(res);
-
-      event.target.complete();
-
-    });
-
+    console.log('Show user page:' + this.page);
+    event.target.complete();
   }
 
   /** @todo implement drag down load */

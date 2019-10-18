@@ -90,13 +90,13 @@
 
     <div class="default-vertical-padding">
 
-      <app-content-card *ngFor="let card of posts"
+      <app-content-card *ngFor="let card of posts | slice:0:(results * page)"
         [cardData]="card"
       ></app-content-card>
 
     </div>
 
-    <ion-infinite-scroll threshold="550px" (ionInfinite)="loadPosts($event)">
+    <ion-infinite-scroll threshold="550px" (ionInfinite)="showMoreUsers($event)">
       <ion-infinite-scroll-content
         loadingSpinner="crescent">
       </ion-infinite-scroll-content>

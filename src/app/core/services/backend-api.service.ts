@@ -91,6 +91,15 @@ export class BackendApiService {
   }
 
   /**
+   * Get a list of content cards that the user can view
+   * @param  userId   Id of the user we are collecting content for
+   * @return          Array of content cards
+   */
+  public getUserContentCards(userId: number): Observable<ContentCard[]> {
+    return this.http.get<ContentCard[]>(`${this.apiUrl}user/${userId}/content-cards`,  { headers: this.authHeaders() });
+  }
+
+  /**
    * Get a set of memes that were created from a specific canvas
    * @param  canvasId Id of the canvas we want to retrieve memes from
    * @param  results  How many memes to return per request

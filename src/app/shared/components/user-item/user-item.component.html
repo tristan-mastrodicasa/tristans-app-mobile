@@ -14,7 +14,7 @@
     <span [appFormatNumber]="userItem.influence"></span>&nbsp;<ion-icon name="star" class="score-star"></ion-icon>
   </ion-note>
 
-  <ion-button *ngIf="itemType == 'search' && !following" slot="end" size="small" color="primary" (click)="follow($event)">Follow</ion-button>
-  <ion-button *ngIf="itemType == 'search' && following" slot="end" size="small" color="light" (click)="unfollow($event)">Following</ion-button>
+  <ion-button *ngIf="itemType == 'search' && !userItem.youAreFollowing" slot="end" size="small" color="primary" (click)="follow($event)">Follow</ion-button>
+  <ion-button *ngIf="itemType == 'search' && userItem.youAreFollowing" slot="end" size="small" color="light" (click)="unfollow($event)">Following</ion-button>
 
 </ion-item>

@@ -12,8 +12,6 @@ export class UserItemComponent {
   @Input() public userItem: IUserItem;
   @Input() public itemType: 'default' | 'search' = 'default';
 
-  public following = false;
-
   constructor(private http: BackendApiService) { }
 
   /**
@@ -24,7 +22,7 @@ export class UserItemComponent {
 
     event.stopPropagation();
     event.preventDefault();
-    this.following = true;
+    this.userItem.youAreFollowing = true;
 
     this.http.follow(this.userItem.id).toPromise().then(_ => null);
 
@@ -39,7 +37,7 @@ export class UserItemComponent {
 
     event.stopPropagation();
     event.preventDefault();
-    this.following = false;
+    this.userItem.youAreFollowing = false;
 
     this.http.unfollow(this.userItem.id).toPromise().then(_ => null);
 

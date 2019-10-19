@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { BackendApiService } from 'core/services';
@@ -51,11 +51,35 @@ export class ProfilePage implements OnInit {
 
     });
 
+    this.getContentCardSet();
+
+  }
+
+  /**
+   * Refresh the content card list
+   */
+  public ionViewWillEnter() {
+
+    this.route.queryParamMap.pipe(first()).subscribe((paramMap: ParamMap) => {
+      const refresh = paramMap.get('refresh');
+      if (refresh) {
+        this.getContentCardSet();
+      }
+    });
+
+  }
+
+  /**
+   * Get the users content cards
+   */
+  public getContentCardSet() {
+    const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+
+    this.posts = [];
     this.http.getUserContentCards(id).toPromise().then((res) => {
       this.page = 1;
       this.posts = this.posts.concat(res);
     });
-
   }
 
    /**

@@ -95,8 +95,23 @@
 		// PUBLIC METHODS
 		// ===============
 
+    this.dataURIToBlob = function(dataURI) {
+      var binStr = atob(dataURI.split(',')[1]),
+        len = binStr.length,
+        arr = new Uint8Array(len);
+
+      for (var i = 0; i < len; i++) {
+        arr[i] = binStr.charCodeAt(i);
+      }
+
+      return new Blob([arr]);
+    }
+
 		this.save = function(){
-			return MG.canvas.save().toDataURL(MG.settings.outputFormat);
+      console.log('bruh, we savin2');
+
+      var b64 = MG.canvas.save().toDataURL('image/jpeg', 0.5);
+			return this.dataURIToBlob(b64);
 		};
 
 		this.saveCanvas = function(){
@@ -106,7 +121,8 @@
 		this.download = function(filename){
 			if(typeof filename === 'undefined') filename = 'image.png';
 
-			var downloadLink = $("<a></a>").attr("href", this.save()).attr("download", filename).appendTo(MG.wrapper);
+			var downloadLink = $("<a></a>").attr("href", URL.createObjectURL(this.save())).attr("download", filename).appendTo(MG.wrapper);
+      console.log('bruh, we downloadin');
 			downloadLink[0].click();
 
 			downloadLink.remove();

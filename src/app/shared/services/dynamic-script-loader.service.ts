@@ -12,6 +12,7 @@ export const scriptStore: Scripts[] = [
 
 declare var document: any;
 
+/** @todo Move back to the core module */
 @Injectable()
 export class DynamicScriptLoaderService {
 

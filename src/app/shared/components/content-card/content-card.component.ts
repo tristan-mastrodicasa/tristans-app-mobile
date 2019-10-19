@@ -88,8 +88,6 @@ export class ContentCardComponent implements OnInit {
       if (this.cardData.type === EContentType.Meme ||
           this.cardData.type === EContentType.MemeWithHost) this.http.unstarMeme(this.cardData.id).toPromise().then(_ => null);
     }
-
-    /** @todo send star request to backend API */
   }
 
 }

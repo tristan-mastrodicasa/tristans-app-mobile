@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from 'core/core.module';
+import { File } from '@ionic-native/file/ngx';
 
 import { FormatNumberDirective } from './directives/format-number/format-number.directive';
 import { FormatUtcDirective } from './directives/format-utc/format-utc.directive';
@@ -17,6 +18,7 @@ import { MemeGeneratorComponent } from './components/meme-generator/meme-generat
 import { DynamicScriptLoaderService } from './services/dynamic-script-loader.service';
 
 @NgModule({
+  providers: [File],
   imports: [
     IonicModule,
     RouterModule,

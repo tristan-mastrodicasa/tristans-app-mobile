@@ -30,6 +30,10 @@ $default-size: 16px;
   padding: $default-size;
 }
 
+.default-margin {
+  margin: $default-size;
+}
+
 .default-vertical-padding {
   padding-top: $default-size;
   padding-bottom: $default-size;

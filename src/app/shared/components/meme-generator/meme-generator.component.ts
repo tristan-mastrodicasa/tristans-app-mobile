@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { File, IWriteOptions } from '@ionic-native/file/ngx';
 
 import { DynamicScriptLoaderService } from 'shared/services/dynamic-script-loader.service';
 
@@ -13,7 +14,10 @@ export class MemeGeneratorComponent implements OnChanges {
 
   @Input() public canvas: string;
 
-  constructor(private scriptLoader: DynamicScriptLoaderService) { }
+  constructor(
+    private scriptLoader: DynamicScriptLoaderService,
+    private file: File,
+  ) { }
 
   /**
    * Initialize the JQuery meme engine
@@ -47,6 +51,20 @@ export class MemeGeneratorComponent implements OnChanges {
       showAdvancedSettings: false,
     });
 
+  }
+
+  /**
+   * Save the meme to the device to be later uploaded
+   * @return filename
+   */
+  public async saveMeme(): Promise<string> {
+    const blob = $('#meme').memeGenerator('save');
+
+    const path = this.file.dataDirectory;
+    const options: IWriteOptions = { replace: true };
+
+    const res = await this.file.writeFile(path, 'image.png', blob, options);
+    return res.toURL();
   }
 
 }

@@ -50,4 +50,6 @@ export class CanvasFocusPage implements OnInit {
     event.target.complete();
   }
 
+  /** @todo add drag down load */
+
 }

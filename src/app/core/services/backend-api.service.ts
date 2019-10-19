@@ -154,6 +154,41 @@ export class BackendApiService {
   }
 
   /**
+   * Upload a meme to the server
+   * @param  filePath    Local path of the file
+   * @return             Indication of success
+   */
+  public async uploadMeme(canvasid: number, filePath: string): Promise<{ memeId: number } | IHttpError[]> {
+
+    if (environment.serveFromCache) {
+      const meme = { memeId: 5 };
+      return meme; // Cannot serve from in memory DB since file transfer is not intetcepted
+    }
+
+    const fileTransfer: FileTransferObject = this.fileTransfer.create();
+
+    const options: FileUploadOptions = {
+      fileKey: 'meme',
+      fileName: 'memeFile',
+      headers: {
+        Authorization: this.authHeaders().get('Authorization'),
+      },
+    };
+
+    return fileTransfer.upload(filePath, `${environment.serverUrl}meme?canvasid=${canvasid}`, options).then(
+      (res) => {
+        const memeUploaded = JSON.parse(res.response);
+        return memeUploaded;
+      },
+      (err) => {
+        const errors: IHttpError[] = JSON.parse(err.body).errors;
+        return errors;
+      },
+    );
+
+  }
+
+  /**
    * Search users in the database
    * @param  query    String to query the database with
    * @return          List of users

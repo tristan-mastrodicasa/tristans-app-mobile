@@ -1,11 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActionSheetController, AlertController } from '@ionic/angular';
+import { ActionSheetController, AlertController, ToastController  } from '@ionic/angular';
 import { ActionSheetButton } from '@ionic/core';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 
 import { ContentCard, EContentType } from 'core/models';
 import { BackendApiService, LoadingService } from 'core/services';
 import { GlobalStore } from 'state/global.store';
+
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-content-card',
@@ -23,7 +26,8 @@ export class ContentCardComponent implements OnInit {
       text: 'Share',
       icon: 'share',
       handler: () => {
-        console.log(`Share clicked: ${this.cardData.id}`);
+        this.clipboard.copy(`${environment.primaryWebsite}canvas/${this.cardData.id}`);
+        this.presentShareLinkCopied();
       },
     }, {
       text: 'Cancel',
@@ -42,6 +46,8 @@ export class ContentCardComponent implements OnInit {
     private alert: AlertController,
     private loading: LoadingService,
     private location: Location,
+    private clipboard: Clipboard,
+    private toastController: ToastController,
   ) { }
 
   /**
@@ -107,6 +113,18 @@ export class ContentCardComponent implements OnInit {
 
     await actionSheet.present();
 
+  }
+
+  /**
+   * Notify the user that the share link has ben copied
+   */
+  private async presentShareLinkCopied() {
+    const toast = await this.toastController.create({
+      header: 'Link Copied',
+      duration: 1000,
+      position: 'bottom',
+    });
+    toast.present();
   }
 
   /**

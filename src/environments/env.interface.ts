@@ -3,8 +3,9 @@
  * Update the variables according to the different development and live environments
  */
 
-export interface Env {
+export interface IEnv {
   production: boolean;
+  primaryWebsite: string;
   serveFromCache: boolean;
   includeCache: boolean;
   serverUrl: string;

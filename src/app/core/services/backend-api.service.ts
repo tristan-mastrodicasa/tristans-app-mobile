@@ -138,9 +138,12 @@ export class BackendApiService {
       params: {
         description,
       },
+      headers: {
+        Authorization: this.authHeaders().get('Authorization'),
+      },
     };
 
-    return fileTransfer.upload(filePath, `${environment.serverUrl}canvas/upload`, options).then(
+    return fileTransfer.upload(filePath, `${environment.serverUrl}canvas`, options).then(
       (res) => {
         const canvasUploaded = JSON.parse(res.response);
         return canvasUploaded;

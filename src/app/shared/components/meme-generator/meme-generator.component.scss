@@ -1,0 +1,6 @@
+@import 'globals/card';
+
+.meme img {
+  max-height: $card-image-max-height;
+  width: auto;
+}

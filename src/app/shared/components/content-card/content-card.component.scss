@@ -1,6 +1,7 @@
 @import 'globals/defaults';
 @import 'helpers/utility-classes';
 @import 'helpers/colors';
+@import 'globals/card';
 
 .c-card {
   max-width: 500px;
@@ -68,6 +69,8 @@ span.alert {
 }
 
 .c-content img {
+  max-height: $card-image-max-height;
+  width: auto;
 }
 
 $actions-size: 16px;

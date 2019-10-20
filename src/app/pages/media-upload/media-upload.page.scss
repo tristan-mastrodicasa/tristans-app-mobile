@@ -15,3 +15,7 @@
   text-align: center;
   color: var(--ion-color-medium);
 }
+
+.image-preview img {
+  max-height: $card-image-max-height;
+}

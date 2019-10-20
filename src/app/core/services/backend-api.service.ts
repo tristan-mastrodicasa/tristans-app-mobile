@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { Observable } from 'rxjs';
 
-import { IUserItem, IProfile, ContentCard, IHttpError } from 'core/models';
+import { IUserItem, IProfile, ContentCard, IHttpError, IUserSettings } from 'core/models';
 import { GlobalStore } from 'state/global.store';
 
 import { environment } from 'environments/environment';
@@ -243,6 +243,23 @@ export class BackendApiService {
    */
   public unstarMeme(memeId: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}meme/${memeId}/star`, { headers: this.authHeaders() });
+  }
+
+  /**
+   * Get the settings for a user
+   * @param  userId User to get the settings for
+   */
+  public getUserSettings(userId: number): Observable<IUserSettings> {
+    return this.http.get<IUserSettings>(`${this.apiUrl}user/${userId}/settings`, { headers: this.authHeaders() });
+  }
+
+  /**
+   * Edit the settings of a user
+   * @param  userId   The user to change the settings of
+   * @param  settings The new settings of the user
+   */
+  public editUserSettings(userId: number, settings: IUserSettings): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}user/${userId}/settings`, { ...settings }, { headers: this.authHeaders() });
   }
 
 }

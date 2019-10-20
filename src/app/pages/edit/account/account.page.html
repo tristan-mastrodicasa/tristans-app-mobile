@@ -1,5 +1,22 @@
-<app-back-button pageTitle="Settings"></app-back-button>
+<ion-header>
+  <ion-toolbar color="primary">
 
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="app/home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="primary">
+      <ion-button (click)="saveSettings()">
+        <ion-icon name="save"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      Settings
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
 <ion-content>
 
   <div class="card-container-no-padding">
@@ -15,7 +32,7 @@
         <h2 class="radio-header">Canvas invites</h2>
         <p text-wrap>Recieve canvas invites from users in your network</p>
         </ion-label>
-        <ion-toggle color="primary" slot="end"></ion-toggle>
+        <ion-toggle [(ngModel)]="settings.notifications.canvasInvites" color="primary" slot="end"></ion-toggle>
       </ion-item>
 
       <ion-item lines="full">
@@ -23,7 +40,7 @@
         <h2 class="radio-header">Uploaded Canvases</h2>
         <p text-wrap>Recieve notifications whenever a user you follow uploads a canvas</p>
         </ion-label>
-        <ion-toggle color="primary" slot="end"></ion-toggle>
+        <ion-toggle [(ngModel)]="settings.notifications.subscriptionUploadedACanvas" color="primary" slot="end"></ion-toggle>
       </ion-item>
 
       <ion-item lines="full">
@@ -31,7 +48,7 @@
         <h2 class="radio-header">Created Memes</h2>
         <p text-wrap>Get notified whenever a user creates a meme from your canvas</p>
         </ion-label>
-        <ion-toggle color="primary" slot="end"></ion-toggle>
+        <ion-toggle [(ngModel)]="settings.notifications.userMemedMyCanvas" color="primary" slot="end"></ion-toggle>
       </ion-item>
 
       <ion-item lines="full">
@@ -39,7 +56,7 @@
         <h2 class="radio-header">Point Increases</h2>
         <p text-wrap>Recieve notifications about increases in your infulence points</p>
         </ion-label>
-        <ion-toggle color="primary" slot="end"></ion-toggle>
+        <ion-toggle [(ngModel)]="settings.notifications.pointsUpdate" color="primary" slot="end"></ion-toggle>
       </ion-item>
 
       <div class="default-padding">

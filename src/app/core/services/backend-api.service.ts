@@ -259,7 +259,16 @@ export class BackendApiService {
    * @param  settings The new settings of the user
    */
   public editUserSettings(userId: number, settings: IUserSettings): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}user/${userId}/settings`, { ...settings }, { headers: this.authHeaders() });
+    return this.http.put<any>(`${this.apiUrl}user/${userId}/settings`, settings, { headers: this.authHeaders() });
+  }
+
+  /**
+   * Edit the user profile
+   * @param  userId  User profile to edit
+   * @param  profile New profile data
+   */
+  public editUserProfile(userId: number, profile: { username: string; firstName: string; }): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}user/${userId}`, profile, { headers: this.authHeaders() });
   }
 
 }

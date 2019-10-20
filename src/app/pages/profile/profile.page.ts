@@ -39,20 +39,8 @@ export class ProfilePage implements OnInit {
    * Builds the user profile based on the id passed via the URL
    */
   public ngOnInit() {
-
-    const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-
-    this.http.getProfileById(id).pipe(first()).subscribe((res) => {
-
-      this.profile = res;
-
-      if (id === this.globalStore.state.userId) this.ownProfile = true;
-      else this.ownProfile = false;
-
-    });
-
+    this.getProfileCard();
     this.getContentCardSet();
-
   }
 
   /**
@@ -63,6 +51,7 @@ export class ProfilePage implements OnInit {
     this.route.queryParamMap.pipe(first()).subscribe((paramMap: ParamMap) => {
       const refresh = paramMap.get('refresh');
       if (refresh) {
+        this.getProfileCard();
         this.getContentCardSet();
       }
     });
@@ -79,6 +68,22 @@ export class ProfilePage implements OnInit {
     this.http.getUserContentCards(id).toPromise().then((res) => {
       this.page = 1;
       this.posts = this.posts.concat(res);
+    });
+  }
+
+  /**
+   * Get the profile card
+   */
+  public getProfileCard() {
+    const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+
+    this.http.getProfileById(id).pipe(first()).subscribe((res) => {
+
+      this.profile = res;
+
+      if (id === this.globalStore.state.userId) this.ownProfile = true;
+      else this.ownProfile = false;
+
     });
   }
 

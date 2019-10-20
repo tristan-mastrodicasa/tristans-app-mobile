@@ -110,6 +110,7 @@ export class MediaUploadPage implements OnInit {
 
               const canvasInfo = res as { canvasId: number };
               this.router.navigate(['/canvas', canvasInfo.canvasId]);
+              this.cancelUpload();
 
             }
           },
@@ -125,6 +126,7 @@ export class MediaUploadPage implements OnInit {
    * Cancel the image upload
    */
   public cancelUpload() {
+    this.description = null;
     this.webImagePath = null;
   }
 

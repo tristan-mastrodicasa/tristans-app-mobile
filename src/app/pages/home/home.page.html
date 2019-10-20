@@ -13,6 +13,10 @@
 </div>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
 
   <ion-card>
     <ion-item>
@@ -27,7 +31,7 @@
 
     <div class="default-vertical-padding">
 
-      <app-content-card *ngFor="let card of posts"
+      <app-content-card *ngFor="let card of posts | slice:0:(results * page)"
         [cardData]="card"
       ></app-content-card>
 

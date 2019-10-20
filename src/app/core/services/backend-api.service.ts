@@ -64,30 +64,16 @@ export class BackendApiService {
    * @return        User Item
    */
   public getUserItemById(userId: number): Observable<IProfile> {
-    console.log('headers');
-    console.log(this.authHeaders());
-    console.log(`${this.apiUrl}user/${userId}`);
     return this.http.get<IProfile>(`${this.apiUrl}user/${userId}`, { headers: this.authHeaders() });
   }
 
   /**
-   * Get a list of content cards that the user can view
-   * @param  target   Which view we will be populating
+   * Get a list of popular content cards that the user can view
    * @param  userId   Id of the user we are collecting content for
-   * @param  results  How many content cards to return per request
-   * @param  page     Pagnation: How many content cards in we are (results*page)
    * @return          Array of content cards
    */
-  public getContentCards(target: string, userId: number, results: number, page: number): Observable<ContentCard[]> {
-    console.log(`'Page: ${page}`);
-
-    const params: HttpParams = new HttpParams()
-      .set('target', target)
-      .set('userId', userId.toString())
-      .set('results', results.toString())
-      .set('page', page.toString());
-
-    return this.http.get<ContentCard[]>('api/content',  { params });
+  public getDailySuggestions(userId: number): Observable<ContentCard[]> {
+    return this.http.get<ContentCard[]>(`${this.apiUrl}user/${userId}/daily-suggestions`,  { headers: this.authHeaders() });
   }
 
   /**

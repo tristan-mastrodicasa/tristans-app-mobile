@@ -12,7 +12,7 @@ import { GlobalStore } from 'state/global.store';
 export class HomePage implements OnInit {
 
   private posts: ContentCard[] = [];
-  private cardsPerRequest = 6;
+  private results = 6;
   private page = 1;
 
   constructor(
@@ -24,29 +24,48 @@ export class HomePage implements OnInit {
    * Handles the inifinite scroll functionality
    */
   public ngOnInit() {
-
-    // Test Http Get // get reqest can later be changed to get relevent data from server, eg in this case it would need to get memes for the users home
-    this.http.getContentCards('home', 1, this.cardsPerRequest, this.page).toPromise().then((res) => {
-      this.posts = this.posts.concat(res);
-    });
+    this.getPosts();
   }
 
   /**
-   * When users scroll near the bottom of the view, call for more posts
+   * When users scroll near the bottom of the view, build more posts
    * @param  event Event object
    */
   public loadPosts(event: any) {
-
     this.page += 1;
-    this.http.getContentCards('home', 1, this.cardsPerRequest, this.page).toPromise().then((res) => {
-
-      this.posts = this.posts.concat(res);
-
-      event.target.complete();
-
-    });
-
+    event.target.complete();
   }
+
+  /**
+   * Reload page
+   */
+  public doRefresh(event: any) {
+    this.getPosts();
+
+    event.target.disabled = true;
+    event.target.complete();
+    setTimeout(
+      () => {
+        event.target.disabled = false;
+      },
+      100,
+  );
+  }
+
+  /**
+   * Get content cards
+   */
+  private getPosts() {
+    this.http.getDailySuggestions((this.globalStore.state.userId ? this.globalStore.state.userId : 0)).toPromise().then((res) => {
+      this.posts = [];
+      this.page = 1;
+      this.posts = this.posts.concat(res);
+    });
+  }
+
+  // ------------------------------
+  // Testing Functions
+  // ------------------------------
 
   /**
    * Sign the user in (testing purposes)

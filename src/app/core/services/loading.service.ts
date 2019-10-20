@@ -25,6 +25,7 @@ export class LoadingService {
 
   /**
    * Present the loading screen
+   * @todo add a timeout for failure
    */
   public async presentLoading() {
     const loading = await this.loadingController.create({

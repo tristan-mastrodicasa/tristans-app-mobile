@@ -144,6 +144,7 @@ export class BackendApiService {
 
   /**
    * Upload a meme to the server
+   * @param  canvasid    Canvas to be memed
    * @param  filePath    Local path of the file
    * @return             Indication of success
    */
@@ -172,6 +173,35 @@ export class BackendApiService {
       (err) => {
         const errors: IHttpError[] = JSON.parse(err.body).errors;
         return errors;
+      },
+    );
+
+  }
+
+  /**
+   * Upload a new user image to the server
+   * @param  filePath    Local path of the file
+   * @return             Indication of success
+   */
+  public async uploadNewUserImage(userid: number, filePath: string): Promise<any | IHttpError[]> {
+
+    const fileTransfer: FileTransferObject = this.fileTransfer.create();
+
+    const options: FileUploadOptions = {
+      fileKey: 'user_image',
+      fileName: 'userImageFile',
+      headers: {
+        Authorization: this.authHeaders().get('Authorization'),
+      },
+      httpMethod: 'PUT',
+    };
+
+    return fileTransfer.upload(filePath, `${environment.serverUrl}user/${userid}/image`, options).then(
+      (res) => {
+        return JSON.parse(res.response);
+      },
+      (err) => {
+        return JSON.parse(err.body).errors as IHttpError[];
       },
     );
 

@@ -56,28 +56,22 @@ export class ProfilePage implements OnInit {
   /**
    * Select a new profile picture
    */
-  public selectProfileImage() {
+  public async selectProfileImage() {
 
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
     };
 
-    this.camera.getPicture(options).then((imageData) => {
+    const imageData = await this.camera.getPicture(options);
 
-      console.log(imageData);
+    const filepath = await this.filePath.resolveNativePath(imageData);
+    const croppedImage = await this.crop.crop(filepath, { quality: 100, targetWidth: -1, targetHeight: -1 });
 
-      this.filePath.resolveNativePath(imageData).then((path) => {
-        this.crop.crop(path, { quality: 100, targetWidth: -1, targetHeight: -1 }).then(
-          newImage => console.log(`new image path is: ${newImage}`), /** @todo upload image, throw toast */
-          error => console.error('Error cropping image', error),
-        );
-      });
-
-    });
-
+    const res = await this.http.uploadNewUserImage(this.store.state.userId, croppedImage);
+    if (res[0]) this.loading.presentError(res[0].detail);
   }
 }

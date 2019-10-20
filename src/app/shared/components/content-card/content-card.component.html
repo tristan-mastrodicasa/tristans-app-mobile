@@ -1,4 +1,4 @@
-<div class="c-card" [class.c-card-bottom-margin]="cardView != 'canvas-view'">
+<div class="c-card" [ngClass]="{ 'invisible': deleted }"[class.c-card-bottom-margin]="cardView != 'canvas-view'">
 
   <div class="c-header clearfix">
     <div class="c-header-avatar">

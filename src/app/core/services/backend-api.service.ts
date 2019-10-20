@@ -301,4 +301,20 @@ export class BackendApiService {
     return this.http.put<any>(`${this.apiUrl}user/${userId}`, profile, { headers: this.authHeaders() });
   }
 
+  /**
+   * Delete a canvas
+   * @param  canvasId The canvas to delete
+   */
+  public deleteCanvas(canvasId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}canvas/${canvasId}`, { headers: this.authHeaders() });
+  }
+
+  /**
+   * Delete a meme
+   * @param  memeId The meme to delete
+   */
+  public deleteMeme(memeId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}meme/${memeId}`, { headers: this.authHeaders() });
+  }
+
 }

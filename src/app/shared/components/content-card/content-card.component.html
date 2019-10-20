@@ -6,7 +6,7 @@
       <img *ngIf="cardData.type == 'meme-with-host'" class="avatar-secondary" src="{{ cardData.users.secondary.photo }}">
     </div>
 
-    <div *ngIf="cardView != 'canvas-view'" class="c-header-action" (click)="presentContentCardActions()">
+    <div class="c-header-action" (click)="presentContentCardActions()">
       <ion-icon class="more-icon" name="more" mode="ios"></ion-icon>
     </div>
 

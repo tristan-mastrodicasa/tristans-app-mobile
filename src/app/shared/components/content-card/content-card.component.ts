@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 import { ActionSheetButton } from '@ionic/core';
 
@@ -40,6 +41,7 @@ export class ContentCardComponent implements OnInit {
     private store: GlobalStore,
     private alert: AlertController,
     private loading: LoadingService,
+    private location: Location,
   ) { }
 
   /**
@@ -144,6 +146,7 @@ export class ContentCardComponent implements OnInit {
       });
     }
 
+    if (this.cardView === 'canvas-view') this.location.back();
     if (!error) this.deleted = true;
   }
 

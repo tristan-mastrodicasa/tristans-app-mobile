@@ -6,8 +6,10 @@ import { CoreModule } from 'core/core.module';
 import { File } from '@ionic-native/file/ngx';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 
-import { FormatNumberDirective } from './directives/format-number/format-number.directive';
-import { FormatUtcDirective } from './directives/format-utc/format-utc.directive';
+import {
+  FormatNumberDirective,
+  FormatUtcDirective,
+} from './directives';
 
 import {
   ContentCardComponent,

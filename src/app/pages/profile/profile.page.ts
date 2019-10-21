@@ -96,7 +96,22 @@ export class ProfilePage implements OnInit {
     event.target.complete();
   }
 
-  /** @todo implement drag down load */
+  /**
+   * Reload page
+   */
+  public doRefresh(event: any) {
+    this.getProfileCard();
+    this.getContentCardSet();
+
+    event.target.disabled = true;
+    event.target.complete();
+    setTimeout(
+      () => {
+        event.target.disabled = false;
+      },
+      100,
+    );
+  }
 
   /**
    * Unfollow the user

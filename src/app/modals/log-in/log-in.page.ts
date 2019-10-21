@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
@@ -25,6 +26,7 @@ export class LogInPage {
     private globalStore: GlobalStore,
     private googlePlus: GooglePlus,
     private fb: Facebook,
+    private router: Router,
   ) { }
 
   /**
@@ -49,7 +51,6 @@ export class LogInPage {
 
   /**
    * Login with google OAuth2.0
-   * @todo Redirect to settings for user to update basic information
    */
   public signInWithGoogle() {
 
@@ -70,6 +71,7 @@ export class LogInPage {
               console.log(authRes.token);
               this.globalStore.setToken(authRes.token);
               this.loadingService.closeLoading();
+              this.router.navigate(['/edit/profile']);
 
             },
 

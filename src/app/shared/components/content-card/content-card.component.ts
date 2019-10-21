@@ -51,7 +51,7 @@ export class ContentCardComponent implements OnInit {
    * Initialize the description
    */
   public ngOnInit() {
-    if (!this.cardData.description) this.cardData.description = 'No description';
+    if (this.cardView === 'canvas-view' && !this.cardData.description) this.cardData.description = 'No description';
 
     // Add delete action if you own this card //
     const myId = this.store.state.userId;

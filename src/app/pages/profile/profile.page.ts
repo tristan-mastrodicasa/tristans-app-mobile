@@ -64,8 +64,8 @@ export class ProfilePage implements OnInit {
   public getContentCardSet() {
     const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10);
 
-    this.posts = [];
     this.http.getUserContentCards(id).toPromise().then((res) => {
+      this.posts = [];
       this.page = 1;
       this.posts = this.posts.concat(res);
     });

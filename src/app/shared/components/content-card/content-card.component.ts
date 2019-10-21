@@ -33,9 +33,6 @@ export class ContentCardComponent implements OnInit {
       text: 'Cancel',
       icon: 'close',
       role: 'cancel',
-      handler: () => {
-        console.log('Cancel clicked');
-      },
     },
   ];
 

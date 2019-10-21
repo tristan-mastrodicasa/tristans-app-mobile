@@ -9,12 +9,12 @@ import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { FormatNumberDirective } from './directives/format-number/format-number.directive';
 import { FormatUtcDirective } from './directives/format-utc/format-utc.directive';
 
-import { PrimaryHeaderComponent } from './components/interface/primary-header/primary-header.component';
-import { BackButtonComponent } from './components/interface/back-button/back-button.component';
-
-import { ContentCardComponent } from './components/content-card/content-card.component';
-import { UserItemComponent } from './components/user-item/user-item.component';
-import { MemeGeneratorComponent } from './components/meme-generator/meme-generator.component';
+import {
+  ContentCardComponent,
+  UserItemComponent,
+  MemeGeneratorComponent,
+  BackButtonComponent,
+} from './components';
 
 @NgModule({
   providers: [File, Clipboard],
@@ -27,20 +27,18 @@ import { MemeGeneratorComponent } from './components/meme-generator/meme-generat
   declarations: [
     FormatNumberDirective,
     FormatUtcDirective,
-    PrimaryHeaderComponent,
-    BackButtonComponent,
     ContentCardComponent,
     UserItemComponent,
     MemeGeneratorComponent,
+    BackButtonComponent,
   ],
   exports: [
     FormatNumberDirective,
     FormatUtcDirective,
-    PrimaryHeaderComponent,
-    BackButtonComponent,
     ContentCardComponent,
     UserItemComponent,
     MemeGeneratorComponent,
+    BackButtonComponent,
   ],
 })
 export class SharedModule { }

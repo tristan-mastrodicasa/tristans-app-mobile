@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { BackendApiService, LoadingService } from 'core/services';
-import { MemeGeneratorComponent } from 'shared/components/meme-generator/meme-generator.component';
+import { MemeGeneratorComponent } from 'shared/components';
 import { GlobalStore } from 'state/global.store';
 
 @Component({

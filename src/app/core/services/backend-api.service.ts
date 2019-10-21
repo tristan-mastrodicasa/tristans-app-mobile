@@ -40,6 +40,15 @@ export class BackendApiService {
   }
 
   /**
+   * Log into the service with facebook, send the access token to get a JWT
+   * @param  accessToken Access token from facebook
+   * @return             Auth token
+   */
+  public facebookLogIn(accessToken: string): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${this.apiUrl}auth/facebook`, { access_token: accessToken });
+  }
+
+  /**
    * Test request for required profile data from local DB
    * @param  id Id string of the user profile
    * @return    Array of user profiles

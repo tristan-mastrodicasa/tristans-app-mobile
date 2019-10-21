@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 
-interface Scripts {
+interface IScripts {
   name: string;
   src: string;
 }
 
-export const scriptStore: Scripts[] = [
+export const scriptStore: IScripts[] = [
   { name: 'jquery.memegenerator.min', src: 'assets/meme-generator/jquery.memegenerator.min.js' },
   { name: 'jquery.memegenerator', src: 'assets/meme-generator/jquery.memegenerator.js' },
 ];
 
 declare var document: any;
 
-/** @todo Move back to the core module */
 @Injectable()
 export class DynamicScriptLoaderService {
 

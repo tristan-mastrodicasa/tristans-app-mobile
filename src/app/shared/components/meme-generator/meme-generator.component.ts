@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { File, IWriteOptions } from '@ionic-native/file/ngx';
 
-import { DynamicScriptLoaderService } from 'shared/services/dynamic-script-loader.service';
+import { DynamicScriptLoaderService } from 'core/services';
 
 declare var $: any;
 

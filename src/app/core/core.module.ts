@@ -12,6 +12,7 @@ import {
   AuthService,
   HelpersService,
   LoadingService,
+  DynamicScriptLoaderService,
 } from './services';
 
 import { environment } from 'environments/environment';
@@ -22,6 +23,7 @@ import { environment } from 'environments/environment';
     AuthService,
     HelpersService,
     LoadingService,
+    DynamicScriptLoaderService,
     FileTransfer,
   ],
   imports: [

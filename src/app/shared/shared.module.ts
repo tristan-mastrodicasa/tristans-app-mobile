@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
@@ -15,8 +15,6 @@ import { BackButtonComponent } from './components/interface/back-button/back-but
 import { ContentCardComponent } from './components/content-card/content-card.component';
 import { UserItemComponent } from './components/user-item/user-item.component';
 import { MemeGeneratorComponent } from './components/meme-generator/meme-generator.component';
-
-import { DynamicScriptLoaderService } from './services/dynamic-script-loader.service';
 
 @NgModule({
   providers: [File, Clipboard],
@@ -45,15 +43,4 @@ import { DynamicScriptLoaderService } from './services/dynamic-script-loader.ser
     MemeGeneratorComponent,
   ],
 })
-export class SharedModule {
-
-  /**
-   * Method to define providers when importing into the root module
-   */
-  public static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: SharedModule,
-      providers: [DynamicScriptLoaderService],
-    };
-  }
-}
+export class SharedModule { }

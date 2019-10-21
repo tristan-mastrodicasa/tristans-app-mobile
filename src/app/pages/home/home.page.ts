@@ -49,7 +49,7 @@ export class HomePage implements OnInit {
         event.target.disabled = false;
       },
       100,
-  );
+    );
   }
 
   /**

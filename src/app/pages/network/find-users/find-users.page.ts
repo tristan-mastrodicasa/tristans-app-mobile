@@ -32,7 +32,7 @@ export class FindUsersPage {
 
   /**
    * Search the database for users with the provided string
-   * @todo Add a 404 heads up
+   * @todo Add a 404 heads up in prod
    */
   public search(event: any) {
     this.http.searchUsers(event.target.value).toPromise().then((res) => {

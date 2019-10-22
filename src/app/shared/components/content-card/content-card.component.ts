@@ -77,6 +77,7 @@ export class ContentCardComponent implements OnInit {
 
   /**
    * Cofirm if the user wants to delete the card
+   * @todo Tell users memes will be deleted
    */
   private async presentDeleteConfirm() {
     const alert = await this.alert.create({

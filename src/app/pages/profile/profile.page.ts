@@ -13,12 +13,12 @@ import { GlobalStore } from 'state/global.store';
 })
 export class ProfilePage implements OnInit {
 
-  private posts = [] as ContentCard[];
+  public posts = [] as ContentCard[];
   public page = 1;
   public results = 5;
 
   public ownProfile: boolean;
-  private profile: IProfile = {
+  public  profile: IProfile = {
     id: null,
     firstName: '',
     username: '',

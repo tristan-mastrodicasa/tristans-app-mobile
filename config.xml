@@ -3,7 +3,7 @@
     <name>Tristans App</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://localhost:8101" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -118,7 +118,6 @@
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="5.2.0" />
     </plugin>
     <allow-navigation href="http://localhost:8101" sessionid="481c35b2" />
-    <engine name="android" spec="7.1.4" />
     <plugin name="cordova-plugin-ionic" spec="^5.4.5">
         <variable name="APP_ID" value="ed81394e" />
         <variable name="CHANNEL_NAME" value="Production" />
@@ -127,4 +126,5 @@
         <variable name="MIN_BACKGROUND_DURATION" value="30" />
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
     </plugin>
+    <engine name="android" spec="7.1.4" />
 </widget>

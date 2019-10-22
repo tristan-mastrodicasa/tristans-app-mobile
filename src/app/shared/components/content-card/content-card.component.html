@@ -14,7 +14,7 @@
       <div class="c-header-info-text-bar"><b>{{ cardData.users.primary.firstName }} </b><span class="light">@{{ cardData.users.primary.username }}</span></div>
       <div *ngIf="cardData.type == 'meme-with-host'" class="c-header-info-text-bar"><span class="light">{{ cardData.users.secondary.firstName }} @{{ cardData.users.secondary.username }}</span></div>
       <!--<div *ngIf="cardData.type == 'canvas' && cardView != 'canvas-view'" class="c-header-info-text-bar"><span class="light"><ion-icon class="alert-icon" name="information-circle-outline"></ion-icon>&nbsp;Closed</span></div>-->
-      <div *ngIf="cardData.type == 'canvas'" class="c-header-info-text-bar">{{ cardData.description }}</div>
+      <div *ngIf="cardData.type == 'canvas' && cardData.description != 'null'" class="c-header-info-text-bar">{{ cardData.description }}</div>
     </div>
 
 

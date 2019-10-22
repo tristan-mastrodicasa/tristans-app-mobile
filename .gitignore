@@ -34,4 +34,3 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 
 # Ignore developer environment which will change from machine to machine, keep production the same
-src/environments/environment.ts

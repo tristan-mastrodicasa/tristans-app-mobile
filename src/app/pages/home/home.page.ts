@@ -4,6 +4,8 @@ import { BackendApiService } from 'core/services';
 import { ContentCard } from 'core/models';
 import { GlobalStore } from 'state/global.store';
 
+import { environment } from 'environments/environment';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -14,6 +16,8 @@ export class HomePage implements OnInit {
   public posts: ContentCard[] = [];
   public results = 6;
   public page = 1;
+
+  public showDevButtons = environment.production ? false : true;
 
   constructor(
     private http: BackendApiService,

@@ -18,7 +18,7 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-card>
+  <ion-card *ngIf="showDevButtons">
     <ion-item>
       <ion-icon name="person" slot="start"></ion-icon>
       <ion-label>Login to the site</ion-label>

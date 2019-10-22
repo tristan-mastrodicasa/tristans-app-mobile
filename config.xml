@@ -126,5 +126,5 @@
         <variable name="MIN_BACKGROUND_DURATION" value="30" />
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
     </plugin>
-    <engine name="android" spec="7.1.4" />
+    <engine name="android" spec="8.1.0" />
 </widget>

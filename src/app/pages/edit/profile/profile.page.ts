@@ -64,12 +64,14 @@ export class ProfilePage implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      targetWidth: 500,
+      targetHeight: 500,
     };
 
     const imageData = await this.camera.getPicture(options);
 
     const filepath = await this.filePath.resolveNativePath(imageData);
-    const croppedImage = await this.crop.crop(filepath, { quality: 100, targetWidth: -1, targetHeight: -1 });
+    const croppedImage = await this.crop.crop(filepath, { quality: 50 });
 
     const res = await this.http.uploadNewUserImage(this.store.state.userId, croppedImage);
     if (res[0]) this.loading.presentError(res[0].detail);

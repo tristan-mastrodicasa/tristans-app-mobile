@@ -6,7 +6,10 @@
     "build": "ng build --prod=true",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "buildAndroidRelease": "ionic cordova build android --prod --release",
+    "testAndroidRelease": "native-run.cmd android --app platforms/android/app/build/outputs/apk/release/app-release.apk --device",
+    "packageAndroidRelease": "zipalign -v 4 ./platforms/android/app/build/outputs/apk/release/app-release.apk ./app-dist/tristans-app.apk"
   },
   "private": true,
   "dependencies": {
@@ -119,7 +122,8 @@
         "UPDATE_METHOD": "background",
         "MAX_STORE": "2",
         "MIN_BACKGROUND_DURATION": "30",
-        "UPDATE_API": "https://api.ionicjs.com"
+        "UPDATE_API": "https://api.ionicjs.com",
+        "DISABLED": "true"
       },
       "cordova-plugin-inappbrowser": {}
     },

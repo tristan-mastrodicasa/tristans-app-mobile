@@ -33,4 +33,9 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 
+app-dist/
+
 # Ignore developer environment which will change from machine to machine, keep production the same
+
+# Ignore build.json, holds keystore passwords
+build.json

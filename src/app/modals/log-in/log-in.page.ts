@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { Facebook } from '@ionic-native/facebook/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 import { BackendApiService } from 'core/services/backend-api.service';
 import { LoadingService } from 'core/services/loading.service';
@@ -27,6 +28,7 @@ export class LogInPage {
     private googlePlus: GooglePlus,
     private fb: Facebook,
     private router: Router,
+    private browser: InAppBrowser,
   ) { }
 
   /**
@@ -98,6 +100,14 @@ export class LogInPage {
     console.log(err);
     this.loadingService.closeLoading();
     this.loadingService.presentError(err.message);
+  }
+
+  public privacy() {
+    this.browser.create(`${environment.primaryWebsite}/privacy`);
+  }
+
+  public terms() {
+    this.browser.create(`${environment.primaryWebsite}/terms`);
   }
 
 }

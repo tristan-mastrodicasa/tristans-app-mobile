@@ -27,7 +27,7 @@ export class ContentCardComponent implements OnInit {
       text: 'Share',
       icon: 'share',
       handler: () => {
-        this.clipboard.copy(`${environment.primaryWebsite}canvas/${this.cardData.id}`);
+        this.clipboard.copy(`${environment.primaryWebsite}/canvas/${this.cardData.id}`);
         this.presentShareLinkCopied();
       },
     },

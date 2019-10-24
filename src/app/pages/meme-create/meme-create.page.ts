@@ -32,7 +32,8 @@ export class MemeCreatePage {
 
     this.http.getCanvasById(id).toPromise().then((res) => {
 
-      this.image = res.imagePath;
+      // We add a date to the end of the string so the image is not retrieved from cache //
+      this.image = `${res.imagePath}?fuckyoucors=${+(new Date())}`;
 
     });
 

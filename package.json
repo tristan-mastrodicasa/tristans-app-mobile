@@ -1,8 +1,5 @@
 {
   "name": "tristans-app-mobile",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -90,7 +87,6 @@
     "tslint-microsoft-contrib": "^6.2.0",
     "typescript": "~3.1.6"
   },
-  "description": "An Ionic project",
   "cordova": {
     "plugins": {
       "cordova-sqlite-storage": {},

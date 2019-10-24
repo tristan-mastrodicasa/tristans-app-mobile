@@ -6,7 +6,7 @@ import { IEnv } from './env.interface';
  */
 export const environment: IEnv = {
   production: false,
-  primaryWebsite: 'http://locahost:8080/',
+  primaryWebsite: 'https://tristansapp.com',
   serveFromCache: false,
   includeCache: true,
   serverUrl: 'http://192.168.1.11:3000/api/',

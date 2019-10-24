@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { ActionSheetController, AlertController, ToastController  } from '@ionic/angular';
 import { ActionSheetButton } from '@ionic/core';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 import { ContentCard, EContentType } from 'core/models';
 import { BackendApiService, LoadingService } from 'core/services';
@@ -29,7 +30,15 @@ export class ContentCardComponent implements OnInit {
         this.clipboard.copy(`${environment.primaryWebsite}canvas/${this.cardData.id}`);
         this.presentShareLinkCopied();
       },
-    }, {
+    },
+    {
+      text: 'Report',
+      icon: 'alert',
+      handler: () => {
+        this.browser.create(`${environment.primaryWebsite}/support`);
+      },
+    },
+    {
       text: 'Cancel',
       icon: 'close',
       role: 'cancel',
@@ -45,6 +54,7 @@ export class ContentCardComponent implements OnInit {
     private location: Location,
     private clipboard: Clipboard,
     private toastController: ToastController,
+    private browser: InAppBrowser,
   ) { }
 
   /**

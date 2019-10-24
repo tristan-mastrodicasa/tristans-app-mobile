@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { CoreModule } from 'core/core.module';
 import { File } from '@ionic-native/file/ngx';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 import {
   FormatNumberDirective,
@@ -19,7 +20,7 @@ import {
 } from './components';
 
 @NgModule({
-  providers: [File, Clipboard],
+  providers: [File, Clipboard, InAppBrowser],
   imports: [
     IonicModule,
     RouterModule,

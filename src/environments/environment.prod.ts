@@ -2,7 +2,7 @@ import { IEnv } from './env.interface';
 
 export const environment: IEnv = {
   production: true,
-  primaryWebsite: 'https://tristansapp.com/',
+  primaryWebsite: 'https://tristansapp.com',
   serveFromCache: false,
   includeCache: false,
   serverUrl: 'https://tristansapp.com/api/',

@@ -8,8 +8,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "buildAndroidRelease": "ionic cordova build android --prod --release",
-    "testAndroidRelease": "native-run.cmd android --app platforms/android/app/build/outputs/apk/release/app-release.apk --device",
-    "packageAndroidRelease": "zipalign -v 4 ./platforms/android/app/build/outputs/apk/release/app-release.apk ./app-dist/tristans-app.apk"
+    "testAndroidRelease": "native-run.cmd android --app platforms/android/app/build/outputs/apk/release/app-release.apk --device"
   },
   "private": true,
   "dependencies": {

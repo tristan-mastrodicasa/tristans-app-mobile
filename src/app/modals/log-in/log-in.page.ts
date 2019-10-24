@@ -102,10 +102,16 @@ export class LogInPage {
     this.loadingService.presentError(err.message);
   }
 
+  /**
+   * Access privacy policy
+   */
   public privacy() {
     this.browser.create(`${environment.primaryWebsite}/privacy`);
   }
 
+  /**
+   * Access terms of service
+   */
   public terms() {
     this.browser.create(`${environment.primaryWebsite}/terms`);
   }

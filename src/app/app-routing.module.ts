@@ -9,9 +9,9 @@ const routes: Routes = [
   { path: 'network/find-users', loadChildren: './pages/network/find-users/find-users.module#FindUsersPageModule', canActivate: [AuthService], data: { type: 'user-experience' } },
   { path: 'edit/profile', loadChildren: './pages/edit/profile/profile.module#ProfilePageModule', canActivate: [AuthService], data: { type: 'user-experience' } },
   { path: 'edit/account', loadChildren: './pages/edit/account/account.module#AccountPageModule', canActivate: [AuthService], data: { type: 'user-experience' } },
-  { path: 'canvas/:id', loadChildren: './pages/canvas-focus/canvas-focus.module#CanvasFocusPageModule' },
-  { path: 'meme-create/:id', loadChildren: './pages/meme-create/meme-create.module#MemeCreatePageModule' },
-  { path: 'network/search', loadChildren: './pages/network/search/search.module#SearchPageModule' },
+  { path: 'canvas/:id', loadChildren: './pages/canvas-focus/canvas-focus.module#CanvasFocusPageModule', canActivate: [AuthService], data: { type: 'user-experience' } },
+  { path: 'meme-create/:id', loadChildren: './pages/meme-create/meme-create.module#MemeCreatePageModule', canActivate: [AuthService], data: { type: 'user-experience' } },
+  { path: 'network/search', loadChildren: './pages/network/search/search.module#SearchPageModule', canActivate: [AuthService], data: { type: 'user-experience' } },
 ];
 
 @NgModule({

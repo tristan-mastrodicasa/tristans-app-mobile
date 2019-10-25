@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { Observable } from 'rxjs';
 
-import { IUserItem, IProfile, ContentCard, IHttpError, IUserSettings } from 'core/models';
+import { IUserItem, IProfile, ContentCard, IHttpError, IUserSettings, IMobileDevice } from 'core/models';
 import { GlobalStore } from 'state/global.store';
 
 import { environment } from 'environments/environment';
@@ -324,6 +324,15 @@ export class BackendApiService {
    */
   public deleteMeme(memeId: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}meme/${memeId}`, { headers: this.authHeaders() });
+  }
+
+  /**
+   * Update the device the user is using
+   * @param  userId   The user using this device
+   * @param  deviceId The device id to map to the user
+   */
+  public updateDevice(userId: number, deviceId: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}user/${userId}/devices`, { deviceId } as IMobileDevice, { headers: this.authHeaders() });
   }
 
 }

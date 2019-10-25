@@ -3,6 +3,7 @@ import { IonicModule } from '@ionic/angular';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 import { LogInPage } from './log-in.page';
 
@@ -13,7 +14,12 @@ import { LogInPage } from './log-in.page';
   imports: [
     IonicModule,
   ],
-  providers: [GooglePlus, Facebook, InAppBrowser],
+  providers: [
+    GooglePlus,
+    Facebook,
+    InAppBrowser,
+    OneSignal,
+  ],
   exports: [
     LogInPage,
   ],

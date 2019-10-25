@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 import { BackendApiService } from 'core/services/backend-api.service';
 import { LoadingService } from 'core/services/loading.service';
@@ -29,6 +30,7 @@ export class LogInPage {
     private fb: Facebook,
     private router: Router,
     private browser: InAppBrowser,
+    private oneSignal: OneSignal,
   ) { }
 
   /**
@@ -90,6 +92,10 @@ export class LogInPage {
     this.globalStore.setToken(authRes.token);
     this.router.navigate(['/edit/profile']);
     this.loadingService.closeLoading();
+
+    this.oneSignal.getIds().then((v) => {
+      this.http.updateDevice(this.globalStore.state.userId, v.userId).toPromise().then(_ => null);
+    });
   }
 
   /**

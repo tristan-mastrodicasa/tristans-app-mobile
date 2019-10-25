@@ -32,10 +32,7 @@ export class AppComponent {
       this.splashScreen.hide();
 
       this.oneSignal.startInit('156f6e8c-0f17-445f-9cc8-43f7b6f38074', '839993677318');
-      this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
-      this.oneSignal.handleNotificationReceived().subscribe((notification) => {
-        // console.log(notification);
-      });
+      this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
 
       this.oneSignal.handleNotificationOpened().subscribe((notification) => {
         this.router.navigate([notification.notification.payload.additionalData.page]);

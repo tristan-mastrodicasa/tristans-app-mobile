@@ -93,6 +93,7 @@ export class LogInPage {
     this.router.navigate(['/edit/profile']);
     this.loadingService.closeLoading();
 
+    // Update which device this user is on //
     this.oneSignal.getIds().then((v) => {
       this.http.updateDevice(this.globalStore.state.userId, v.userId).toPromise().then(_ => null);
     });

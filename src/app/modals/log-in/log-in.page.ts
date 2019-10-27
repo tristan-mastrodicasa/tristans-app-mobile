@@ -45,7 +45,7 @@ export class LogInPage {
    */
   public signInWithFB() {
 
-    this.fb.login(['public_profile', 'user_friends', 'email'])
+    this.fb.login(['public_profile', 'email'])
     .then((res) => {
       this.http.facebookLogIn(res.authResponse.accessToken).toPromise().then(
         res => this.loginSuccessful(res),

@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
+import { AlertController, ToastController } from '@ionic/angular';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { Router } from '@angular/router';
 
 import { GlobalStore } from 'state/global.store';
 import { BackendApiService, LoadingService } from 'core/services';
 
 import { canvasImageConfig } from 'configs/canvas-image.config';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-media-upload',
@@ -32,6 +35,9 @@ export class MediaUploadPage implements OnInit {
     private http: BackendApiService,
     private loadingService: LoadingService,
     private router: Router,
+    private alert: AlertController,
+    private clipboard: Clipboard,
+    private toastController: ToastController,
   ) { }
 
   /**
@@ -89,6 +95,63 @@ export class MediaUploadPage implements OnInit {
   }
 
   /**
+   * Confirm that the image doe not depict another user without permission
+   */
+  public async upload() {
+    const alert = await this.alert.create({
+      header: 'Warning',
+      message: 'If this image depicts another person in a private setting you must get their permission before uploading!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        }, {
+          text: 'Confirm',
+          handler: () => {
+            this.confirmUpload();
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  /**
+   * Call to action to share canvas
+   * @param canvasid Id of the canvas
+   */
+  public async shareCanvaPrompt(canvasid: number) {
+    const alert = await this.alert.create({
+      header: 'Tip',
+      message: 'To increase the chances of this canvas trending, share it with friends!',
+      buttons: [
+        {
+          text: 'Copy Link',
+          handler: () => {
+            this.clipboard.copy(`${environment.primaryWebsite}/canvas/${canvasid}`);
+            this.presentShareLinkCopied();
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  /**
+   * Notify the user that the share link has ben copied
+   */
+  private async presentShareLinkCopied() {
+    const toast = await this.toastController.create({
+      header: 'Link Copied',
+      duration: 1000,
+      position: 'bottom',
+    });
+    toast.present();
+  }
+
+  /**
    * Upload the content, redirect to page hosting the image
    */
   public confirmUpload() {
@@ -109,7 +172,9 @@ export class MediaUploadPage implements OnInit {
             } else {
 
               const canvasInfo = res as { canvasId: number };
-              this.router.navigate(['/canvas', canvasInfo.canvasId]);
+              this.router.navigate(['/canvas', canvasInfo.canvasId]).then(() => {
+                this.shareCanvaPrompt(canvasInfo.canvasId);
+              });
               this.cancelUpload();
 
             }

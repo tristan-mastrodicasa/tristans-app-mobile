@@ -48,11 +48,13 @@ export class AppComponent {
       // Open certain urls stuff //
       // Have to do some hacking to get past ionics specialness //
       const intentHandler = (intent) => {
-        const urlParts: string[] = intent.data.split('?')[0].split('/');
-        if (urlParts[urlParts.length - 2] === 'canvas') {
-          this.router.navigate([`canvas/${urlParts[urlParts.length - 1]}`]);
-        } else {
-          this.browser.create(intent.data);
+        if (intent.data) {
+          const urlParts: string[] = intent.data.split('?')[0].split('/');
+          if (urlParts[urlParts.length - 2] === 'canvas') {
+            this.router.navigate([`canvas/${urlParts[urlParts.length - 1]}`]);
+          } else {
+            this.browser.create(intent.data);
+          }
         }
       };
 

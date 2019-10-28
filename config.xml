@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tristans.app" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tristans.app" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Tristan's App</name>
     <content src="index.html" />
     <access origin="*" />
@@ -9,6 +9,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="AndroidLaunchMode" value="singleTask" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
@@ -20,6 +21,14 @@
     <preference name="DisableDeploy" value="true" />
     <platform name="android">
         <hook src="hooks/copy_android_notification_icons.js" type="after_prepare" />
+        <config-file mode="merge" parent="/manifest/application/activity" platform="android" target="AndroidManifest.xml">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:host="tristansapp.com" android:scheme="https" />
+            </intent-filter>
+        </config-file>
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:usesCleartextTraffic="true" />
             <application android:networkSecurityConfig="@xml/network_security_config" />
@@ -128,5 +137,6 @@
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
     </plugin>
     <plugin name="onesignal-cordova-plugin" spec="^2.6.0" />
-    <engine name="android" spec="8.1.0" />
+    <plugin name="com-darryncampbell-cordova-plugin-intent" spec="^1.1.8" />
+    <engine name="android" spec="~8.1.0" />
 </widget>

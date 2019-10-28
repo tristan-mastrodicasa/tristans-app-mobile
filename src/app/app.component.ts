@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -19,6 +19,7 @@ export class AppComponent {
     private oneSignal: OneSignal,
     private router: Router,
     private browser: InAppBrowser,
+    private ngZone: NgZone,
   ) {
     this.initializeApp();
   }
@@ -47,7 +48,7 @@ export class AppComponent {
 
       // Open certain urls stuff //
       // Have to do some hacking to get past ionics specialness //
-      const intentHandler = (intent) => {
+      const intentHandler = intent => this.ngZone.run(() => {
         if (intent.data) {
           const urlParts: string[] = intent.data.split('?')[0].split('/');
           if (urlParts[urlParts.length - 2] === 'canvas') {
@@ -56,7 +57,7 @@ export class AppComponent {
             this.browser.create(intent.data);
           }
         }
-      };
+      });
 
       (window as any).plugins.intentShim.onIntent(intentHandler);
       (window as any).plugins.intentShim.getIntent(intentHandler, () => null);

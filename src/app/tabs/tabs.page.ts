@@ -26,13 +26,8 @@ export class TabsPage {
       if (hasToken) {
 
         const options: CameraOptions = {
-          quality: canvasImageConfig.quality,
-          destinationType: this.camera.DestinationType[canvasImageConfig.destinationType],
-          encodingType: this.camera.EncodingType[canvasImageConfig.encodingType],
-          mediaType: this.camera.MediaType[canvasImageConfig.mediaType],
+          ...canvasImageConfig,
           sourceType: this.camera.PictureSourceType.CAMERA,
-          targetHeight: canvasImageConfig.targetHeight,
-          targetWidth: canvasImageConfig.targetWidth,
         };
 
         this.camera.getPicture(options).then(

@@ -60,13 +60,8 @@ export class MediaUploadPage implements OnInit {
   public selectCanvasPicture() {
 
     const options: CameraOptions = {
-      quality: canvasImageConfig.quality,
-      destinationType: this.camera.DestinationType[canvasImageConfig.destinationType],
-      encodingType: this.camera.EncodingType[canvasImageConfig.encodingType],
-      mediaType: this.camera.MediaType[canvasImageConfig.mediaType],
+      ...canvasImageConfig,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      targetHeight: canvasImageConfig.targetHeight,
-      targetWidth: canvasImageConfig.targetWidth,
     };
 
     this.camera.getPicture(options).then((imageData) => {

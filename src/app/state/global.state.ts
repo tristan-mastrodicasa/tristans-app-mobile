@@ -3,6 +3,7 @@ export class GlobalState {
   public userId: number;
 
   public stagedCanvasPicture: string;
+  public homeRefreshTrigger: boolean; // Subscribe to this state to know when to reload the home page
 
   /**
    * @todo implement a cache property which stores

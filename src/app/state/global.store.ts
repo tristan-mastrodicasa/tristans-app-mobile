@@ -102,4 +102,15 @@ export class GlobalStore extends Store<GlobalState> {
     });
   }
 
+  /**
+   * Set if the home page should refresh
+   * @param  trigger Trigger home page refresh?
+   */
+  public setHomeRefreshTrigger(trigger: boolean) {
+    this.setState({
+      ...this.state,
+      homeRefreshTrigger: trigger,
+    });
+  }
+
 }

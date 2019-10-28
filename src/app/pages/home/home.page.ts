@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonContent } from '@ionic/angular';
 
 import { BackendApiService } from 'core/services';
 import { ContentCard } from 'core/models';
@@ -12,6 +13,8 @@ import { environment } from 'environments/environment';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+
+  @ViewChild(IonContent) public content: IonContent;
 
   public posts: ContentCard[] = [];
   public results = 6;
@@ -28,6 +31,15 @@ export class HomePage implements OnInit {
    * Handles the inifinite scroll functionality
    */
   public ngOnInit() {
+
+    this.globalStore.state$.subscribe((store) => {
+      if (store.homeRefreshTrigger) {
+        this.getPosts();
+        this.content.scrollToTop(400);
+        this.globalStore.setHomeRefreshTrigger(false);
+      }
+    });
+
     this.getPosts();
   }
 

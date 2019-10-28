@@ -59,6 +59,14 @@
         <ion-toggle [(ngModel)]="settings.notifications.pointsUpdate" color="primary" slot="end"></ion-toggle>
       </ion-item>
 
+      <ion-item lines="full">
+        <ion-label>
+        <h2 class="radio-header">New Followers</h2>
+        <p text-wrap>Recieve notifications whenever a user follows you</p>
+        </ion-label>
+        <ion-toggle [(ngModel)]="settings.notifications.newFollower" color="primary" slot="end"></ion-toggle>
+      </ion-item>
+
       <div class="default-padding">
 
         <div class="default-bottom-padding">

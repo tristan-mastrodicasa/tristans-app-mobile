@@ -70,7 +70,7 @@ export class ContentCardComponent implements OnInit {
 
     if (
       ((type === EContentType.Canvas || type === EContentType.Meme) && cardId === myId) ||
-      (type === EContentType.MemeWithHost && this.cardData.users.secondary.id === myId)
+      (type === EContentType.MemeWithHost && this.cardData.users.primary.id === myId)
     ) {
       this.actionSheetButtons.push(
         {

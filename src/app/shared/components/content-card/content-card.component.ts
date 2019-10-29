@@ -24,14 +24,6 @@ export class ContentCardComponent implements OnInit {
 
   private actionSheetButtons: ActionSheetButton[] = [
     {
-      text: 'Share',
-      icon: 'share',
-      handler: () => {
-        this.clipboard.copy(`${environment.primaryWebsite}/canvas/${this.cardData.id}`);
-        this.presentShareLinkCopied();
-      },
-    },
-    {
       text: 'Report',
       icon: 'alert',
       handler: () => {
@@ -79,6 +71,19 @@ export class ContentCardComponent implements OnInit {
           icon: 'trash',
           handler: () => {
             this.presentDeleteConfirm();
+          },
+        },
+      );
+    }
+
+    if (type === EContentType.MemeWithHost || type === EContentType.Canvas) {
+      this.actionSheetButtons.push(
+        {
+          text: 'Share',
+          icon: 'share',
+          handler: () => {
+            this.clipboard.copy(`${environment.primaryWebsite}/canvas/${(this.cardData.cid ? this.cardData.cid : this.cardData.id)}`);
+            this.presentShareLinkCopied();
           },
         },
       );

@@ -4,6 +4,7 @@ import { ActionSheetController, AlertController, ToastController  } from '@ionic
 import { ActionSheetButton } from '@ionic/core';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 
 import { ContentCard, EContentType } from 'core/models';
 import { BackendApiService, LoadingService } from 'core/services';
@@ -47,10 +48,11 @@ export class ContentCardComponent implements OnInit {
     private clipboard: Clipboard,
     private toastController: ToastController,
     private browser: InAppBrowser,
+    private photoLibrary: PhotoLibrary,
   ) { }
 
   /**
-   * Initialize the description
+   * Initialize the description and card actions
    */
   public ngOnInit() {
     if (this.cardView === 'canvas-view' && !this.cardData.description) this.cardData.description = 'No description';
@@ -88,10 +90,23 @@ export class ContentCardComponent implements OnInit {
         },
       );
     }
+
+    if (type === EContentType.Meme || type === EContentType.MemeWithHost) {
+      this.actionSheetButtons.push(
+        {
+          text: 'Save meme',
+          icon: 'save',
+          handler: () => {
+            this.saveMeme();
+          },
+        },
+      );
+    }
+
   }
 
   /**
-   * Cofirm if the user wants to delete the card
+   * Confirm if the user wants to delete the card
    * @todo Tell users memes will be deleted
    */
   private async presentDeleteConfirm() {
@@ -179,6 +194,37 @@ export class ContentCardComponent implements OnInit {
 
     if (this.cardView === 'canvas-view') this.location.back();
     if (!error) this.deleted = true;
+  }
+
+  /**
+   * Save the meme to device's storage
+   */
+  public async saveMeme() {
+
+    this.photoLibrary.requestAuthorization().then(() => {
+      this.photoLibrary.saveImage(this.cardData.imagePath, 'Tristan\'s App').then((_) => {
+
+        this.toastController.create({
+          header: 'Saved Meme to Library',
+          duration: 1000,
+          position: 'bottom',
+        }).then((toast) => {
+          toast.present();
+        });
+
+      }).catch((_) => {
+
+        this.toastController.create({
+          header: 'Failed to Save Meme',
+          duration: 1000,
+          position: 'bottom',
+        }).then((toast) => {
+          toast.present();
+        });
+
+      });
+    });
+
   }
 
 }

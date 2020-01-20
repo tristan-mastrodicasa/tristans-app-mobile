@@ -1,5 +1,7 @@
 # Tristan's App
 
+![Preview Image](/docs/profile.png)
+
 ## Set up Environment
 
 Make sure you have Node.js installed
